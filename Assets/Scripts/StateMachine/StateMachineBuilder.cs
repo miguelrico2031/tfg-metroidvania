@@ -6,15 +6,15 @@ public class StateMachineBuilder
 {
 
     private IState m_InitialState;
-    private Dictionary<Type, StateNode> m_States = new();
-    private HashSet<ITransition> m_TransitionsFromAnyState = new();
+    private Dictionary<Type, StateMachine.StateNode> m_States = new();
+    private List<StateMachine.TransitionNode> m_TransitionsFromAnyState = new();
     
     public StateMachineBuilder AddState(IState state, bool isInitialState = false)
     {
         Assert.IsNotNull(state);
         Assert.IsFalse(m_States.ContainsKey(state.GetType()),
             "State already added to StateMachineBuilder. Only one instance per state type allowed.");
-        m_States[state.GetType()] = new StateNode(state);
+        m_States[state.GetType()] = new() { State = state };
 
         if(isInitialState)
         {
@@ -23,21 +23,20 @@ public class StateMachineBuilder
         }
         return this;
     }
-    public StateMachineBuilder AddTransition<TFromState, TTargetState>(ICondition condition)
+    public StateMachineBuilder AddTransition<TFromState, TTargetState>(Func<bool> transition)
     {
         Assert.IsTrue(m_States.ContainsKey(typeof(TFromState)), "From State not registered.");
         Assert.IsTrue(m_States.ContainsKey(typeof(TTargetState)), "Target State not registered.");
-        m_States[typeof(TFromState)].Transitions.Add(new Transition(m_States[typeof(TTargetState)].State, condition));
+        m_States[typeof(TFromState)].Transitions.Add(new() { TargetState = m_States[typeof(TTargetState)].State, Transition = transition });
         return this;
     }
 
-    public StateMachineBuilder AddTransitionFromAnyState<TTargetState>(ICondition condition)
+    public StateMachineBuilder AddTransitionFromAnyState<TTargetState>(Func<bool> transition)
     {
         Assert.IsTrue(m_States.ContainsKey(typeof(TTargetState)), "Target State not registered.");
-        m_TransitionsFromAnyState.Add(new Transition(m_States[typeof(TTargetState)].State, condition));
+        m_TransitionsFromAnyState.Add(new() { TargetState = m_States[typeof(TTargetState)].State, Transition = transition });
         return this;
     }
-
 
     public StateMachine Build()
     {
@@ -47,5 +46,4 @@ public class StateMachineBuilder
         m_TransitionsFromAnyState = null;
         return stateMachine;
     }
-
 }

@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using UnityEngine.Assertions;
-
 
 public interface IState
 {
@@ -11,79 +12,21 @@ public interface IState
     public void End();
 }
 
-public abstract class AState : IState 
-{
-    public virtual void Start() { }
-    public virtual void Update() { }
-    public virtual void FixedUpdate() { }
-    public virtual void End() { }
-}
-
-public interface ICondition
-{
-    public bool Check();
-}
-
-public class Condition : ICondition
-{
-    private Func<bool> m_Condition;
-    public Condition(Func<bool> condition)
-    {
-        m_Condition = condition;
-    }
-
-    public bool Check()
-    {
-        return m_Condition.Invoke();
-    }
-}
-
-public interface ITransition
-{
-    public IState TargetState {  get; }
-    public ICondition Condition { get; }
-}
-
-public class Transition : ITransition
-{
-    public IState TargetState { get; }
-    public ICondition Condition { get; }
-    public Transition(IState targetState,  ICondition condition)
-    {
-        TargetState = targetState;
-        Condition = condition;
-    }
-}
-public class StateNode
-{
-    public IState State { get; }
-    public HashSet<ITransition> Transitions { get; }
-
-    public StateNode(IState state)
-    {
-        State = state;
-        Transitions = new();
-    }
-
-    public void AddTransition(IState state, ICondition condition)
-    {
-        Transitions.Add(new Transition(state, condition));
-    }
-}
-
 [Serializable]
 public class StateMachine
 {
-    public IState CurrentState => m_CurrentState.State;
+    public Type CurrentState => m_CurrentState?.State.GetType();
+    public event Action OnStateChanged;
+
     private StateNode m_CurrentState;
     private readonly IState m_InitialState;
     private readonly IReadOnlyDictionary<Type, StateNode> m_States;
-    private readonly IReadOnlyCollection<ITransition> m_TransitionsFromAnyState;
+    private readonly IReadOnlyCollection<TransitionNode> m_TransitionsFromAnyState;
 
     public StateMachine(
         IState initialState,
         IReadOnlyDictionary<Type, StateNode> states,
-        IReadOnlyCollection<ITransition> transitionsFromAnyState)
+        IReadOnlyCollection<TransitionNode> transitionsFromAnyState)
     {
         Assert.IsNotNull(initialState);
         Assert.IsNotNull(states);
@@ -100,7 +43,7 @@ public class StateMachine
 
     public void Update()
     {
-        var transition = CheckTransitions();
+        TransitionNode transition = EvaluateTransitions();
         if (transition is not null)
         {
             ChangeCurrentState(transition.TargetState);
@@ -115,29 +58,42 @@ public class StateMachine
 
     private void ChangeCurrentState(IState state)
     {
-        var previousState = m_CurrentState?.State;
-        if (state == previousState)
+        if (state == m_CurrentState?.State)
             return;
 
-        var newStateNode = m_States[state.GetType()];
-
-        previousState?.End();
+        m_CurrentState?.State.End();
+        StateNode newStateNode = m_States[state.GetType()];
         newStateNode.State?.Start();
         m_CurrentState = newStateNode;
+        OnStateChanged?.Invoke();
     }
 
-    private ITransition CheckTransitions()
+    private TransitionNode EvaluateTransitions()
     {
-        foreach(var transition in m_TransitionsFromAnyState)
+        foreach (var transition in m_TransitionsFromAnyState)
         {
-            if(transition.Condition.Check())
+            if (transition.Transition.Invoke())
                 return transition;
         }
         foreach (var transition in m_CurrentState.Transitions)
         {
-            if (transition.Condition.Check())
+            if (transition.Transition.Invoke())
                 return transition;
         }
+
         return null;
+    }
+
+
+    public class StateNode
+    {
+        public IState State;
+        public readonly List<TransitionNode> Transitions = new();
+    }
+
+    public class TransitionNode
+    {
+        public IState TargetState;
+        public Func<bool> Transition;
     }
 }
