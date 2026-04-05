@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4122736619329d74db096beff77ac31f, type: 3}
+  m_Name: PlayerStats
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  <GroundSpeed>k__BackingField: 7
+  <AirSpeed>k__BackingField: 5
+  <JumpForce>k__BackingField: 18
+  <JumpCutMultiplier>k__BackingField: 0.65
+  <JumpBufferTime>k__BackingField: 0.15
+  <CoyoteTime>k__BackingField: 0.1
+  <RisingGravity>k__BackingField: 3
+  <FallingGravity>k__BackingField: 6
+  <GroundCheckSize>k__BackingField: {x: 0.9, y: 0.1}
+  <GroundCheckOffset>k__BackingField: 0
+  <GroundLayer>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 64
+  <MaxStamina>k__BackingField: 10
+  <StaminaRecoveryRate>k__BackingField: 5
+  m_StaminaActionCostsEntries:
+  - Action: 0
+    Cost: 3

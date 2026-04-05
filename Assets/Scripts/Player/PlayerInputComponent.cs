@@ -9,7 +9,7 @@ public class PlayerInputComponent : MonoBehaviour
     public event Action OnJumpPressed;
     public event Action OnJumpReleased;
 
-    [SerializeField] private float m_JumpBufferTime;
+    [SerializeField] private PlayerStats m_Stats;
     [SerializeField] private InputActionAsset m_InputActionAsset;
 
     private float m_JumpBufferTimer;
@@ -49,7 +49,7 @@ public class PlayerInputComponent : MonoBehaviour
 
     private void Update()
     {
-        if(m_JumpBufferTimer > 0f)
+        if (m_JumpBufferTimer > 0f)
         {
             m_JumpBufferTimer -= Time.deltaTime;
         }
@@ -69,7 +69,7 @@ public class PlayerInputComponent : MonoBehaviour
     {
         if (context.started)
         {
-            m_JumpBufferTimer = m_JumpBufferTime; //Register jump in buffer
+            m_JumpBufferTimer = m_Stats.JumpBufferTime; //Register jump in buffer
             OnJumpPressed?.Invoke();
         }
         if (context.canceled)

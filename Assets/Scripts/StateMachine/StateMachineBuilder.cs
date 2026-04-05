@@ -16,7 +16,7 @@ public class StateMachineBuilder
             "State already added to StateMachineBuilder. Only one instance per state type allowed.");
         m_States[state.GetType()] = new() { State = state };
 
-        if(isInitialState)
+        if (isInitialState)
         {
             Assert.IsNull(m_InitialState, "Initial State already set.");
             m_InitialState = state;

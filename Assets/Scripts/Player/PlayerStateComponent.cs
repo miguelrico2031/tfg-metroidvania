@@ -6,8 +6,12 @@ public class PlayerStateComponent : MonoBehaviour
 {
     public PlayerMovementComponent Movement {  get; private set; }
     public PlayerInputComponent Input {  get; private set; }
-    public GroundCheckComponent GroundCheck {  get; private set; }
+    public PlayerGroundCheckComponent GroundCheck {  get; private set; }
+    public PlayerAnimatorComponent Animator { get; private set; }
+    public PlayerStaminaComponent Stamina { get; private set; }
     public Type CurrentState => m_StateMachine?.CurrentState;
+
+    [SerializeField] private bool m_LogStateChanges;
 
     private string m_DebugStrStateMachine = "Current State: None";
 
@@ -17,7 +21,9 @@ public class PlayerStateComponent : MonoBehaviour
     {
         Movement = GetComponent<PlayerMovementComponent>();
         Input = GetComponent<PlayerInputComponent>();
-        GroundCheck = GetComponent<GroundCheckComponent>();
+        GroundCheck = GetComponent<PlayerGroundCheckComponent>();
+        Animator = GetComponent<PlayerAnimatorComponent>();
+        Stamina = GetComponent<PlayerStaminaComponent>();
 
         m_StateMachine = new StateMachineBuilder()
             .AddState(new PlayerGroundedState(this), isInitialState: true)
@@ -30,7 +36,6 @@ public class PlayerStateComponent : MonoBehaviour
             .AddTransition<PlayerFallingState, PlayerJumpingState>(() => PlayerTransitions.TransitionFallingToJumping(this))
             .Build();
         m_StateMachine.OnStateChanged += OnStateChanged;
-
     }
     private void Start()
     {
@@ -51,6 +56,9 @@ public class PlayerStateComponent : MonoBehaviour
     {
         string stateName = CurrentState?.Name ?? "None";
         m_DebugStrStateMachine = $"Current State: {stateName}";
+        if (m_LogStateChanges)
+        {
         Debug.Log($"Player State Machine Current State changed to {stateName}");
+        }
     }
 }

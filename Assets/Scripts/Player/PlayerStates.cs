@@ -20,6 +20,7 @@ public class PlayerGroundedState : APlayerState
     public override void Start()
     {
         m_Player.Movement.SetRisingGravity();
+        m_Player.Animator.StartGroundedAnimation();
     }
     public override void FixedUpdate()
     {
@@ -34,9 +35,11 @@ public class PlayerJumpingState : APlayerState
     {
         m_Player.Movement.Jump();
         m_Player.Movement.SetRisingGravity();
-        m_Player.Input.ClearJumpBuffer();
         m_Player.GroundCheck.ClearCoyoteTime();
+        m_Player.Input.ClearJumpBuffer();
         m_Player.Input.OnJumpReleased += OnJumpReleased;
+        m_Player.Animator.StartJumpAnimation();
+        m_Player.Stamina.RegisterActionPerformed(PlayerStaminaAction.Jump);
     }
     public override void End() => m_Player.Input.OnJumpReleased -= OnJumpReleased;
     public override void FixedUpdate()
@@ -57,6 +60,7 @@ public class PlayerFallingState : APlayerState
     public override void Start()
     {
         m_Player.Movement.SetFallingGravity();
+        m_Player.Animator.StartFallAnimation();
     }
     public override void FixedUpdate()
     {
@@ -68,11 +72,16 @@ public class PlayerFallingState : APlayerState
 #region TRANSITIONS
 public static class PlayerTransitions
 {
-    public static bool TransitionGroundedToJumping(PlayerStateComponent player) => player.Input.CheckJumpBuffer();
+    public static bool TransitionGroundedToJumping(PlayerStateComponent player) => IsJumpRequestedAndAllowed(player);
     public static bool TransitionJumpingToFalling(PlayerStateComponent player) => player.Movement.VerticalVelocity <= 0f;
     public static bool TransitionFallingToGrounded(PlayerStateComponent player) => player.GroundCheck.IsGrounded;
     public static bool TransitionGroundedToFalling(PlayerStateComponent player) => !player.GroundCheck.IsGrounded;
-    public static bool TransitionFallingToJumping(PlayerStateComponent player)=> player.GroundCheck.CheckCoyoteTime() 
-        && player.Input.CheckJumpBuffer();
+    public static bool TransitionFallingToJumping(PlayerStateComponent player) => player.GroundCheck.CheckCoyoteTime() 
+        && IsJumpRequestedAndAllowed(player);
+
+    private static bool IsJumpRequestedAndAllowed(PlayerStateComponent player)
+    {
+        return player.Input.CheckJumpBuffer() && player.Stamina.CanPerformAction(PlayerStaminaAction.Jump);
+    }
 }
 #endregion
