@@ -31,7 +31,7 @@ public class PlayerGroundCheckComponent : MonoBehaviour
     {
         m_WasGrounded = IsGrounded;
         var (origin, size) = ComputeGroundCheckBox();
-        IsGrounded = Physics2D.OverlapBox( origin, size, angle: 0f, m_Stats.GroundLayer );
+        IsGrounded = Physics2D.OverlapBox( origin, size, angle: 0f, m_Stats.GroundLayers );
         JustLanded = IsGrounded && !m_WasGrounded;
         JustLeftGround = !IsGrounded && m_WasGrounded;
     }

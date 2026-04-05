@@ -67,21 +67,53 @@ public class PlayerFallingState : APlayerState
         m_Player.Movement.MoveAirborne(m_Player.Input.Movement);
     }
 }
+
+public class PlayerDashingState : APlayerState
+{
+    public PlayerDashingState(PlayerStateComponent player) : base(player) { }
+    public override void Start()
+    {
+        m_Player.Movement.Dash();
+        m_Player.Input.ClearDashBuffer();
+        m_Player.Animator.StartDashAnimation();
+        m_Player.Stamina.RegisterActionPerformed(PlayerStaminaAction.Dash);
+    }
+    public override void End()
+    {
+        m_Player.Movement.FinishDash();
+    }
+}
 #endregion
 
 #region TRANSITIONS
 public static class PlayerTransitions
 {
     public static bool TransitionGroundedToJumping(PlayerStateComponent player) => IsJumpRequestedAndAllowed(player);
-    public static bool TransitionJumpingToFalling(PlayerStateComponent player) => player.Movement.VerticalVelocity <= 0f;
-    public static bool TransitionFallingToGrounded(PlayerStateComponent player) => player.GroundCheck.IsGrounded;
     public static bool TransitionGroundedToFalling(PlayerStateComponent player) => !player.GroundCheck.IsGrounded;
-    public static bool TransitionFallingToJumping(PlayerStateComponent player) => player.GroundCheck.CheckCoyoteTime() 
-        && IsJumpRequestedAndAllowed(player);
+    public static bool TransitionGroundedToDashing(PlayerStateComponent player) => IsDashRequestedAndAllowed(player);
+    
+    public static bool TransitionJumpingToFalling(PlayerStateComponent player) => player.Movement.VerticalVelocity <= 0f;
+    
+    public static bool TransitionFallingToGrounded(PlayerStateComponent player) => player.GroundCheck.IsGrounded;
+    public static bool TransitionFallingToJumping(PlayerStateComponent player) =>
+        player.GroundCheck.CheckCoyoteTime() &&
+        IsJumpRequestedAndAllowed(player);
+   
+    public static bool TransitionDashingToGrounded(PlayerStateComponent player) => player.GroundCheck.IsGrounded && IsDashFinished(player);
+    public static bool TransitionDashingToFalling(PlayerStateComponent player) => !player.GroundCheck.IsGrounded && IsDashFinished(player);
 
-    private static bool IsJumpRequestedAndAllowed(PlayerStateComponent player)
+    private static bool IsJumpRequestedAndAllowed(PlayerStateComponent player) =>
+        player.Input.CheckJumpBuffer() && 
+        player.Stamina.CanPerformAction(PlayerStaminaAction.Jump);
+    
+    private static bool IsDashRequestedAndAllowed(PlayerStateComponent player)
     {
-        return player.Input.CheckJumpBuffer() && player.Stamina.CanPerformAction(PlayerStaminaAction.Jump);
+        bool a = player.Input.CheckDashBuffer();
+        bool b = player.Stamina.CanPerformAction(PlayerStaminaAction.Dash);
+        bool c =  !player.ObstacleCheck.IsObstructed;
+        return a && b && c;
     }
+
+    private static bool IsDashFinished(PlayerStateComponent player) => !player.Movement.IsDashing || player.ObstacleCheck.IsObstructed;
 }
 #endregion

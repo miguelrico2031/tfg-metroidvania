@@ -7,48 +7,69 @@ public class PlayerStats : ScriptableObject
 {
     [field: Header("Movement"), SerializeField, Tooltip("Movement speed when grounded.")]
     public float GroundSpeed { get; private set; }
-   
+
     [field: SerializeField, Tooltip("Movement speed when airborne.")]
-    public float AirSpeed {get; private set; }
+    public float AirSpeed { get; private set; }
 
 
     [field: Header("Jump"), SerializeField, Tooltip("Jump force to achieve max jump height.")]
-    public float JumpForce {get; private set; }
-    
-    [field: SerializeField, Range(0f, 1f),Tooltip("Value to scale the vertical velocity when releasing the jump button " +
+    public float JumpForce { get; private set; }
+
+    [field: SerializeField, Range(0f, 1f), Tooltip("Value to scale the vertical velocity when releasing the jump button " +
         "before achieveing max jump height, to allow jumping lower than max jump height.")]
-    public float JumpCutMultiplier {get; private set; }
+    public float JumpCutMultiplier { get; private set; }
 
     [field: SerializeField, Tooltip("Time window in seconds after pressing jump where the input is remembered " +
         "and executed upon landing.")]
-    public float JumpBufferTime {get; private set; }
+    public float JumpBufferTime { get; private set; }
 
     [field: SerializeField, Tooltip("Time window in seconds after leaving the ground where jump is still allowed.")]
     public float CoyoteTime { get; private set; }
 
 
     [field: Header("Gravity"), SerializeField, Tooltip("Gravity scale when grounded or jumping upwards.")]
-    public float RisingGravity {get; private set; }
+    public float RisingGravity { get; private set; }
 
     [field: SerializeField, Tooltip("Gravity scale when falling.")]
-    public float FallingGravity {get; private set; }
+    public float FallingGravity { get; private set; }
+
+
+    [field: Header("Dash"), SerializeField, Tooltip("Distance in game units the dash can traverse.")]
+    public float DashDistance { get; private set; }
+
+    [field:SerializeField, Tooltip("Time in seconds the dash will take.")]
+    public float DashDuration { get; private set; }
+
+    [field: SerializeField, Tooltip("Time window in seconds after pressing dash where the input is remembered " +
+        "and executed upon landing.")]
+    public float DashBufferTime { get; private set; }
 
 
     [field: Header("Ground Check"), SerializeField, Tooltip("Size of the box used to detect the ground at the player feet.")]
-    public Vector2 GroundCheckSize {get; private set; }
+    public Vector2 GroundCheckSize { get; private set; }
 
     [field: SerializeField, Tooltip("How separated is the ground check box from the player feet.")]
     public float GroundCheckOffset { get; private set; }
 
     [field: SerializeField, Tooltip("Layers counting as ground for gorund check.")]
-    public LayerMask GroundLayer {get; private set; }
+    public LayerMask GroundLayers { get; private set; }
+
+
+    [field: Header("Obstacle Check"), SerializeField, Tooltip("Width of the box used to detect obstacles in front of the player (used for dashing).")]
+    public Vector2 ObstacleCheckSize { get; private set; }
+
+    [field: SerializeField, Tooltip("How separated is the obstacle check box from the player collider center left point.")]
+    public float ObstacleCheckOffset { get; private set; }
+
+    [field: SerializeField, Tooltip("Layers counting as obstacles for obstacle check.")]
+    public LayerMask ObstacleLayers { get; private set; }
 
 
     [field: Header("Stamina"), SerializeField, Tooltip("Max amount of stamina the player can have.")]
-    public int MaxStamina {get; private set; }
+    public int MaxStamina { get; private set; }
 
     [field: SerializeField, Tooltip("Stamina points recovered per second when player stamina is below max.")]
-    public int StaminaRecoveryRate {get; private set; }
+    public int StaminaRecoveryRate { get; private set; }
 
     [SerializeField, Tooltip("How many stamina points each action consumes.")]
     private StaminaActionCostEntry[] m_StaminaActionCostsEntries;

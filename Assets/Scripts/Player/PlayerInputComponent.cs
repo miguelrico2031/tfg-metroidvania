@@ -8,16 +8,22 @@ public class PlayerInputComponent : MonoBehaviour
     public event Action<int> OnMovementChanged;
     public event Action OnJumpPressed;
     public event Action OnJumpReleased;
+    public event Action OnDashPressed;
 
     [SerializeField] private PlayerStats m_Stats;
     [SerializeField] private InputActionAsset m_InputActionAsset;
 
     private float m_JumpBufferTimer;
+    private float m_DashBufferTimer;
     private InputAction m_MoveAction;
     private InputAction m_JumpAction;
+    private InputAction m_DashAction;
 
     public bool CheckJumpBuffer() => m_JumpBufferTimer > 0f;
     public void ClearJumpBuffer() => m_JumpBufferTimer = 0f;
+
+    public bool CheckDashBuffer() => m_DashBufferTimer > 0f;
+    public void ClearDashBuffer() => m_DashBufferTimer = 0f;
 
     private void OnEnable()
     {
@@ -29,6 +35,9 @@ public class PlayerInputComponent : MonoBehaviour
         m_JumpAction ??= m_InputActionAsset.FindAction("Player/Jump", throwIfNotFound: true);
         m_JumpAction.canceled += OnJumpAction;
         m_JumpAction.started += OnJumpAction;
+
+        m_DashAction ??= m_InputActionAsset.FindAction("Player/Dash", throwIfNotFound: true);
+        m_DashAction.started += OnDashAction;
     }
 
     private void OnDisable()
@@ -39,11 +48,14 @@ public class PlayerInputComponent : MonoBehaviour
             m_MoveAction.performed -= OnMoveAction;
             m_MoveAction.started -= OnMoveAction;
         }
-
         if (m_JumpAction is not null)
         {
             m_JumpAction.canceled -= OnJumpAction;
             m_JumpAction.started -= OnJumpAction;
+        }
+        if (m_DashAction is not null)
+        {
+            m_DashAction.started -= OnDashAction;
         }
     }
 
@@ -52,6 +64,10 @@ public class PlayerInputComponent : MonoBehaviour
         if (m_JumpBufferTimer > 0f)
         {
             m_JumpBufferTimer -= Time.deltaTime;
+        }
+        if (m_DashBufferTimer > 0f)
+        {
+            m_DashBufferTimer -= Time.deltaTime;
         }
     }
 
@@ -75,6 +91,15 @@ public class PlayerInputComponent : MonoBehaviour
         if (context.canceled)
         {
             OnJumpReleased?.Invoke();
+        }
+    }
+
+    private void OnDashAction(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            m_DashBufferTimer = m_Stats.DashBufferTime;
+            OnDashPressed?.Invoke();
         }
     }
 }

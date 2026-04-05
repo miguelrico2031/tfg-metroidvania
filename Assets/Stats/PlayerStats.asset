@@ -20,13 +20,23 @@ MonoBehaviour:
   <CoyoteTime>k__BackingField: 0.1
   <RisingGravity>k__BackingField: 3
   <FallingGravity>k__BackingField: 6
+  <DashDistance>k__BackingField: 3
+  <DashDuration>k__BackingField: 0.2
+  <DashBufferTime>k__BackingField: 0.15
   <GroundCheckSize>k__BackingField: {x: 0.9, y: 0.1}
   <GroundCheckOffset>k__BackingField: 0
-  <GroundLayer>k__BackingField:
+  <GroundLayers>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 64
+  <ObstacleCheckSize>k__BackingField: {x: 0.3, y: 1}
+  <ObstacleCheckOffset>k__BackingField: 0
+  <ObstacleLayers>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
   <MaxStamina>k__BackingField: 10
-  <StaminaRecoveryRate>k__BackingField: 5
+  <StaminaRecoveryRate>k__BackingField: 4
   m_StaminaActionCostsEntries:
   - Action: 0
+    Cost: 4
+  - Action: 1
     Cost: 3
