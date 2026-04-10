@@ -342,7 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   <HitboxMode>k__BackingField: 1
   <Faction>k__BackingField: 1
-  m_PersistentAttackCooldown: 1
+  m_PersistentAttackCooldown: 0.5
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
   m_Attack:
     Damage: 1
@@ -28382,6 +28382,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PLAYER ROOT
       objectReference: {fileID: 0}
+    - target: {fileID: 3145998334307986808, guid: c70c225b484b0764d807c696458fd860, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.9999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 3145998334307986808, guid: c70c225b484b0764d807c696458fd860, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.009876728
+      objectReference: {fileID: 0}
     - target: {fileID: 4062449134482075419, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: orthographic size
       value: 8.4375
@@ -28396,11 +28404,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8600008183807885606, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.537
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8600008183807885606, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.41929
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8600008183807885606, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: m_LocalPosition.z
