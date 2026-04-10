@@ -55,10 +55,10 @@ public class PlayerMovementComponent : MonoBehaviour
 
         m_KnockbackTimer = attack.KnockbackDuration;
         float knockbackSpeedX = attack.KnockbackDistance / attack.KnockbackDuration;
-        float directionToAttackX = Mathf.Sign(m_Transform.position.x - attack.Source.Position.x);
+        float directionToAttackX = Mathf.Sign(attack.Source.Position.x - m_Transform.position.x);
         if(Mathf.Sign(m_Transform.right.x) != directionToAttackX) //Ensure facing attack source
         {
-            Flip(right: directionToAttackX < 0f); 
+            Flip(right: directionToAttackX > 0f); 
         }
         m_Rigidbody.linearVelocityX = -m_Transform.right.x * knockbackSpeedX;
         return true;
