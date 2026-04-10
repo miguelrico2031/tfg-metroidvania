@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   <GroundSpeed>k__BackingField: 7
-  <AirSpeed>k__BackingField: 5
-  <JumpForce>k__BackingField: 18
+  <AirSpeed>k__BackingField: 7
+  <MoveOnChangeDirection>k__BackingField: 0
+  <JumpForce>k__BackingField: 16
   <JumpCutMultiplier>k__BackingField: 0.65
   <JumpBufferTime>k__BackingField: 0.15
   <CoyoteTime>k__BackingField: 0.1
@@ -35,8 +36,16 @@ MonoBehaviour:
     m_Bits: 64
   <MaxStamina>k__BackingField: 10
   <StaminaRecoveryRate>k__BackingField: 4
-  m_StaminaActionCostsEntries:
+  m_StaminaActions:
   - Action: 0
     Cost: 4
+    IsInvoluntary: 0
   - Action: 1
     Cost: 3
+    IsInvoluntary: 0
+  - Action: 2
+    Cost: 3
+    IsInvoluntary: 0
+  - Action: 3
+    Cost: 2
+    IsInvoluntary: 1

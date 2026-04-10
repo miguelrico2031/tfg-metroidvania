@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -58,12 +57,10 @@ public class StateMachine
 
     private void ChangeCurrentState(IState state)
     {
-        if (state == m_CurrentState?.State)
-            return;
-
+        Assert.IsNotNull(state);
         m_CurrentState?.State.End();
         StateNode newStateNode = m_States[state.GetType()];
-        newStateNode.State?.Start();
+        newStateNode.State.Start();
         m_CurrentState = newStateNode;
         OnStateChanged?.Invoke();
     }
@@ -80,7 +77,6 @@ public class StateMachine
             if (transition.Transition.Invoke())
                 return transition;
         }
-
         return null;
     }
 

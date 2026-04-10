@@ -15,29 +15,33 @@ public class PlayerStaminaComponent : MonoBehaviour
 
     [SerializeField] private PlayerStats m_Stats;
 
-    private Dictionary<PlayerStaminaAction, int> m_StaminaActionCosts;
+    private Dictionary<StaminaAction, StaminaActionData> m_StaminaActions;
     private float m_RecoveryPointTimer;
 
-    public bool CanPerformAction(PlayerStaminaAction action)
+    public bool CanPerformAction(StaminaAction action)
     {
-        return !IsExhausted;
+        return !IsExhausted || m_StaminaActions[action].IsInvoluntary;
     }
 
-    public void RegisterActionPerformed(PlayerStaminaAction action)
+    public void RegisterActionPerformed(StaminaAction action)
     {
         Assert.IsTrue(CanPerformAction(action), $"Performing unallowed action: {action}.");
 
-        int cost = m_StaminaActionCosts[action];
+        int cost = m_StaminaActions[action].Cost;
         int previousStamina = CurrentStamina;
         CurrentStamina = Mathf.Max(CurrentStamina - cost, 0);
         IsExhausted = CurrentStamina == 0; //Running out of stamina causes exhaustion, so player cannot perform actions until stamina is full
-        OnStaminaLost?.Invoke(previousStamina - CurrentStamina);
+        int staminaLost = previousStamina - CurrentStamina;
+        if(staminaLost > 0)
+        {
+            OnStaminaLost?.Invoke(staminaLost);
+            m_RecoveryPointTimer = 0f;
+        }
     }
 
     private void Awake()
     {
-        m_StaminaActionCosts =
-            new(m_Stats.StaminaActionCosts.Select(entry => new KeyValuePair<PlayerStaminaAction, int>(entry.Action, entry.Cost)));
+        m_StaminaActions = new(m_Stats.StaminaActions.Select(s => new KeyValuePair<StaminaAction, StaminaActionData>(s.Action, s)));
         CurrentStamina = MaxStamina;
         RecoveryPointTime = 1f / m_Stats.StaminaRecoveryRate;
         m_RecoveryPointTimer = 0f;

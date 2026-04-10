@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+
 public class PlayerAnimatorComponent : MonoBehaviour
 {
     [SerializeField] private Animator m_Animator;
@@ -9,10 +11,11 @@ public class PlayerAnimatorComponent : MonoBehaviour
     private static readonly int s_Jump = Animator.StringToHash("Jump");
     private static readonly int s_Fall = Animator.StringToHash("Fall");
     private static readonly int s_Dash = Animator.StringToHash("Dash");
+    private static readonly int s_Knockback = Animator.StringToHash("Knockback");
 
     private bool m_IsGrounded;
-    private Rigidbody2D m_Rigidbody;
     private int m_TriggerThisFrame = -1;
+    private Rigidbody2D m_Rigidbody;
 
     public void StartGroundedAnimation()
     {
@@ -36,6 +39,11 @@ public class PlayerAnimatorComponent : MonoBehaviour
     {
         m_IsGrounded = true;
         m_TriggerThisFrame = s_Dash;
+    }
+
+    public void StartKnockbackAnimation()
+    {
+        m_TriggerThisFrame = s_Knockback;
     }
 
     private void Awake()

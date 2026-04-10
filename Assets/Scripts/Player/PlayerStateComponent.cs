@@ -1,7 +1,8 @@
 using UnityEngine;
 using System;
 
-
+[RequireComponent(typeof(PlayerMovementComponent), typeof(PlayerInputComponent), typeof(PlayerGroundCheckComponent))]
+[RequireComponent(typeof(PlayerObstacleCheckComponent), typeof(PlayerAnimatorComponent), typeof(PlayerStaminaComponent))]
 public class PlayerStateComponent : MonoBehaviour
 {
     public PlayerMovementComponent Movement { get; private set; }
@@ -10,8 +11,10 @@ public class PlayerStateComponent : MonoBehaviour
     public PlayerObstacleCheckComponent ObstacleCheck { get; private set; }
     public PlayerAnimatorComponent Animator { get; private set; }
     public PlayerStaminaComponent Stamina { get; private set; }
+    public AttackTargetComponent AttackTarget { get; private set; }
 
     public Type CurrentState => m_StateMachine?.CurrentState;
+    public event Action<Type> OnStateChanged;
 
     [SerializeField] private bool m_LogStateChanges;
 
@@ -27,6 +30,7 @@ public class PlayerStateComponent : MonoBehaviour
         ObstacleCheck = GetComponent<PlayerObstacleCheckComponent>();
         Animator = GetComponent<PlayerAnimatorComponent>();
         Stamina = GetComponent<PlayerStaminaComponent>();
+        AttackTarget = GetComponent<AttackTargetComponent>();
 
         m_StateMachine = new StateMachineBuilder()
 
@@ -34,21 +38,29 @@ public class PlayerStateComponent : MonoBehaviour
             .AddState(new PlayerJumpingState(this))
             .AddState(new PlayerFallingState(this))
             .AddState(new PlayerDashingState(this))
+            .AddState(new PlayerKnockbackState(this))
 
-            .AddTransition<PlayerGroundedState, PlayerJumpingState>(() => PlayerTransitions.TransitionGroundedToJumping(this))
-            .AddTransition<PlayerGroundedState, PlayerFallingState>(() => PlayerTransitions.TransitionGroundedToFalling(this))
-            .AddTransition<PlayerGroundedState, PlayerDashingState>(() => PlayerTransitions.TransitionGroundedToDashing(this))
+            .AddTransition<PlayerGroundedState, PlayerJumpingState>(() => IsJumpRequestedAndAllowed())
+            .AddTransition<PlayerGroundedState, PlayerFallingState>(() => !GroundCheck.IsGrounded)
+            .AddTransition<PlayerGroundedState, PlayerDashingState>(() => IsDashRequestedAndAllowed())
+            .AddTransition<PlayerGroundedState, PlayerKnockbackState>(() => HasBeenHitWithKnockback())
 
-            .AddTransition<PlayerJumpingState, PlayerFallingState>(() => PlayerTransitions.TransitionJumpingToFalling(this))
+            .AddTransition<PlayerJumpingState, PlayerFallingState>(() => Movement.VerticalVelocity <= 0f)
+            .AddTransition<PlayerJumpingState, PlayerKnockbackState>(() => HasBeenHitWithKnockback())
 
-            .AddTransition<PlayerFallingState, PlayerGroundedState>(() => PlayerTransitions.TransitionFallingToGrounded(this))
-            .AddTransition<PlayerFallingState, PlayerJumpingState>(() => PlayerTransitions.TransitionFallingToJumping(this))
+            .AddTransition<PlayerFallingState, PlayerGroundedState>(() => GroundCheck.IsGrounded)
+            .AddTransition<PlayerFallingState, PlayerJumpingState>(() => GroundCheck.CheckCoyoteTime() && IsJumpRequestedAndAllowed())
+            .AddTransition<PlayerFallingState, PlayerKnockbackState>(() => HasBeenHitWithKnockback())
 
-            .AddTransition<PlayerDashingState, PlayerGroundedState>(() => PlayerTransitions.TransitionDashingToGrounded(this))
-            .AddTransition<PlayerDashingState, PlayerFallingState>(() => PlayerTransitions.TransitionDashingToFalling(this))
+            .AddTransition<PlayerDashingState, PlayerGroundedState>(() => GroundCheck.IsGrounded && IsDashFinished())
+            .AddTransition<PlayerDashingState, PlayerFallingState>(() => !GroundCheck.IsGrounded && IsDashFinished())
 
+            .AddTransition<PlayerKnockbackState, PlayerGroundedState>(() => GroundCheck.IsGrounded && IsKnockbackFinished())
+            .AddTransition<PlayerKnockbackState, PlayerFallingState>(() => !GroundCheck.IsGrounded && IsKnockbackFinished())
+            
             .Build();
-        m_StateMachine.OnStateChanged += OnStateChanged;
+
+        m_StateMachine.OnStateChanged += HandleStateChanged;
     }
     private void Start()
     {
@@ -65,7 +77,7 @@ public class PlayerStateComponent : MonoBehaviour
         m_StateMachine?.FixedUpdate();
     }
 
-    private void OnStateChanged()
+    private void HandleStateChanged()
     {
         string stateName = CurrentState?.Name ?? "None";
         m_DebugStrStateMachine = $"Current State: {stateName}";
@@ -73,5 +85,34 @@ public class PlayerStateComponent : MonoBehaviour
         {
             Debug.Log($"Player State Machine Current State changed to {stateName}");
         }
+
+        OnStateChanged?.Invoke(CurrentState);
     }
+
+    private bool IsJumpRequestedAndAllowed() =>
+        Input.CheckJumpBuffer() &&
+        Stamina.CanPerformAction(StaminaAction.Jump);
+
+    private bool IsDashRequestedAndAllowed() =>
+        Input.CheckDashBuffer() &&
+        Stamina.CanPerformAction(StaminaAction.Dash) &&
+        !ObstacleCheck.IsObstructed;
+
+    private bool IsDashFinished() => 
+        !Movement.IsDashing ||
+        ObstacleCheck.IsObstructed;
+
+    private bool HasBeenHitWithKnockback() => AttackTarget.ResolvedAttackThisFrame is
+    {
+        Result: AttackResult.Blocked or AttackResult.Hit,
+        Attack:
+        {
+            KnockbackDistance: > 0.01f,
+            KnockbackDuration: > 0.01f
+        }
+    };
+
+    private bool IsKnockbackFinished() =>
+        !Movement.IsInKnockback ||
+        ObstacleCheck.IsObstructed;
 }

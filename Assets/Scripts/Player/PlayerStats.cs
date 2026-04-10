@@ -10,6 +10,8 @@ public class PlayerStats : ScriptableObject
 
     [field: SerializeField, Tooltip("Movement speed when airborne.")]
     public float AirSpeed { get; private set; }
+    [field: SerializeField, Tooltip("If disabled the player doesn't move when it changes direction.")]
+    public bool MoveOnChangeDirection { get; private set; }
 
 
     [field: Header("Jump"), SerializeField, Tooltip("Jump force to achieve max jump height.")]
@@ -65,27 +67,30 @@ public class PlayerStats : ScriptableObject
     public LayerMask ObstacleLayers { get; private set; }
 
 
+
     [field: Header("Stamina"), SerializeField, Tooltip("Max amount of stamina the player can have.")]
     public int MaxStamina { get; private set; }
 
     [field: SerializeField, Tooltip("Stamina points recovered per second when player stamina is below max.")]
     public int StaminaRecoveryRate { get; private set; }
 
-    [SerializeField, Tooltip("How many stamina points each action consumes.")]
-    private StaminaActionCostEntry[] m_StaminaActionCostsEntries;
-    public IReadOnlyCollection<StaminaActionCostEntry> StaminaActionCosts => m_StaminaActionCostsEntries;
+    [SerializeField, Tooltip("Info about each action that consumes stamina.")]
+    private StaminaActionData[] m_StaminaActions;
+    public IReadOnlyCollection<StaminaActionData> StaminaActions => m_StaminaActions;
 }
 
-public enum PlayerStaminaAction
+public enum StaminaAction
 {
     Jump,
     Dash,
-    Attack
+    Attack,
+    Knockback
 }
 
 [Serializable]
-public struct StaminaActionCostEntry
+public struct StaminaActionData
 {
-    public PlayerStaminaAction Action;
+    public StaminaAction Action;
     public int Cost;
+    public bool IsInvoluntary;
 }

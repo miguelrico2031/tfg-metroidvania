@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class PlayerObstacleCheckComponent : MonoBehaviour
 {
     public bool IsObstructed => m_CheckedThisFrame ? m_IsObstructed : CheckObstacles();
@@ -7,7 +8,7 @@ public class PlayerObstacleCheckComponent : MonoBehaviour
     [SerializeField] private PlayerStats m_Stats;
 
     private BoxCollider2D m_BoxCollider;
-    private PlayerDirectionComponent m_Direction;
+    private Transform m_Transform;
 
     private bool m_CheckedThisFrame = false;
     private bool m_IsObstructed = false;
@@ -15,7 +16,7 @@ public class PlayerObstacleCheckComponent : MonoBehaviour
     private void Awake()
     {
         m_BoxCollider = GetComponent<BoxCollider2D>();
-        m_Direction = GetComponent<PlayerDirectionComponent>();
+        m_Transform = transform;
     }
 
     private void LateUpdate()
@@ -44,7 +45,7 @@ public class PlayerObstacleCheckComponent : MonoBehaviour
     {
         Vector3 origin = m_BoxCollider.bounds.center;
         float displacement = m_BoxCollider.bounds.extents.x + m_Stats.ObstacleCheckSize.x * 0.5f + m_Stats.ObstacleCheckOffset;
-        origin.x += m_Direction.Direction * displacement;
+        origin += m_Transform.right * displacement;
         return (origin, m_Stats.ObstacleCheckSize);
     }
 }
