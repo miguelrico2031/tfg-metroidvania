@@ -88,14 +88,15 @@ public class PlayerKnockbackState : APlayerState
     public PlayerKnockbackState(PlayerStateComponent player) : base(player) { }
     public override void Start()
     {
-        Attack attack = m_Player.AttackTarget.ResolvedAttackThisFrame.Attack;
+        AttackData attack = m_Player.AttackTarget.ResolvedAttackThisFrame.Attack;
         m_Player.Movement.ApplyAttackKnockback(attack);
-        m_Player.Animator.StartKnockbackAnimation();
+        bool isAirborne = attack.Knockback.Height > 0.1f || !m_Player.GroundCheck.IsGrounded;
+        m_Player.Animator.StartKnockbackAnimation(isAirborne);
         m_Player.Stamina.RegisterActionPerformed(StaminaAction.Knockback);
     }
     public override void End()
     {
-        m_Player.Movement.FinishDash();
+        m_Player.Movement.FinishKnockback();
     }
 }
 #endregion

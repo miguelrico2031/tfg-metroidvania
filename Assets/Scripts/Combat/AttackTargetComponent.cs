@@ -5,17 +5,15 @@ using UnityEngine.Assertions;
 public class AttackTargetComponent : MonoBehaviour, IAttackTarget
 {
     [field: SerializeField] public Faction Faction { get; private set; }
-    public event Action<Attack, AttackResult> OnAttacked;
     public ResolvedAttack ResolvedAttackThisFrame { get; set; }
     private Hurtbox[] m_Hurtboxes;
 
-    public AttackResult ResolveAttack(Attack attack)
+    public AttackResult ResolveAttack(AttackData attack)
     {
         if (ResolvedAttackThisFrame is not null)
             return AttackResult.Missed;
 
         AttackResult result = AttackResult.Hit;
-        OnAttacked?.Invoke(attack, result);
         ResolvedAttackThisFrame = new(attack, result);
         return result;
     }
@@ -36,9 +34,9 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
 
     public class ResolvedAttack
     {
-        public readonly Attack Attack;
+        public readonly AttackData Attack;
         public readonly AttackResult Result;
-        public ResolvedAttack(Attack attack, AttackResult result)
+        public ResolvedAttack(AttackData attack, AttackResult result)
         {
             Attack = attack;
             Result = result;

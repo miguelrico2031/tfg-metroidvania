@@ -5,14 +5,12 @@ public interface IAttackSource
 {
     public Vector2 Position { get; }
     public Faction Faction { get; }
-    public event Action<Attack, AttackResult> OnAttack;
 }
 
 public interface IAttackTarget
 {
     public Faction Faction { get; }
-    public event Action<Attack, AttackResult> OnAttacked;
-    public AttackResult ResolveAttack(Attack attack);
+    public AttackResult ResolveAttack(AttackData attack);
 }
 
 public enum AttackResult
@@ -24,11 +22,18 @@ public enum AttackResult
 }
 
 [Serializable]
-public struct Attack
+public struct KnockbackData
+{
+    public float Duration;
+    public float Distance;
+    public float Height;
+}
+
+[Serializable]
+public struct AttackData
 {
     public int Damage;
-    public float KnockbackDistance;
-    public float KnockbackDuration;
+    public KnockbackData Knockback;
     public IAttackSource Source;
 }
 

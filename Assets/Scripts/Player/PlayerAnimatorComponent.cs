@@ -12,6 +12,7 @@ public class PlayerAnimatorComponent : MonoBehaviour
     private static readonly int s_Fall = Animator.StringToHash("Fall");
     private static readonly int s_Dash = Animator.StringToHash("Dash");
     private static readonly int s_Knockback = Animator.StringToHash("Knockback");
+    private static readonly int s_KnockbackAirborne = Animator.StringToHash("KnockbackAirborne");
 
     private bool m_IsGrounded;
     private int m_TriggerThisFrame = -1;
@@ -41,9 +42,9 @@ public class PlayerAnimatorComponent : MonoBehaviour
         m_TriggerThisFrame = s_Dash;
     }
 
-    public void StartKnockbackAnimation()
+    public void StartKnockbackAnimation(bool isAirborne)
     {
-        m_TriggerThisFrame = s_Knockback;
+        m_TriggerThisFrame = isAirborne ? s_KnockbackAirborne : s_Knockback;
     }
 
     private void Awake()

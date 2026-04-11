@@ -344,10 +344,12 @@ MonoBehaviour:
   <Faction>k__BackingField: 1
   m_PersistentAttackCooldown: 0.5
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
-  m_Attack:
+  m_AttackData:
     Damage: 1
-    KnockbackDistance: 4
-    KnockbackDuration: 0.25
+    Knockback:
+      Duration: 0.5
+      Distance: 4
+      Height: 2
 --- !u!61 &948772323
 BoxCollider2D:
   m_ObjectHideFlags: 0

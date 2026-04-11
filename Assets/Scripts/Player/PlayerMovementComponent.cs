@@ -48,19 +48,35 @@ public class PlayerMovementComponent : MonoBehaviour
         m_Rigidbody.linearVelocityX = 0f;
     }
 
-    public bool ApplyAttackKnockback(Attack attack)
+    public bool ApplyAttackKnockback(AttackData attack)
     {
-        if (attack.KnockbackDistance < 0.01f || attack.KnockbackDuration < 0.01f)
+        KnockbackData knockback = attack.Knockback;
+        if (knockback.Distance < 0.01f || knockback.Duration < 0.01f)
             return false;
 
-        m_KnockbackTimer = attack.KnockbackDuration;
-        float knockbackSpeedX = attack.KnockbackDistance / attack.KnockbackDuration;
-        float directionToAttackX = Mathf.Sign(attack.Source.Position.x - m_Transform.position.x);
-        if(Mathf.Sign(m_Transform.right.x) != directionToAttackX) //Ensure facing attack source
+        float knockbackDirection = Mathf.Sign(m_Transform.position.x - attack.Source.Position.x);
+        if(Mathf.Approximately(knockbackDirection, 0f))
         {
-            Flip(right: directionToAttackX > 0f); 
+            knockbackDirection = -m_Transform.right.x;
         }
-        m_Rigidbody.linearVelocityX = -m_Transform.right.x * knockbackSpeedX;
+
+        bool sourceIsToTheRight = attack.Source.Position.x > m_Transform.position.x;
+        bool currentlyFacingRight = m_Transform.right.x > 0f;
+        if (currentlyFacingRight != sourceIsToTheRight) //Ensure facing attack source
+        {
+            Flip(right: sourceIsToTheRight); 
+        }
+
+        if(knockback.Height > 0.1f)
+        {
+            ApplyParabolaKnockback(knockback, knockbackDirection);
+        }
+        else
+        {
+            ApplyHorizontalKnockback(knockback, knockbackDirection);
+        }
+
+        m_KnockbackTimer = knockback.Duration;
         return true;
     }
 
@@ -122,5 +138,22 @@ public class PlayerMovementComponent : MonoBehaviour
     {
         m_Transform.rotation = Quaternion.Euler(0f, right ? 0f : 180f, 0f);
         OnDirectionChanged?.Invoke();
+    }
+
+    private void ApplyHorizontalKnockback(KnockbackData knockback, float direction)
+    {
+        float speed = knockback.Distance / knockback.Duration;
+        m_Rigidbody.linearVelocityX = direction * speed;
+        m_Rigidbody.linearVelocityY = 0f;
+    }
+
+    private void ApplyParabolaKnockback(KnockbackData knockback, float direction)
+    {
+        float knockbackGravity = 8f * knockback.Height / (knockback.Duration * knockback.Duration);
+        m_Rigidbody.gravityScale = -knockbackGravity / Physics2D.gravity.y;
+
+        float speedX = knockback.Distance / knockback.Duration;
+        m_Rigidbody.linearVelocityX = direction * speedX;
+        m_Rigidbody.linearVelocityY = 4f * knockback.Height / knockback.Duration;
     }
 }

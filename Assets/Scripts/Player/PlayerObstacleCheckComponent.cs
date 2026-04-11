@@ -1,13 +1,14 @@
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Collider2D), typeof(Rigidbody2D))]
 public class PlayerObstacleCheckComponent : MonoBehaviour
 {
     public bool IsObstructed => m_CheckedThisFrame ? m_IsObstructed : CheckObstacles();
 
     [SerializeField] private PlayerStats m_Stats;
 
-    private BoxCollider2D m_BoxCollider;
+    private Collider2D m_Collider;
+    private Rigidbody2D m_Rigidbody;
     private Transform m_Transform;
 
     private bool m_CheckedThisFrame = false;
@@ -15,7 +16,8 @@ public class PlayerObstacleCheckComponent : MonoBehaviour
 
     private void Awake()
     {
-        m_BoxCollider = GetComponent<BoxCollider2D>();
+        m_Collider = GetComponent<Collider2D>();
+        m_Rigidbody = GetComponent<Rigidbody2D>();
         m_Transform = transform;
     }
 
@@ -25,9 +27,12 @@ public class PlayerObstacleCheckComponent : MonoBehaviour
     }
     private void OnDrawGizmosSelected()
     {
-        if (m_BoxCollider == null)
-            return;
-
+        if (m_Collider == null || m_Transform == null || m_Rigidbody == null)
+        {
+            m_Collider = GetComponent<Collider2D>();
+            m_Rigidbody = GetComponent<Rigidbody2D>();
+            m_Transform = transform;
+        }
         Gizmos.color = m_IsObstructed ? Color.green : Color.red;
         var (origin, size) = ComputeObstacleCheckBox();
         Gizmos.DrawWireCube(origin, size);
@@ -43,9 +48,12 @@ public class PlayerObstacleCheckComponent : MonoBehaviour
 
     private (Vector3 origin, Vector3 size) ComputeObstacleCheckBox()
     {
-        Vector3 origin = m_BoxCollider.bounds.center;
-        float displacement = m_BoxCollider.bounds.extents.x + m_Stats.ObstacleCheckSize.x * 0.5f + m_Stats.ObstacleCheckOffset;
-        origin += m_Transform.right * displacement;
+        Vector3 origin = m_Collider.bounds.center;
+        float displacement = m_Collider.bounds.extents.x + m_Stats.ObstacleCheckSize.x * 0.5f + m_Stats.ObstacleCheckOffset;
+        float direction =  Mathf.Abs(m_Rigidbody.linearVelocityX) < 0.01f
+            ? transform.right.x
+            : Mathf.Sign(m_Rigidbody.linearVelocityX);
+        origin.x += direction * displacement;
         return (origin, m_Stats.ObstacleCheckSize);
     }
 }

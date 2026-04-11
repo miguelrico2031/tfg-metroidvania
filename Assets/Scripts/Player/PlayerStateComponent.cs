@@ -107,8 +107,11 @@ public class PlayerStateComponent : MonoBehaviour
         Result: AttackResult.Blocked or AttackResult.Hit,
         Attack:
         {
-            KnockbackDistance: > 0.01f,
-            KnockbackDuration: > 0.01f
+            Knockback:
+            {
+                Distance: > 0.01f,
+                Duration: > 0.01f
+            }
         }
     };
 

@@ -22,13 +22,13 @@ public class Hurtbox : MonoBehaviour
         m_Collider.isTrigger = true;
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         if (m_Collider == null)
         {
             m_Collider = GetComponent<Collider2D>();
         }
-        Gizmos.color = IsActive ? new Color32(255, 251, 20, 200) : new Color32(255, 251, 20, 100);
+        Gizmos.color = IsActive ? new Color32(255, 251, 20, 150) : new Color32(255, 251, 20, 50);
         DrawColliderGizmo();
     }
     private void DrawColliderGizmo()

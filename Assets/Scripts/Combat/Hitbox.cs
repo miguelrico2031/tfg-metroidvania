@@ -8,14 +8,13 @@ using UnityEngine;
 public class Hitbox : MonoBehaviour, IAttackSource
 {
     public Vector2 Position => transform.position;
-    public event Action<Attack, AttackResult> OnAttack;
     public bool IsActive { get; private set; } = true;
     [field: SerializeField] public Mode HitboxMode { get; private set; }
     [field: SerializeField] public Faction Faction { get; private set; }
 
     [SerializeField] private float m_PersistentAttackCooldown;
     [SerializeField] private FactionsData m_FactionsData;
-    [SerializeField] private Attack m_Attack;
+    [SerializeField] private AttackData m_AttackData;
 
     private Collider2D m_Collider;
     private readonly HashSet<IAttackTarget> m_AttackedThisActivation = new();
@@ -39,7 +38,7 @@ public class Hitbox : MonoBehaviour, IAttackSource
 
     private void Awake()
     {
-        m_Attack.Source = this;
+        m_AttackData.Source = this;
 
         m_Collider = GetComponent<Collider2D>();
         m_Collider.isTrigger = true;
@@ -88,13 +87,13 @@ public class Hitbox : MonoBehaviour, IAttackSource
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         if (m_Collider == null)
         {
             m_Collider = GetComponent<Collider2D>();
         }
-        Gizmos.color = IsActive ? new Color32(5, 10, 255, 200) : new Color32(5, 10, 255, 100);
+        Gizmos.color = IsActive ? new Color32(5, 10, 255, 150) : new Color32(5, 10, 255, 50);
         DrawColliderGizmo();
     }
 
@@ -133,8 +132,7 @@ public class Hitbox : MonoBehaviour, IAttackSource
             !m_FactionsData.CanDamage(Faction, hurtbox.AttackTarget.Faction))
             return;
 
-        AttackResult result = hurtbox.AttackTarget.ResolveAttack(m_Attack);
-        OnAttack?.Invoke(m_Attack, result);
+        AttackResult result = hurtbox.AttackTarget.ResolveAttack(m_AttackData);
 
         if (HitboxMode is Mode.OneShot)
         {
