@@ -103,4 +103,14 @@ public class PlayerKnockbackState : APlayerState
         m_Player.AttackTarget.SetInvulnerable(false);
     }
 }
+
+public class PlayerDyingState : APlayerState
+{
+    public PlayerDyingState(PlayerStateComponent player) : base(player) { }
+    public override void Start()
+    {
+        m_Player.Movement.Stop();
+        m_Player.Animator.StartDeathAnimation();
+    }
+}
 #endregion

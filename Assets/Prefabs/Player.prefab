@@ -61,7 +61,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 71d715af238681a4ca71c34dbc9cc3bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 4272854151132827983}
   - component: {fileID: 3336796847241308167}
   - component: {fileID: 8444577324351739029}
+  - component: {fileID: 165671683098578377}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -298,7 +299,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 200aaad64a6fb73469a11c42c00c2fb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimatorComponent
+  m_DefaultMaterial: {fileID: 2100000, guid: 71d715af238681a4ca71c34dbc9cc3bf, type: 2}
+  m_DamageFlashMaterial: {fileID: 2100000, guid: 07917a5811fa35d4ab38af8f8c3553df, type: 2}
+  m_SpriteRenderer: {fileID: 6741937748817235486}
   m_Animator: {fileID: 6816041010051646806}
+  m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
 --- !u!114 &4272854151132827983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +343,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackTargetComponent
   <Faction>k__BackingField: 0
+  m_HitInvulnerabilityTime: 0.5
+--- !u!114 &165671683098578377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1bfe9ed9e2f6c44fbfdc59cca9dff75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthComponent
+  m_Stats:
+    m_Scriptable: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
 --- !u!1 &5289088717557987205
 GameObject:
   m_ObjectHideFlags: 0

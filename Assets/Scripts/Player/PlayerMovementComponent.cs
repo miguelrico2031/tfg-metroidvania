@@ -16,6 +16,12 @@ public class PlayerMovementComponent : MonoBehaviour
     private Transform m_Transform;
     private Rigidbody2D m_Rigidbody;
 
+    public void Stop()
+    {
+        m_Rigidbody.linearVelocity = Vector2.zero;
+        m_DashTimer = 0f;
+        m_KnockbackTimer = 0f;
+    }
     public void MoveGrounded(int movementDirection)
     {
         Move(movementDirection, m_Stats.GroundSpeed);
@@ -55,7 +61,7 @@ public class PlayerMovementComponent : MonoBehaviour
             return false;
 
         float knockbackDirection = Mathf.Sign(m_Transform.position.x - attack.Source.Position.x);
-        if(Mathf.Approximately(knockbackDirection, 0f))
+        if (Mathf.Approximately(knockbackDirection, 0f))
         {
             knockbackDirection = -m_Transform.right.x;
         }
@@ -64,10 +70,10 @@ public class PlayerMovementComponent : MonoBehaviour
         bool currentlyFacingRight = m_Transform.right.x > 0f;
         if (currentlyFacingRight != sourceIsToTheRight) //Ensure facing attack source
         {
-            Flip(right: sourceIsToTheRight); 
+            Flip(right: sourceIsToTheRight);
         }
 
-        if(knockback.Height > 0.1f)
+        if (knockback.Height > 0.1f)
         {
             ApplyParabolaKnockback(knockback, knockbackDirection);
         }
@@ -106,10 +112,10 @@ public class PlayerMovementComponent : MonoBehaviour
                 FinishDash();
             }
         }
-        if(m_KnockbackTimer > 0f)
+        if (m_KnockbackTimer > 0f)
         {
             m_KnockbackTimer -= Time.deltaTime;
-            if(m_KnockbackTimer <= 0f)
+            if (m_KnockbackTimer <= 0f)
             {
                 FinishKnockback();
             }

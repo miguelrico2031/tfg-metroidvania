@@ -22,7 +22,7 @@ MonoBehaviour:
   <RisingGravity>k__BackingField: 3
   <FallingGravity>k__BackingField: 6
   <DashDistance>k__BackingField: 6
-  <DashDuration>k__BackingField: 0.2
+  <DashDuration>k__BackingField: 0.3
   <DashBufferTime>k__BackingField: 0.15
   <GroundCheckSize>k__BackingField: {x: 0.9, y: 0.1}
   <GroundCheckOffset>k__BackingField: 0
@@ -49,3 +49,5 @@ MonoBehaviour:
   - Action: 3
     Cost: 2
     IsInvoluntary: 1
+  <MaxHealth>k__BackingField: 10
+  <DamageFlashAnimationDuration>k__BackingField: 0.125

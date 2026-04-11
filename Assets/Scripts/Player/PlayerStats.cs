@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/PlayerStats")]
-public class PlayerStats : ScriptableObject
+public class PlayerStats : ScriptableObject, IHealthStats
 {
     [field: Header("Movement"), SerializeField, Tooltip("Movement speed when grounded.")]
     public float GroundSpeed { get; private set; }
@@ -77,6 +77,13 @@ public class PlayerStats : ScriptableObject
     [SerializeField, Tooltip("Info about each action that consumes stamina.")]
     private StaminaActionData[] m_StaminaActions;
     public IReadOnlyCollection<StaminaActionData> StaminaActions => m_StaminaActions;
+
+
+    [field: Header("Health & Damage"), SerializeField, Tooltip("Max amount of health the player can have.")]
+    public int MaxHealth { get; private set; }
+
+    [field: SerializeField, Tooltip("Duration of the Damage Flash animation.")]
+    public float DamageFlashAnimationDuration { get; private set; }
 }
 
 public enum StaminaAction

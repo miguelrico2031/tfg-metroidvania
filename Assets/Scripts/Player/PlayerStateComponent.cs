@@ -3,6 +3,7 @@ using System;
 
 [RequireComponent(typeof(PlayerMovementComponent), typeof(PlayerInputComponent), typeof(PlayerGroundCheckComponent))]
 [RequireComponent(typeof(PlayerObstacleCheckComponent), typeof(PlayerAnimatorComponent), typeof(PlayerStaminaComponent))]
+[RequireComponent(typeof(AttackTargetComponent), typeof(HealthComponent))]
 public class PlayerStateComponent : MonoBehaviour
 {
     public PlayerMovementComponent Movement { get; private set; }
@@ -12,6 +13,7 @@ public class PlayerStateComponent : MonoBehaviour
     public PlayerAnimatorComponent Animator { get; private set; }
     public PlayerStaminaComponent Stamina { get; private set; }
     public AttackTargetComponent AttackTarget { get; private set; }
+    public HealthComponent Health { get; private set; }
 
     public Type CurrentState => m_StateMachine?.CurrentState;
     public event Action<Type> OnStateChanged;
@@ -31,6 +33,7 @@ public class PlayerStateComponent : MonoBehaviour
         Animator = GetComponent<PlayerAnimatorComponent>();
         Stamina = GetComponent<PlayerStaminaComponent>();
         AttackTarget = GetComponent<AttackTargetComponent>();
+        Health = GetComponent<HealthComponent>();
 
         m_StateMachine = new StateMachineBuilder()
 
@@ -39,6 +42,12 @@ public class PlayerStateComponent : MonoBehaviour
             .AddState(new PlayerFallingState(this))
             .AddState(new PlayerDashingState(this))
             .AddState(new PlayerKnockbackState(this))
+            .AddState(new PlayerDyingState(this))
+
+            .AddTransitionFromAnyState<PlayerDyingState>((state) =>
+                Health.CurrentHealth == 0 &&
+                !HasBeenHitWithKnockback() &&
+                state != typeof(PlayerKnockbackState))
 
             .AddTransition<PlayerGroundedState, PlayerJumpingState>(() => IsJumpRequestedAndAllowed())
             .AddTransition<PlayerGroundedState, PlayerFallingState>(() => !GroundCheck.IsGrounded)
@@ -55,6 +64,7 @@ public class PlayerStateComponent : MonoBehaviour
             .AddTransition<PlayerDashingState, PlayerGroundedState>(() => GroundCheck.IsGrounded && IsDashFinished())
             .AddTransition<PlayerDashingState, PlayerFallingState>(() => !GroundCheck.IsGrounded && IsDashFinished())
 
+            .AddTransition<PlayerKnockbackState, PlayerDyingState>(() => Health.CurrentHealth == 0 && IsKnockbackFinished())
             .AddTransition<PlayerKnockbackState, PlayerGroundedState>(() => GroundCheck.IsGrounded && IsKnockbackFinished())
             .AddTransition<PlayerKnockbackState, PlayerFallingState>(() => !GroundCheck.IsGrounded && IsKnockbackFinished())
             

@@ -345,7 +345,7 @@ MonoBehaviour:
   m_PersistentAttackCooldown: 0.5
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
   m_AttackData:
-    Damage: 1
+    Damage: 4
     Knockback:
       Duration: 0.5
       Distance: 6
@@ -28380,9 +28380,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2330480347750107487, guid: c70c225b484b0764d807c696458fd860, type: 3}
+      propertyPath: m_LogStateChanges
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2447350854869887539, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: m_Name
       value: PLAYER ROOT
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559316923192806808, guid: c70c225b484b0764d807c696458fd860, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559316923192806808, guid: c70c225b484b0764d807c696458fd860, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4062449134482075419, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: orthographic size

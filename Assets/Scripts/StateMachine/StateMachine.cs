@@ -69,12 +69,12 @@ public class StateMachine
     {
         foreach (var transition in m_TransitionsFromAnyState)
         {
-            if (transition.Transition.Invoke())
+            if (transition.Transition.Invoke(CurrentState) && transition.TargetState != m_CurrentState.State)
                 return transition;
         }
         foreach (var transition in m_CurrentState.Transitions)
         {
-            if (transition.Transition.Invoke())
+            if (transition.Transition.Invoke(CurrentState))
                 return transition;
         }
         return null;
@@ -90,6 +90,6 @@ public class StateMachine
     public class TransitionNode
     {
         public IState TargetState;
-        public Func<bool> Transition;
+        public Func<Type, bool> Transition;
     }
 }

@@ -8,7 +8,7 @@ public class StateMachineBuilder
     private IState m_InitialState;
     private Dictionary<Type, StateMachine.StateNode> m_States = new();
     private List<StateMachine.TransitionNode> m_TransitionsFromAnyState = new();
-    
+
     public StateMachineBuilder AddState(IState state, bool isInitialState = false)
     {
         Assert.IsNotNull(state);
@@ -27,14 +27,33 @@ public class StateMachineBuilder
     {
         Assert.IsTrue(m_States.ContainsKey(typeof(TFromState)), "From State not registered.");
         Assert.IsTrue(m_States.ContainsKey(typeof(TTargetState)), "Target State not registered.");
-        m_States[typeof(TFromState)].Transitions.Add(new() { TargetState = m_States[typeof(TTargetState)].State, Transition = transition });
+        m_States[typeof(TFromState)].Transitions.Add(new()
+        {
+            TargetState = m_States[typeof(TTargetState)].State,
+            Transition = state => transition.Invoke()
+        });
+        return this;
+    }
+
+    public StateMachineBuilder AddTransitionFromAnyState<TTargetState>(Func<Type, bool> transition)
+    {
+        Assert.IsTrue(m_States.ContainsKey(typeof(TTargetState)), $"Target State {nameof(TTargetState)} not registered.");
+        m_TransitionsFromAnyState.Add(new()
+        {
+            TargetState = m_States[typeof(TTargetState)].State,
+            Transition = transition
+        });
         return this;
     }
 
     public StateMachineBuilder AddTransitionFromAnyState<TTargetState>(Func<bool> transition)
     {
-        Assert.IsTrue(m_States.ContainsKey(typeof(TTargetState)), "Target State not registered.");
-        m_TransitionsFromAnyState.Add(new() { TargetState = m_States[typeof(TTargetState)].State, Transition = transition });
+        Assert.IsTrue(m_States.ContainsKey(typeof(TTargetState)), $"Target State {nameof(TTargetState)} not registered.");
+        m_TransitionsFromAnyState.Add(new()
+        {
+            TargetState = m_States[typeof(TTargetState)].State,
+            Transition = state => transition.Invoke()
+        });
         return this;
     }
 
