@@ -21,7 +21,7 @@ MonoBehaviour:
   <CoyoteTime>k__BackingField: 0.1
   <RisingGravity>k__BackingField: 3
   <FallingGravity>k__BackingField: 6
-  <DashDistance>k__BackingField: 3
+  <DashDistance>k__BackingField: 6
   <DashDuration>k__BackingField: 0.2
   <DashBufferTime>k__BackingField: 0.15
   <GroundCheckSize>k__BackingField: {x: 0.9, y: 0.1}

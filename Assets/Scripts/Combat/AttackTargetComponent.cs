@@ -6,7 +6,21 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
 {
     [field: SerializeField] public Faction Faction { get; private set; }
     public ResolvedAttack ResolvedAttackThisFrame { get; set; }
+
+    private bool m_IsInvulnerable = false;
     private Hurtbox[] m_Hurtboxes;
+
+    public void SetInvulnerable(bool invulnerable)
+    {
+        if (invulnerable == m_IsInvulnerable)
+            return;
+
+        m_IsInvulnerable = invulnerable;
+        foreach(var hurtbox in m_Hurtboxes)
+        {
+            hurtbox.SetActive(!invulnerable);
+        }
+    }
 
     public AttackResult ResolveAttack(AttackData attack)
     {
