@@ -250,7 +250,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1729637013290098885, guid: 6c650bd969d175640bbfeea535a7ee99, type: 3}
       propertyPath: orthographic size
-      value: 6.671875
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3189320157681058156, guid: 6c650bd969d175640bbfeea535a7ee99, type: 3}
       propertyPath: m_LocalPosition.x
@@ -292,6 +292,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3977087593331635156, guid: 6c650bd969d175640bbfeea535a7ee99, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4896886797848082064, guid: 6c650bd969d175640bbfeea535a7ee99, type: 3}
       propertyPath: m_Name
       value: CAMERA ROOT
@@ -304,6 +308,10 @@ PrefabInstance:
       propertyPath: m_PlayerMovement
       value: 
       objectReference: {fileID: 3801020458789849631}
+    - target: {fileID: 7626195287736404086, guid: 6c650bd969d175640bbfeea535a7ee99, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

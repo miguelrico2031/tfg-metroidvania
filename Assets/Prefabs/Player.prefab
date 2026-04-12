@@ -389,6 +389,7 @@ MonoBehaviour:
   m_AttackHitboxes:
   - {fileID: 7519906546890267047}
   - {fileID: 3537356413552960125}
+  m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
 --- !u!1 &4067200855875449082
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +434,7 @@ GameObject:
   - component: {fileID: 2102185313322900446}
   - component: {fileID: 2176653352384824205}
   - component: {fileID: 3537356413552960125}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Attack2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,9 +520,9 @@ MonoBehaviour:
   m_AttackData:
     Damage: 1
     Knockback:
-      Duration: 0
-      Distance: 0
-      Height: 0
+      Duration: 0.3
+      Distance: 5
+      Height: 2
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
 --- !u!1 &5289088717557987205
 GameObject:
@@ -656,7 +657,7 @@ GameObject:
   - component: {fileID: 2182757961485363176}
   - component: {fileID: 6831646497660404334}
   - component: {fileID: 7519906546890267047}
-  m_Layer: 7
+  m_Layer: 9
   m_Name: Attack1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

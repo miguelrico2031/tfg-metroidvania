@@ -55,8 +55,8 @@ public class PlayerStateComponent : MonoBehaviour
 
             .AddTransition<PlayerGroundedState, PlayerKnockbackState>(() => HasBeenHitWithKnockback())
             .AddTransition<PlayerGroundedState, PlayerJumpingState>(() => IsJumpRequestedAndAllowed())
-            .AddTransition<PlayerGroundedState, PlayerFallingState>(() => !GroundCheck.IsGrounded)
             .AddTransition<PlayerGroundedState, PlayerDashingState>(() => IsDashRequestedAndAllowed())
+            .AddTransition<PlayerGroundedState, PlayerFallingState>(() => !GroundCheck.IsGrounded)
             .AddTransition<PlayerGroundedState, PlayerAttackingState>(() => IsAttack1RequestedAndAllowed())
 
             .AddTransition<PlayerJumpingState, PlayerFallingState>(() => Movement.VerticalVelocity <= 0f)
@@ -73,6 +73,7 @@ public class PlayerStateComponent : MonoBehaviour
             .AddTransition<PlayerKnockbackState, PlayerGroundedState>(() => GroundCheck.IsGrounded && IsKnockbackFinished())
             .AddTransition<PlayerKnockbackState, PlayerFallingState>(() => !GroundCheck.IsGrounded && IsKnockbackFinished())
 
+            .AddTransition<PlayerAttackingState, PlayerDashingState>(() => IsDashRequestedAndAllowed())
             .AddTransition<PlayerAttackingState, PlayerAttackingState>(() => IsAttack2RequestedAndAllowed())
             .AddTransition<PlayerAttackingState, PlayerGroundedState>(() => Animator.AttackAnimationPhase is AttackAnimationPhase.JustWithdrawn)
 
@@ -138,11 +139,12 @@ public class PlayerStateComponent : MonoBehaviour
         ObstacleCheck.IsObstructedBehind;
 
     private bool IsAttack1RequestedAndAllowed() =>
-        Input.Attack1Buffer.Check() &&
+        Input.AttackBuffer.Check() &&
         Stamina.CanPerformAction(StaminaAction.Attack);
 
     private bool IsAttack2RequestedAndAllowed() =>
-        Input.Attack2Buffer.Check() &&
+        Input.AttackBuffer.Check() &&
         Animator.AttackAnimationPhase is AttackAnimationPhase.JustCompleted or AttackAnimationPhase.Withdrawing &&
-        Stamina.CanPerformAction(StaminaAction.Attack);
+        Stamina.CanPerformAction(StaminaAction.Attack) &&
+        Attack.ActiveAttack is PlayerAttack.Attack1;
 }

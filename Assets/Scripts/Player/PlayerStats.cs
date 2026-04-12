@@ -87,11 +87,11 @@ public class PlayerStats : ScriptableObject, IHealthStats
 
     [field: Header("Attack"), SerializeField, Tooltip("Time window in seconds after pressing attack where the input is remembered " +
         "when attacking is allowed")]
-    public float Attack1BufferTime { get; private set; }
+    public float AttackBufferTime { get; private set; }
 
-    [field: SerializeField, Tooltip("Time window in seconds before finishing the first attack where pressing attack will cause a second attack combo " +
-        "instead of returning to idle.")]
-    public float Attack2BufferTime { get; private set; }
+    [field: SerializeField, Tooltip("Time window in seconds between completing the first attack and attacking again where that attack will be a " +
+        "second attack combo instead of the first attack again.")]
+    public float AdvanceAttackBufferTime { get; private set; }
 }
 
 public enum StaminaAction

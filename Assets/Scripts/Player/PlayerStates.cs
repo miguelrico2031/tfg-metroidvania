@@ -121,35 +121,31 @@ public class PlayerDyingState : APlayerState
 
 public class PlayerAttackingState : APlayerState
 {
-    private PlayerAttack m_CurrentAttack;
     private bool m_AttackFinished;
     public PlayerAttackingState(PlayerStateComponent player) : base(player) { }
-    public override void Start(Type lastState)
+    public override void Start()
     {
         Debug.Log($"lastatkphase: {m_Player.Animator.AttackAnimationPhase}");
-        bool isFirstAttack = lastState != typeof(PlayerAttackingState);
-        m_CurrentAttack = isFirstAttack ? PlayerAttack.Attack1 : PlayerAttack.Attack2;
         m_AttackFinished = false;
         m_Player.Movement.Stop();
-        m_Player.Attack.StartAttack(m_CurrentAttack);
-        m_Player.Input.Attack1Buffer.Clear();
-        m_Player.Input.Attack2Buffer.Clear();
+        m_Player.Attack.StartAttack();
+        m_Player.Input.AttackBuffer.Clear();
         m_Player.Stamina.RegisterActionPerformed(StaminaAction.Attack);
-        m_Player.Animator.StartAttackAnimation(isFirstAttack);
+        m_Player.Animator.StartAttackAnimation(isFirstAttack: m_Player.Attack.ActiveAttack is PlayerAttack.Attack1);
     }
     public override void Update()
     {
         if (!m_AttackFinished && m_Player.Animator.AttackAnimationPhase is AttackAnimationPhase.JustCompleted)
         {
             m_AttackFinished = true;
-            m_Player.Attack.FinishAttack(m_CurrentAttack);
+            m_Player.Attack.FinishAttack();
         }
     }
     public override void End()
     {
         if (!m_AttackFinished)
         {
-            m_Player.Attack.FinishAttack(m_CurrentAttack);
+            m_Player.Attack.FinishAttack();
         }
     }
 }

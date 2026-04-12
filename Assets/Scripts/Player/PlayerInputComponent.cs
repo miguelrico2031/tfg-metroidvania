@@ -12,10 +12,9 @@ public class PlayerInputComponent : MonoBehaviour
     public event Action OnDashPressed;
     public event Action OnAttackPressed;
 
-    public InputBuffer JumpBuffer { get; private set; }
-    public InputBuffer DashBuffer { get; private set; }
-    public InputBuffer Attack1Buffer { get; private set; }
-    public InputBuffer Attack2Buffer { get; private set; }
+    public BufferingTimer JumpBuffer { get; private set; }
+    public BufferingTimer DashBuffer { get; private set; }
+    public BufferingTimer AttackBuffer { get; private set; }
 
     [SerializeField] private PlayerStats m_Stats;
     [SerializeField] private InputActionAsset m_InputActionAsset;
@@ -24,7 +23,7 @@ public class PlayerInputComponent : MonoBehaviour
     private InputAction m_JumpAction;
     private InputAction m_DashAction;
     private InputAction m_AttackAction;
-    private IEnumerable<InputBuffer> m_Buffers => new[] { JumpBuffer, DashBuffer, Attack1Buffer, Attack2Buffer };
+    private IEnumerable<BufferingTimer> m_Buffers => new[] { JumpBuffer, DashBuffer, AttackBuffer };
 
     private void OnEnable()
     {
@@ -69,17 +68,16 @@ public class PlayerInputComponent : MonoBehaviour
 
     private void Awake()
     {
-        JumpBuffer = new(m_Stats.JumpBufferTime);
-        DashBuffer = new(m_Stats.DashBufferTime);
-        Attack1Buffer = new(m_Stats.Attack1BufferTime);
-        Attack2Buffer = new(m_Stats.Attack2BufferTime);
+        JumpBuffer = new(() => m_Stats.JumpBufferTime);
+        DashBuffer = new(() => m_Stats.DashBufferTime);
+        AttackBuffer = new(() => m_Stats.AttackBufferTime);
     }
 
     private void Update()
     {
         foreach(var buffer in m_Buffers)
         {
-            buffer.Tick();
+            buffer.Tick(Time.deltaTime);
         }
     }
 
@@ -119,26 +117,8 @@ public class PlayerInputComponent : MonoBehaviour
     {
         if (context.started)
         {
-            Attack1Buffer.Register();
-            Attack2Buffer.Register();
+            AttackBuffer.Register();
             OnAttackPressed?.Invoke();
-        }
-    }
-
-    public class InputBuffer
-    {
-        private float m_Timer = 0f;
-        private readonly float m_Time;
-        public InputBuffer(float time) {  m_Time = time; }
-        public void Register() => m_Timer = m_Time;
-        public bool Check() => m_Timer > 0f;
-        public void Clear() => m_Timer = 0f;
-        public void Tick()
-        {
-            if (m_Timer > 0)
-            {
-                m_Timer -= Time.deltaTime;
-            }
         }
     }
 }
