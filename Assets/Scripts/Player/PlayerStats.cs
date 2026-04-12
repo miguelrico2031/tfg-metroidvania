@@ -39,7 +39,7 @@ public class PlayerStats : ScriptableObject, IHealthStats
     [field: Header("Dash"), SerializeField, Tooltip("Distance in game units the dash can traverse.")]
     public float DashDistance { get; private set; }
 
-    [field:SerializeField, Tooltip("Time in seconds the dash will take.")]
+    [field: SerializeField, Tooltip("Time in seconds the dash will take.")]
     public float DashDuration { get; private set; }
 
     [field: SerializeField, Tooltip("Time window in seconds after pressing dash where the input is remembered " +

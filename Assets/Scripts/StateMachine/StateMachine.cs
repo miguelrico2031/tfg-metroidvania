@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 public interface IState
 {
-    public void Start();
+    public void Start(Type lastState);
     public void Update();
     public void FixedUpdate();
     public void End();
@@ -60,7 +60,7 @@ public class StateMachine
         Assert.IsNotNull(state);
         m_CurrentState?.State.End();
         StateNode newStateNode = m_States[state.GetType()];
-        newStateNode.State.Start();
+        newStateNode.State.Start(CurrentState);
         m_CurrentState = newStateNode;
         OnStateChanged?.Invoke();
     }
@@ -69,7 +69,7 @@ public class StateMachine
     {
         foreach (var transition in m_TransitionsFromAnyState)
         {
-            if (transition.Transition.Invoke(CurrentState) && transition.TargetState != m_CurrentState.State)
+            if (transition.Transition.Invoke(CurrentState))
                 return transition;
         }
         foreach (var transition in m_CurrentState.Transitions)

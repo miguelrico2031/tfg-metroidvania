@@ -1,13 +1,19 @@
 using UnityEngine;
+using UnityEngine.Assertions;
+
+public enum AttackAnimationPhase
+{
+    None,
+    Attacking,
+    JustCompleted,
+    Withdrawing,
+    JustWithdrawn
+}
 
 [RequireComponent(typeof(Rigidbody2D), typeof(AttackTargetComponent))]
-
 public class PlayerAnimatorComponent : MonoBehaviour
 {
-    public bool Attack1JustCompleted {  get; private set; }
-    public bool Attack1JustWithdrawn {  get; private set; }
-    public bool Attack2JustCompleted { get; private set; }
-    public bool Attack2JustWithdrawn { get; private set; }
+    public AttackAnimationPhase AttackAnimationPhase {  get; private set; } = AttackAnimationPhase.None;
 
     [SerializeField] private Material m_DefaultMaterial;
     [SerializeField] private Material m_DamageFlashMaterial;
@@ -25,7 +31,6 @@ public class PlayerAnimatorComponent : MonoBehaviour
     private static readonly int s_KnockbackAirborne = Animator.StringToHash("KnockbackAirborne");
     private static readonly int s_Death = Animator.StringToHash("Death");
     private static readonly int s_Attack = Animator.StringToHash("Attack");
-    private static readonly int s_AttackWithdraw = Animator.StringToHash("AttackWithdraw");
     private static readonly int s_AttackContinue = Animator.StringToHash("AttackContinue");
 
     private bool m_IsGrounded;
@@ -36,46 +41,49 @@ public class PlayerAnimatorComponent : MonoBehaviour
 
     public void StartGroundedAnimation()
     {
+        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
         m_IsGrounded = true;
         m_TriggerThisFrame = s_Grounded;
     }
 
     public void StartJumpAnimation()
     {
+        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
         m_IsGrounded = false;
         m_TriggerThisFrame = s_Jump;
     }
 
     public void StartFallAnimation()
     {
+        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
         m_IsGrounded = false;
         m_TriggerThisFrame = s_Fall;
     }
 
     public void StartDashAnimation()
     {
+        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
         m_IsGrounded = true;
         m_TriggerThisFrame = s_Dash;
     }
 
     public void StartKnockbackAnimation(bool isAirborne)
     {
+        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
         m_TriggerThisFrame = isAirborne ? s_KnockbackAirborne : s_Knockback;
     }
 
     public void StartDeathAnimation()
     {
+        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
         m_TriggerThisFrame = s_Death;
     }
 
-    public void StartAttackAnimation()
+    public void StartAttackAnimation(bool isFirstAttack)
     {
-        m_TriggerThisFrame = s_Attack;
-    }
-
-    public void ResolveAttackAnimation(bool continueAttack)
-    {
-        m_TriggerThisFrame = continueAttack ? s_AttackContinue : s_AttackWithdraw;
+        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
+        m_TriggerThisFrame = isFirstAttack ? s_Attack : s_AttackContinue;
+        AttackAnimationPhase = AttackAnimationPhase.Attacking;
     }
 
     private void OnEnable()
@@ -83,20 +91,20 @@ public class PlayerAnimatorComponent : MonoBehaviour
         m_AttackTarget = GetComponent<AttackTargetComponent>();
         m_AttackTarget.OnAttackReceived += OnAttackReceived;
 
-        m_AnimationEvents.OnPlayerAttack1Completed += OnPlayerAttack1Completed;
-        m_AnimationEvents.OnPlayerAttack1Withdrawn += OnPlayerAttack1Withdrawn;
-        m_AnimationEvents.OnPlayerAttack2Completed += OnPlayerAttack2Completed;
-        m_AnimationEvents.OnPlayerAttack2Withdrawn += OnPlayerAttack2Withdrawn;
+        m_AnimationEvents.OnPlayerAttack1Completed += OnPlayerAttackCompleted;
+        m_AnimationEvents.OnPlayerAttack1Withdrawn += OnPlayerAttackWithdrawn;
+        m_AnimationEvents.OnPlayerAttack2Completed += OnPlayerAttackCompleted;
+        m_AnimationEvents.OnPlayerAttack2Withdrawn += OnPlayerAttackWithdrawn;
     }
 
     private void OnDisable()
     {
         m_AttackTarget.OnAttackReceived -= OnAttackReceived;
 
-        m_AnimationEvents.OnPlayerAttack1Completed -= OnPlayerAttack1Completed;
-        m_AnimationEvents.OnPlayerAttack1Withdrawn -= OnPlayerAttack1Withdrawn;
-        m_AnimationEvents.OnPlayerAttack2Completed -= OnPlayerAttack2Completed;
-        m_AnimationEvents.OnPlayerAttack2Withdrawn -= OnPlayerAttack2Withdrawn;
+        m_AnimationEvents.OnPlayerAttack1Completed -= OnPlayerAttackCompleted;
+        m_AnimationEvents.OnPlayerAttack1Withdrawn -= OnPlayerAttackWithdrawn;
+        m_AnimationEvents.OnPlayerAttack2Completed -= OnPlayerAttackCompleted;
+        m_AnimationEvents.OnPlayerAttack2Withdrawn -= OnPlayerAttackWithdrawn;
     }
 
     private void Awake()
@@ -121,11 +129,13 @@ public class PlayerAnimatorComponent : MonoBehaviour
             }
         }
 
-        //This is not in late update because this script execution order is set to +10, so it will run 
-        Attack1JustCompleted = false;
-        Attack1JustWithdrawn = false;
-        Attack2JustCompleted = false;
-        Attack2JustWithdrawn = false;
+        //This is not in late update because this script execution order is set to +10, so it will run at the end of the frame anyway
+        
+        AttackAnimationPhase = AttackAnimationPhase is AttackAnimationPhase.JustCompleted
+            ? AttackAnimationPhase.Withdrawing
+            : AttackAnimationPhase is AttackAnimationPhase.JustWithdrawn
+            ? AttackAnimationPhase.None
+            : AttackAnimationPhase;
     }
 
     private void LateUpdate()
@@ -148,20 +158,12 @@ public class PlayerAnimatorComponent : MonoBehaviour
         m_DamageFlashTimer = m_Stats.DamageFlashAnimationDuration;
     }
 
-    private void OnPlayerAttack1Completed()
+    private void OnPlayerAttackCompleted()
     {
-        Attack1JustCompleted = true;        
+        AttackAnimationPhase = AttackAnimationPhase.JustCompleted;       
     }
-    private void OnPlayerAttack1Withdrawn()
+    private void OnPlayerAttackWithdrawn()
     {
-        Attack1JustWithdrawn = true;
-    }
-    private void OnPlayerAttack2Completed()
-    {
-        Attack2JustCompleted = true;
-    }
-    private void OnPlayerAttack2Withdrawn()
-    {
-        Attack2JustWithdrawn = true;
+        AttackAnimationPhase = AttackAnimationPhase.JustWithdrawn;
     }
 }

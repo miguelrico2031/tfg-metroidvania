@@ -28402,10 +28402,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2330480347750107487, guid: c70c225b484b0764d807c696458fd860, type: 3}
-      propertyPath: m_LogStateChanges
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2447350854869887539, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: m_Name
       value: PLAYER ROOT

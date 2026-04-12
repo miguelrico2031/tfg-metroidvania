@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 #region STATES
 public abstract class APlayerState : IState
@@ -8,6 +10,7 @@ public abstract class APlayerState : IState
     {
         m_Player = player;
     }
+    public virtual void Start(Type lastState = null) => Start();
     public virtual void Start() { }
     public virtual void End() { }
     public virtual void Update() { }
@@ -72,7 +75,9 @@ public class PlayerDashingState : APlayerState
     public PlayerDashingState(PlayerStateComponent player) : base(player) { }
     public override void Start()
     {
-        m_Player.Movement.ApplyDash();
+        int forwardDirection = Mathf.CeilToInt(m_Player.transform.right.x);
+        int dashDirection = m_Player.Input.Movement != 0 ? m_Player.Input.Movement : forwardDirection;
+        m_Player.Movement.ApplyDash(dashDirection);
         m_Player.AttackTarget.SetInvulnerable(true);
         m_Player.Input.DashBuffer.Clear();
         m_Player.Stamina.RegisterActionPerformed(StaminaAction.Dash);
@@ -114,67 +119,39 @@ public class PlayerDyingState : APlayerState
     }
 }
 
-public class PlayerAttacking1State : APlayerState
+public class PlayerAttackingState : APlayerState
 {
+    private PlayerAttack m_CurrentAttack;
     private bool m_AttackFinished;
-    public PlayerAttacking1State(PlayerStateComponent player) : base(player) { }
-    public override void Start()
+    public PlayerAttackingState(PlayerStateComponent player) : base(player) { }
+    public override void Start(Type lastState)
     {
+        Debug.Log($"lastatkphase: {m_Player.Animator.AttackAnimationPhase}");
+        bool isFirstAttack = lastState != typeof(PlayerAttackingState);
+        m_CurrentAttack = isFirstAttack ? PlayerAttack.Attack1 : PlayerAttack.Attack2;
         m_AttackFinished = false;
         m_Player.Movement.Stop();
-        m_Player.Attack.StartAttack(PlayerAttack.Attack1);
+        m_Player.Attack.StartAttack(m_CurrentAttack);
         m_Player.Input.Attack1Buffer.Clear();
-        m_Player.Stamina.RegisterActionPerformed(StaminaAction.Attack);
-        m_Player.Animator.StartAttackAnimation();
-    }
-    public override void Update()
-    {
-        if (!m_AttackFinished && m_Player.Animator.Attack1JustCompleted)
-        {
-            m_AttackFinished = true;
-            m_Player.Attack.FinishAttack(PlayerAttack.Attack1);
-            //If this state gets to see Animator.AttackComplete == true it means that the conditions for continuing 
-            //to next attack state were not met, so it should resolve the animation to withdraw
-            m_Player.Animator.ResolveAttackAnimation(continueAttack: false);
-        }
-    }
-    public override void End()
-    {
-        if (!m_AttackFinished)
-        {
-            m_Player.Attack.FinishAttack(PlayerAttack.Attack1);
-        }
-    }
-}
-
-public class PlayerAttacking2State : APlayerState
-{
-    private bool m_AttackFinished;
-    public PlayerAttacking2State(PlayerStateComponent player) : base(player) { }
-    public override void Start()
-    {
-        m_AttackFinished = false;
-        m_Player.Attack.StartAttack(PlayerAttack.Attack2);
         m_Player.Input.Attack2Buffer.Clear();
         m_Player.Stamina.RegisterActionPerformed(StaminaAction.Attack);
-        m_Player.Animator.ResolveAttackAnimation(continueAttack: true);
+        m_Player.Animator.StartAttackAnimation(isFirstAttack);
     }
     public override void Update()
     {
-        if (!m_AttackFinished && m_Player.Animator.Attack2JustCompleted)
+        if (!m_AttackFinished && m_Player.Animator.AttackAnimationPhase is AttackAnimationPhase.JustCompleted)
         {
             m_AttackFinished = true;
-            m_Player.Attack.FinishAttack(PlayerAttack.Attack2);
+            m_Player.Attack.FinishAttack(m_CurrentAttack);
         }
     }
     public override void End()
     {
         if (!m_AttackFinished)
         {
-            m_Player.Attack.FinishAttack(PlayerAttack.Attack2);
+            m_Player.Attack.FinishAttack(m_CurrentAttack);
         }
     }
 }
-
 
 #endregion

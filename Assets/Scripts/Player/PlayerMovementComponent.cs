@@ -41,9 +41,13 @@ public class PlayerMovementComponent : MonoBehaviour
         m_Rigidbody.linearVelocityY *= m_Stats.JumpCutMultiplier;
     }
 
-    public void ApplyDash()
+    public void ApplyDash(int dashDirection)
     {
         m_DashTimer = m_Stats.DashDuration;
+        if(dashDirection != Mathf.CeilToInt(m_Transform.right.x))
+        {
+            Flip(right: dashDirection > 0f);
+        }
         float dashSpeedX = m_Stats.DashDistance / m_Stats.DashDuration;
         m_Rigidbody.linearVelocityX = m_Transform.right.x * dashSpeedX;
     }
