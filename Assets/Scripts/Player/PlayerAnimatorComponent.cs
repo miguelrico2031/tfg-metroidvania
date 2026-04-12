@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class PlayerAnimatorComponent : MonoBehaviour
 {
+    public bool Attack1JustCompleted {  get; private set; }
+    public bool Attack1JustWithdrawn {  get; private set; }
+    public bool Attack2JustCompleted { get; private set; }
+    public bool Attack2JustWithdrawn { get; private set; }
+
     [SerializeField] private Material m_DefaultMaterial;
     [SerializeField] private Material m_DamageFlashMaterial;
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
     [SerializeField] private Animator m_Animator;
+    [SerializeField] private AnimationEvents m_AnimationEvents;
     [SerializeField] private PlayerStats m_Stats;
 
     private static readonly int s_MoveSpeed = Animator.StringToHash("MoveSpeed");
@@ -18,6 +24,9 @@ public class PlayerAnimatorComponent : MonoBehaviour
     private static readonly int s_Knockback = Animator.StringToHash("Knockback");
     private static readonly int s_KnockbackAirborne = Animator.StringToHash("KnockbackAirborne");
     private static readonly int s_Death = Animator.StringToHash("Death");
+    private static readonly int s_Attack = Animator.StringToHash("Attack");
+    private static readonly int s_AttackWithdraw = Animator.StringToHash("AttackWithdraw");
+    private static readonly int s_AttackContinue = Animator.StringToHash("AttackContinue");
 
     private bool m_IsGrounded;
     private int m_TriggerThisFrame = -1;
@@ -57,17 +66,37 @@ public class PlayerAnimatorComponent : MonoBehaviour
     public void StartDeathAnimation()
     {
         m_TriggerThisFrame = s_Death;
-    }    
+    }
+
+    public void StartAttackAnimation()
+    {
+        m_TriggerThisFrame = s_Attack;
+    }
+
+    public void ResolveAttackAnimation(bool continueAttack)
+    {
+        m_TriggerThisFrame = continueAttack ? s_AttackContinue : s_AttackWithdraw;
+    }
 
     private void OnEnable()
     {
         m_AttackTarget = GetComponent<AttackTargetComponent>();
-        m_AttackTarget.OnAttackResolved += OnAttackResolved;
+        m_AttackTarget.OnAttackReceived += OnAttackReceived;
+
+        m_AnimationEvents.OnPlayerAttack1Completed += OnPlayerAttack1Completed;
+        m_AnimationEvents.OnPlayerAttack1Withdrawn += OnPlayerAttack1Withdrawn;
+        m_AnimationEvents.OnPlayerAttack2Completed += OnPlayerAttack2Completed;
+        m_AnimationEvents.OnPlayerAttack2Withdrawn += OnPlayerAttack2Withdrawn;
     }
 
     private void OnDisable()
     {
-        m_AttackTarget.OnAttackResolved -= OnAttackResolved;
+        m_AttackTarget.OnAttackReceived -= OnAttackReceived;
+
+        m_AnimationEvents.OnPlayerAttack1Completed -= OnPlayerAttack1Completed;
+        m_AnimationEvents.OnPlayerAttack1Withdrawn -= OnPlayerAttack1Withdrawn;
+        m_AnimationEvents.OnPlayerAttack2Completed -= OnPlayerAttack2Completed;
+        m_AnimationEvents.OnPlayerAttack2Withdrawn -= OnPlayerAttack2Withdrawn;
     }
 
     private void Awake()
@@ -91,6 +120,12 @@ public class PlayerAnimatorComponent : MonoBehaviour
                 m_SpriteRenderer.material = m_DefaultMaterial;
             }
         }
+
+        //This is not in late update because this script execution order is set to +10, so it will run 
+        Attack1JustCompleted = false;
+        Attack1JustWithdrawn = false;
+        Attack2JustCompleted = false;
+        Attack2JustWithdrawn = false;
     }
 
     private void LateUpdate()
@@ -102,7 +137,7 @@ public class PlayerAnimatorComponent : MonoBehaviour
         }
     }
 
-    private void OnAttackResolved()
+    private void OnAttackReceived()
     {
         if (!m_AttackTarget.IsAlive ||
             m_AttackTarget.ResolvedAttackThisFrame.Result is not AttackResult.Hit ||
@@ -111,5 +146,22 @@ public class PlayerAnimatorComponent : MonoBehaviour
 
         m_SpriteRenderer.material = m_DamageFlashMaterial;
         m_DamageFlashTimer = m_Stats.DamageFlashAnimationDuration;
+    }
+
+    private void OnPlayerAttack1Completed()
+    {
+        Attack1JustCompleted = true;        
+    }
+    private void OnPlayerAttack1Withdrawn()
+    {
+        Attack1JustWithdrawn = true;
+    }
+    private void OnPlayerAttack2Completed()
+    {
+        Attack2JustCompleted = true;
+    }
+    private void OnPlayerAttack2Withdrawn()
+    {
+        Attack2JustWithdrawn = true;
     }
 }

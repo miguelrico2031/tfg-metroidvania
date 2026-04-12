@@ -13,8 +13,8 @@ public class Hitbox : MonoBehaviour, IAttackSource
     [field: SerializeField] public Faction Faction { get; private set; }
 
     [SerializeField] private float m_PersistentAttackCooldown;
-    [SerializeField] private FactionsData m_FactionsData;
     [SerializeField] private AttackData m_AttackData;
+    [SerializeField] private FactionsData m_FactionsData;
 
     private Collider2D m_Collider;
     private readonly HashSet<IAttackTarget> m_AttackedThisActivation = new();
@@ -24,6 +24,8 @@ public class Hitbox : MonoBehaviour, IAttackSource
 
     public void SetActive(bool active)
     {
+        if(IsActive == active)
+            return;
         IsActive = active;
         m_Collider.enabled = active;
         if (!active)
@@ -125,7 +127,7 @@ public class Hitbox : MonoBehaviour, IAttackSource
     private void TryAttack(Collider2D other)
     {
         if (!IsActive ||
-            other.transform.root == transform.root ||
+            other.attachedRigidbody == m_Collider.attachedRigidbody ||
             !other.TryGetComponent<Hurtbox>(out var hurtbox) ||
             !hurtbox.IsActive ||
             HasJustAttackedTarget(hurtbox.AttackTarget) ||

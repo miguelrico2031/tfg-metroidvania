@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using System.Collections.Generic;
 
 public class PlayerInputComponent : MonoBehaviour
 {
@@ -9,21 +10,21 @@ public class PlayerInputComponent : MonoBehaviour
     public event Action OnJumpPressed;
     public event Action OnJumpReleased;
     public event Action OnDashPressed;
+    public event Action OnAttackPressed;
+
+    public InputBuffer JumpBuffer { get; private set; }
+    public InputBuffer DashBuffer { get; private set; }
+    public InputBuffer Attack1Buffer { get; private set; }
+    public InputBuffer Attack2Buffer { get; private set; }
 
     [SerializeField] private PlayerStats m_Stats;
     [SerializeField] private InputActionAsset m_InputActionAsset;
 
-    private float m_JumpBufferTimer;
-    private float m_DashBufferTimer;
     private InputAction m_MoveAction;
     private InputAction m_JumpAction;
     private InputAction m_DashAction;
-
-    public bool CheckJumpBuffer() => m_JumpBufferTimer > 0f;
-    public void ClearJumpBuffer() => m_JumpBufferTimer = 0f;
-
-    public bool CheckDashBuffer() => m_DashBufferTimer > 0f;
-    public void ClearDashBuffer() => m_DashBufferTimer = 0f;
+    private InputAction m_AttackAction;
+    private IEnumerable<InputBuffer> m_Buffers => new[] { JumpBuffer, DashBuffer, Attack1Buffer, Attack2Buffer };
 
     private void OnEnable()
     {
@@ -38,6 +39,9 @@ public class PlayerInputComponent : MonoBehaviour
 
         m_DashAction ??= m_InputActionAsset.FindAction("Player/Dash", throwIfNotFound: true);
         m_DashAction.started += OnDashAction;
+
+        m_AttackAction ??= m_InputActionAsset.FindAction("Player/Attack", throwIfNotFound: true);
+        m_AttackAction.started += OnAttackAction;
     }
 
     private void OnDisable()
@@ -57,17 +61,25 @@ public class PlayerInputComponent : MonoBehaviour
         {
             m_DashAction.started -= OnDashAction;
         }
+        if(m_AttackAction is not null)
+        {
+            m_AttackAction.started -= OnAttackAction;
+        }
+    }
+
+    private void Awake()
+    {
+        JumpBuffer = new(m_Stats.JumpBufferTime);
+        DashBuffer = new(m_Stats.DashBufferTime);
+        Attack1Buffer = new(m_Stats.Attack1BufferTime);
+        Attack2Buffer = new(m_Stats.Attack2BufferTime);
     }
 
     private void Update()
     {
-        if (m_JumpBufferTimer > 0f)
+        foreach(var buffer in m_Buffers)
         {
-            m_JumpBufferTimer -= Time.deltaTime;
-        }
-        if (m_DashBufferTimer > 0f)
-        {
-            m_DashBufferTimer -= Time.deltaTime;
+            buffer.Tick();
         }
     }
 
@@ -85,7 +97,7 @@ public class PlayerInputComponent : MonoBehaviour
     {
         if (context.started)
         {
-            m_JumpBufferTimer = m_Stats.JumpBufferTime; //Register jump in buffer
+            JumpBuffer.Register();
             OnJumpPressed?.Invoke();
         }
         if (context.canceled)
@@ -98,8 +110,35 @@ public class PlayerInputComponent : MonoBehaviour
     {
         if(context.started)
         {
-            m_DashBufferTimer = m_Stats.DashBufferTime;
+            DashBuffer.Register();
             OnDashPressed?.Invoke();
+        }
+    }
+
+    private void OnAttackAction(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            Attack1Buffer.Register();
+            Attack2Buffer.Register();
+            OnAttackPressed?.Invoke();
+        }
+    }
+
+    public class InputBuffer
+    {
+        private float m_Timer = 0f;
+        private readonly float m_Time;
+        public InputBuffer(float time) {  m_Time = time; }
+        public void Register() => m_Timer = m_Time;
+        public bool Check() => m_Timer > 0f;
+        public void Clear() => m_Timer = 0f;
+        public void Tick()
+        {
+            if (m_Timer > 0)
+            {
+                m_Timer -= Time.deltaTime;
+            }
         }
     }
 }

@@ -36,7 +36,7 @@ public class PlayerJumpingState : APlayerState
         m_Player.Movement.Jump();
         m_Player.Movement.SetRisingGravity();
         m_Player.GroundCheck.ClearCoyoteTime();
-        m_Player.Input.ClearJumpBuffer();
+        m_Player.Input.JumpBuffer.Clear();
         m_Player.Input.OnJumpReleased += OnJumpReleased;
         m_Player.Stamina.RegisterActionPerformed(StaminaAction.Jump);
         m_Player.Animator.StartJumpAnimation();
@@ -74,7 +74,7 @@ public class PlayerDashingState : APlayerState
     {
         m_Player.Movement.ApplyDash();
         m_Player.AttackTarget.SetInvulnerable(true);
-        m_Player.Input.ClearDashBuffer();
+        m_Player.Input.DashBuffer.Clear();
         m_Player.Stamina.RegisterActionPerformed(StaminaAction.Dash);
         m_Player.Animator.StartDashAnimation();
     }
@@ -113,4 +113,68 @@ public class PlayerDyingState : APlayerState
         m_Player.Animator.StartDeathAnimation();
     }
 }
+
+public class PlayerAttacking1State : APlayerState
+{
+    private bool m_AttackFinished;
+    public PlayerAttacking1State(PlayerStateComponent player) : base(player) { }
+    public override void Start()
+    {
+        m_AttackFinished = false;
+        m_Player.Movement.Stop();
+        m_Player.Attack.StartAttack(PlayerAttack.Attack1);
+        m_Player.Input.Attack1Buffer.Clear();
+        m_Player.Stamina.RegisterActionPerformed(StaminaAction.Attack);
+        m_Player.Animator.StartAttackAnimation();
+    }
+    public override void Update()
+    {
+        if (!m_AttackFinished && m_Player.Animator.Attack1JustCompleted)
+        {
+            m_AttackFinished = true;
+            m_Player.Attack.FinishAttack(PlayerAttack.Attack1);
+            //If this state gets to see Animator.AttackComplete == true it means that the conditions for continuing 
+            //to next attack state were not met, so it should resolve the animation to withdraw
+            m_Player.Animator.ResolveAttackAnimation(continueAttack: false);
+        }
+    }
+    public override void End()
+    {
+        if (!m_AttackFinished)
+        {
+            m_Player.Attack.FinishAttack(PlayerAttack.Attack1);
+        }
+    }
+}
+
+public class PlayerAttacking2State : APlayerState
+{
+    private bool m_AttackFinished;
+    public PlayerAttacking2State(PlayerStateComponent player) : base(player) { }
+    public override void Start()
+    {
+        m_AttackFinished = false;
+        m_Player.Attack.StartAttack(PlayerAttack.Attack2);
+        m_Player.Input.Attack2Buffer.Clear();
+        m_Player.Stamina.RegisterActionPerformed(StaminaAction.Attack);
+        m_Player.Animator.ResolveAttackAnimation(continueAttack: true);
+    }
+    public override void Update()
+    {
+        if (!m_AttackFinished && m_Player.Animator.Attack2JustCompleted)
+        {
+            m_AttackFinished = true;
+            m_Player.Attack.FinishAttack(PlayerAttack.Attack2);
+        }
+    }
+    public override void End()
+    {
+        if (!m_AttackFinished)
+        {
+            m_Player.Attack.FinishAttack(PlayerAttack.Attack2);
+        }
+    }
+}
+
+
 #endregion

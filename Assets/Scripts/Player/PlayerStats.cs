@@ -67,7 +67,6 @@ public class PlayerStats : ScriptableObject, IHealthStats
     public LayerMask ObstacleLayers { get; private set; }
 
 
-
     [field: Header("Stamina"), SerializeField, Tooltip("Max amount of stamina the player can have.")]
     public int MaxStamina { get; private set; }
 
@@ -84,6 +83,15 @@ public class PlayerStats : ScriptableObject, IHealthStats
 
     [field: SerializeField, Tooltip("Duration of the Damage Flash animation.")]
     public float DamageFlashAnimationDuration { get; private set; }
+
+
+    [field: Header("Attack"), SerializeField, Tooltip("Time window in seconds after pressing attack where the input is remembered " +
+        "when attacking is allowed")]
+    public float Attack1BufferTime { get; private set; }
+
+    [field: SerializeField, Tooltip("Time window in seconds before finishing the first attack where pressing attack will cause a second attack combo " +
+        "instead of returning to idle.")]
+    public float Attack2BufferTime { get; private set; }
 }
 
 public enum StaminaAction

@@ -38,16 +38,18 @@ MonoBehaviour:
   <StaminaRecoveryRate>k__BackingField: 4
   m_StaminaActions:
   - Action: 0
-    Cost: 4
+    Cost: 3
     IsInvoluntary: 0
   - Action: 1
     Cost: 3
     IsInvoluntary: 0
   - Action: 2
-    Cost: 3
+    Cost: 2
     IsInvoluntary: 0
   - Action: 3
     Cost: 2
     IsInvoluntary: 1
   <MaxHealth>k__BackingField: 10
   <DamageFlashAnimationDuration>k__BackingField: 0.125
+  <Attack1BufferTime>k__BackingField: 0.15
+  <Attack2BufferTime>k__BackingField: 0.3

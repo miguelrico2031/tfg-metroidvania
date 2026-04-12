@@ -7,7 +7,7 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
     [field: SerializeField] public Faction Faction { get; private set; }
 
     public ResolvedAttack ResolvedAttackThisFrame { get; set; }
-    public event Action OnAttackResolved;
+    public event Action OnAttackReceived;
     public bool IsInvulnerable => m_InvulnerabilitySources > 0;
     public bool IsAlive => m_Health is { CurrentHealth: > 0 };
 
@@ -50,7 +50,7 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
             m_HitInvulnerabilityTimer = m_HitInvulnerabilityTime;
             SetInvulnerable(true);
         }
-        OnAttackResolved?.Invoke();
+        OnAttackReceived?.Invoke();
         return result;
     }
 
