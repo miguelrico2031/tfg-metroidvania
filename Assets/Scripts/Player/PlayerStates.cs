@@ -59,10 +59,10 @@ public class PlayerJumpingState : APlayerState
 public class PlayerFallingState : APlayerState
 {
     public PlayerFallingState(PlayerStateComponent player) : base(player) { }
-    public override void Start()
+    public override void Start(Type lastState)
     {
         m_Player.Movement.SetFallingGravity();
-        m_Player.Animator.StartFallAnimation();
+        m_Player.Animator.StartFallAnimation(transitionFromJump: lastState == typeof(PlayerJumpingState));
     }
     public override void FixedUpdate()
     {
