@@ -343,13 +343,13 @@ MonoBehaviour:
   <HitboxMode>k__BackingField: 1
   <Faction>k__BackingField: 1
   m_PersistentAttackCooldown: 0.5
-  m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
   m_AttackData:
     Damage: 1
     Knockback:
       Duration: 0.5
       Distance: 6
       Height: 2
+  m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
 --- !u!61 &948772323
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28383,6 +28383,10 @@ PrefabInstance:
     - target: {fileID: 2447350854869887539, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: m_Name
       value: PLAYER ROOT
+      objectReference: {fileID: 0}
+    - target: {fileID: 4062449134482075419, guid: c70c225b484b0764d807c696458fd860, type: 3}
+      propertyPath: orthographic size
+      value: 8.4375
       objectReference: {fileID: 0}
     - target: {fileID: 5376761378372897092, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: m_AnchorMax.x
