@@ -26,6 +26,7 @@ public class PlayerAnimatorComponent : MonoBehaviour
     private static readonly int s_Grounded = Animator.StringToHash("Grounded");
     private static readonly int s_Jump = Animator.StringToHash("Jump");
     private static readonly int s_Fall = Animator.StringToHash("Fall");
+    private static readonly int s_FallFromJump = Animator.StringToHash("FallFromJump");
     private static readonly int s_Dash = Animator.StringToHash("Dash");
     private static readonly int s_Knockback = Animator.StringToHash("Knockback");
     private static readonly int s_KnockbackAirborne = Animator.StringToHash("KnockbackAirborne");
@@ -53,11 +54,11 @@ public class PlayerAnimatorComponent : MonoBehaviour
         m_TriggerThisFrame = s_Jump;
     }
 
-    public void StartFallAnimation()
+    public void StartFallAnimation(bool transitionFromJump)
     {
         Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
         m_IsGrounded = false;
-        m_TriggerThisFrame = s_Fall;
+        m_TriggerThisFrame = transitionFromJump ? s_FallFromJump : s_Fall;
     }
 
     public void StartDashAnimation()
