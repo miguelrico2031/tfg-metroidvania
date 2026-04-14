@@ -28384,6 +28384,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PLAYER ROOT
       objectReference: {fileID: 0}
+    - target: {fileID: 3559316923192806808, guid: c70c225b484b0764d807c696458fd860, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3559316923192806808, guid: c70c225b484b0764d807c696458fd860, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4062449134482075419, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: orthographic size
       value: 8.4375
