@@ -141,16 +141,18 @@ GameObject:
   - component: {fileID: 2616479030495470967}
   - component: {fileID: 5417148102132641070}
   - component: {fileID: 4257513046488852678}
-  - component: {fileID: 6710058346935322963}
-  - component: {fileID: 5329591190482078227}
-  - component: {fileID: 6979729729511003500}
-  - component: {fileID: 1017920111075680247}
-  - component: {fileID: 2442672136224439288}
-  - component: {fileID: 4272854151132827983}
-  - component: {fileID: 3336796847241308167}
-  - component: {fileID: 8444577324351739029}
-  - component: {fileID: 165671683098578377}
   - component: {fileID: 6250383913026902393}
+  - component: {fileID: 6979729729511003500}
+  - component: {fileID: 5329591190482078227}
+  - component: {fileID: 4272854151132827983}
+  - component: {fileID: 6710058346935322963}
+  - component: {fileID: 2442672136224439288}
+  - component: {fileID: 8444577324351739029}
+  - component: {fileID: 8139115761965825953}
+  - component: {fileID: 1053925383963158729}
+  - component: {fileID: 1017920111075680247}
+  - component: {fileID: 3336796847241308167}
+  - component: {fileID: 165671683098578377}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -248,132 +250,6 @@ Rigidbody2D:
   m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &6710058346935322963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938255937634021066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aba7a7b6946f1e94fbe116db1efd7474, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStateComponent
-  m_LogStateChanges: 0
---- !u!114 &5329591190482078227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938255937634021066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2b2af02068d50148aa8743a2ac1155a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
---- !u!114 &6979729729511003500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938255937634021066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f1854bfbbc797e4d8afdf9eba226daa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputComponent
-  m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
-  m_InputActionAsset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
---- !u!114 &1017920111075680247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938255937634021066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e70806bebda5624689638c02256733f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GroundCheckComponent
-  m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
-  m_GroundCheckOrigin: {fileID: 6474994410208118340}
---- !u!114 &2442672136224439288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938255937634021066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 200aaad64a6fb73469a11c42c00c2fb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimatorComponent
-  m_DefaultMaterial: {fileID: 2100000, guid: 71d715af238681a4ca71c34dbc9cc3bf, type: 2}
-  m_DamageFlashMaterial: {fileID: 2100000, guid: 07917a5811fa35d4ab38af8f8c3553df, type: 2}
-  m_SpriteRenderer: {fileID: 6741937748817235486}
-  m_Animator: {fileID: 6816041010051646806}
-  m_AnimationEvents: {fileID: 8828375671120411305}
-  m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
---- !u!114 &4272854151132827983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938255937634021066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4db61b4e69372ce4ba45c5251e3fcbea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStaminaComponent
-  m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
---- !u!114 &3336796847241308167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938255937634021066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9376122fdb55447418273445ac8ca92d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerObstacleCheckComponent
-  m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
---- !u!114 &8444577324351739029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938255937634021066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c866cc9499324a748a53096aa44f6461, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AttackTargetComponent
-  <Faction>k__BackingField: 0
-  m_HitInvulnerabilityTime: 0.5
---- !u!114 &165671683098578377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938255937634021066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1bfe9ed9e2f6c44fbfdc59cca9dff75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthComponent
-  m_Stats:
-    m_Scriptable: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
 --- !u!114 &6250383913026902393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,6 +266,159 @@ MonoBehaviour:
   - {fileID: 7519906546890267047}
   - {fileID: 3537356413552960125}
   m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
+--- !u!114 &6979729729511003500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f1854bfbbc797e4d8afdf9eba226daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputComponent
+  m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
+  m_InputActionAsset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+--- !u!114 &5329591190482078227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2b2af02068d50148aa8743a2ac1155a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
+--- !u!114 &4272854151132827983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db61b4e69372ce4ba45c5251e3fcbea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStaminaComponent
+  m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
+--- !u!114 &6710058346935322963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba7a7b6946f1e94fbe116db1efd7474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStateComponent
+  m_LogStateChanges: 0
+--- !u!114 &2442672136224439288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 200aaad64a6fb73469a11c42c00c2fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimatorComponent
+  m_Animator: {fileID: 6816041010051646806}
+  m_AnimationEvents: {fileID: 8828375671120411305}
+--- !u!114 &8444577324351739029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c866cc9499324a748a53096aa44f6461, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackTargetComponent
+  m_HitInvulnerabilityTime: 0.5
+--- !u!114 &8139115761965825953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98081461e0026a44989afeb5f32551e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamageFlashComponent
+  m_DefaultMaterial: {fileID: 2100000, guid: 71d715af238681a4ca71c34dbc9cc3bf, type: 2}
+  m_DamageFlashMaterial: {fileID: 2100000, guid: 07917a5811fa35d4ab38af8f8c3553df, type: 2}
+  m_SpriteRenderer: {fileID: 6741937748817235486}
+  m_Stats:
+    m_Scriptable: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
+--- !u!114 &1053925383963158729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e27571e2cfa3eb647b341bbb610dcb5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FactionComponent
+  <Faction>k__BackingField: 0
+--- !u!114 &1017920111075680247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e70806bebda5624689638c02256733f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundCheckComponent
+  m_Stats:
+    m_Scriptable: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
+  m_GroundCheckOrigin: {fileID: 6474994410208118340}
+--- !u!114 &3336796847241308167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9376122fdb55447418273445ac8ca92d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerObstacleCheckComponent
+  m_Stats:
+    m_Scriptable: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
+--- !u!114 &165671683098578377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1bfe9ed9e2f6c44fbfdc59cca9dff75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthComponent
+  m_Stats:
+    m_Scriptable: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
 --- !u!1 &4067200855875449082
 GameObject:
   m_ObjectHideFlags: 0

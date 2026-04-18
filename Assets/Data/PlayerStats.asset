@@ -34,8 +34,8 @@ MonoBehaviour:
   <ObstacleLayers>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
-  <MaxStamina>k__BackingField: 10
-  <StaminaRecoveryRate>k__BackingField: 2
+  <MaxStamina>k__BackingField: 50
+  <StaminaRecoveryRate>k__BackingField: 20
   m_StaminaActions:
   - Action: 0
     Cost: 3

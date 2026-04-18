@@ -4,7 +4,7 @@ using UnityEngine.Assertions;
 
 public class AttackTargetComponent : MonoBehaviour, IAttackTarget
 {
-    [field: SerializeField] public Faction Faction { get; private set; }
+    public Faction Faction => m_Faction == null ? Faction.MAX : m_Faction.Faction;
 
     public ResolvedAttack ResolvedAttackThisFrame { get; set; }
     public event Action OnAttackReceived;
@@ -15,8 +15,9 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
 
     private int m_InvulnerabilitySources = 0;
     private float m_HitInvulnerabilityTimer = 0f;
-    private HealthComponent m_Health;
     private Hurtbox[] m_Hurtboxes;
+    private HealthComponent m_Health;
+    private FactionComponent m_Faction;
 
     public void SetInvulnerable(bool invulnerable)
     {
@@ -57,6 +58,7 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
     private void Awake()
     {
         m_Health = GetComponent<HealthComponent>();
+        m_Faction = GetComponent<FactionComponent>();
         m_Hurtboxes = GetComponentsInChildren<Hurtbox>();
         foreach (var hurtbox in m_Hurtboxes)
         {

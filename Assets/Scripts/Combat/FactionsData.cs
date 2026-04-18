@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public enum Faction
 {
@@ -15,8 +15,10 @@ public class FactionsData : ScriptableObject
 
     private const int k_FactionCount = (int) Faction.MAX;
 
-    public bool CanDamage(Faction attacker, Faction target)
+    public bool IsHostileTo(Faction attacker, Faction target)
     {
+        Assert.AreNotEqual(attacker, Faction.MAX, "Wrong faction for attacker.");
+        Assert.AreNotEqual(target, Faction.MAX, "Wrong faction for target.");
         int index = (int)attacker * k_FactionCount + (int)target;
         return index >= 0 && index < m_FactionMatrix.Length && m_FactionMatrix[index];
     }

@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class CameraFollowTarget : MonoBehaviour
+public class CameraFollowPlayer : MonoBehaviour
 {
     [SerializeField] private float m_FlipTime;
     [SerializeField] private PlayerMovementComponent m_PlayerMovement;

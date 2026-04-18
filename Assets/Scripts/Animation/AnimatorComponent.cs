@@ -10,17 +10,13 @@ public enum AttackAnimationPhase
     JustWithdrawn
 }
 
-[RequireComponent(typeof(Rigidbody2D), typeof(AttackTargetComponent))]
-public class PlayerAnimatorComponent : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+public class AnimatorComponent : MonoBehaviour
 {
-    public AttackAnimationPhase AttackAnimationPhase {  get; private set; } = AttackAnimationPhase.None;
+    public AttackAnimationPhase AttackAnimationPhase { get; private set; } = AttackAnimationPhase.None;
 
-    [SerializeField] private Material m_DefaultMaterial;
-    [SerializeField] private Material m_DamageFlashMaterial;
-    [SerializeField] private SpriteRenderer m_SpriteRenderer;
     [SerializeField] private Animator m_Animator;
     [SerializeField] private AnimationEvents m_AnimationEvents;
-    [SerializeField] private PlayerStats m_Stats;
 
     private static readonly int s_MoveSpeed = Animator.StringToHash("MoveSpeed");
     private static readonly int s_Grounded = Animator.StringToHash("Grounded");
@@ -36,9 +32,7 @@ public class PlayerAnimatorComponent : MonoBehaviour
 
     private bool m_IsGrounded;
     private int m_TriggerThisFrame = -1;
-    private float m_DamageFlashTimer;
     private Rigidbody2D m_Rigidbody;
-    private AttackTargetComponent m_AttackTarget;
 
     public void StartGroundedAnimation()
     {
@@ -79,7 +73,6 @@ public class PlayerAnimatorComponent : MonoBehaviour
         Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
         m_TriggerThisFrame = s_Death;
     }
-
     public void StartAttackAnimation(bool isFirstAttack)
     {
         Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
@@ -89,23 +82,24 @@ public class PlayerAnimatorComponent : MonoBehaviour
 
     private void OnEnable()
     {
-        m_AttackTarget = GetComponent<AttackTargetComponent>();
-        m_AttackTarget.OnAttackReceived += OnAttackReceived;
-
-        m_AnimationEvents.OnPlayerAttack1Completed += OnPlayerAttackCompleted;
-        m_AnimationEvents.OnPlayerAttack1Withdrawn += OnPlayerAttackWithdrawn;
-        m_AnimationEvents.OnPlayerAttack2Completed += OnPlayerAttackCompleted;
-        m_AnimationEvents.OnPlayerAttack2Withdrawn += OnPlayerAttackWithdrawn;
+        if (m_AnimationEvents != null)
+        {
+            m_AnimationEvents.OnPlayerAttack1Completed += OnAttackCompleted;
+            m_AnimationEvents.OnPlayerAttack1Withdrawn += OnAttackWithdrawn;
+            m_AnimationEvents.OnPlayerAttack2Completed += OnAttackCompleted;
+            m_AnimationEvents.OnPlayerAttack2Withdrawn += OnAttackWithdrawn;
+        }
     }
 
     private void OnDisable()
     {
-        m_AttackTarget.OnAttackReceived -= OnAttackReceived;
-
-        m_AnimationEvents.OnPlayerAttack1Completed -= OnPlayerAttackCompleted;
-        m_AnimationEvents.OnPlayerAttack1Withdrawn -= OnPlayerAttackWithdrawn;
-        m_AnimationEvents.OnPlayerAttack2Completed -= OnPlayerAttackCompleted;
-        m_AnimationEvents.OnPlayerAttack2Withdrawn -= OnPlayerAttackWithdrawn;
+        if (m_AnimationEvents != null)
+        {
+            m_AnimationEvents.OnPlayerAttack1Completed -= OnAttackCompleted;
+            m_AnimationEvents.OnPlayerAttack1Withdrawn -= OnAttackWithdrawn;
+            m_AnimationEvents.OnPlayerAttack2Completed -= OnAttackCompleted;
+            m_AnimationEvents.OnPlayerAttack2Withdrawn -= OnAttackWithdrawn;
+        }
     }
 
     private void Awake()
@@ -121,17 +115,8 @@ public class PlayerAnimatorComponent : MonoBehaviour
             m_Animator.SetFloat(s_MoveSpeed, speed);
         }
 
-        if (m_DamageFlashTimer > 0f)
-        {
-            m_DamageFlashTimer -= Time.deltaTime;
-            if (m_DamageFlashTimer <= 0f)
-            {
-                m_SpriteRenderer.material = m_DefaultMaterial;
-            }
-        }
-
         //This is not in late update because this script execution order is set to +10, so it will run at the end of the frame anyway
-        
+
         AttackAnimationPhase = AttackAnimationPhase is AttackAnimationPhase.JustCompleted
             ? AttackAnimationPhase.Withdrawing
             : AttackAnimationPhase is AttackAnimationPhase.JustWithdrawn
@@ -148,22 +133,11 @@ public class PlayerAnimatorComponent : MonoBehaviour
         }
     }
 
-    private void OnAttackReceived()
+    private void OnAttackCompleted()
     {
-        if (!m_AttackTarget.IsAlive ||
-            m_AttackTarget.ResolvedAttackThisFrame.Result is not AttackResult.Hit ||
-            m_Stats.DamageFlashAnimationDuration < 0.01f)
-            return;
-
-        m_SpriteRenderer.material = m_DamageFlashMaterial;
-        m_DamageFlashTimer = m_Stats.DamageFlashAnimationDuration;
+        AttackAnimationPhase = AttackAnimationPhase.JustCompleted;
     }
-
-    private void OnPlayerAttackCompleted()
-    {
-        AttackAnimationPhase = AttackAnimationPhase.JustCompleted;       
-    }
-    private void OnPlayerAttackWithdrawn()
+    private void OnAttackWithdrawn()
     {
         AttackAnimationPhase = AttackAnimationPhase.JustWithdrawn;
     }

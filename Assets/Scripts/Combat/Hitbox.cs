@@ -131,7 +131,7 @@ public class Hitbox : MonoBehaviour, IAttackSource
             !other.TryGetComponent<Hurtbox>(out var hurtbox) ||
             !hurtbox.IsActive ||
             HasJustAttackedTarget(hurtbox.AttackTarget) ||
-            !m_FactionsData.CanDamage(Faction, hurtbox.AttackTarget.Faction))
+            !m_FactionsData.IsHostileTo(Faction, hurtbox.AttackTarget.Faction))
             return;
 
         AttackResult result = hurtbox.AttackTarget.ResolveAttack(m_AttackData);

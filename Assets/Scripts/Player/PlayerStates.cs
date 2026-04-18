@@ -1,9 +1,8 @@
 using System;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 #region STATES
-public abstract class APlayerState : IState
+public abstract class APlayerState : FSM.IState
 {
     protected readonly PlayerStateComponent m_Player;
     public APlayerState(PlayerStateComponent player)
@@ -38,7 +37,7 @@ public class PlayerJumpingState : APlayerState
     {
         m_Player.Movement.Jump();
         m_Player.Movement.SetRisingGravity();
-        m_Player.GroundCheck.ClearCoyoteTime();
+        m_Player.GroundCheck.CoyoteTimeBuffer.Clear();
         m_Player.Input.JumpBuffer.Clear();
         m_Player.Input.OnJumpReleased += OnJumpReleased;
         m_Player.Stamina.RegisterActionPerformed(StaminaAction.Jump);
@@ -125,7 +124,6 @@ public class PlayerAttackingState : APlayerState
     public PlayerAttackingState(PlayerStateComponent player) : base(player) { }
     public override void Start()
     {
-        Debug.Log($"lastatkphase: {m_Player.Animator.AttackAnimationPhase}");
         m_AttackFinished = false;
         m_Player.Movement.Stop();
         m_Player.Attack.StartAttack();

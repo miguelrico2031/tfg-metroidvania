@@ -11,7 +11,7 @@ public class FactionMatrixEditor : Editor
         string[] names = System.Enum.GetNames(typeof(Faction));
         int count = matrix.FactionCount;
 
-        EditorGUILayout.LabelField("Can Damage?", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Faction Matrix:", EditorStyles.boldLabel);
         EditorGUILayout.Space(4);
 
         EditorGUILayout.BeginHorizontal();
@@ -26,7 +26,7 @@ public class FactionMatrixEditor : Editor
         for (int row = 0; row < count; row++)
         {
             EditorGUILayout.BeginHorizontal();
-            GUILayout.Label($"<b>{names[row]}</b> can damage:", style, GUILayout.Width(140));
+            GUILayout.Label($"<b>{names[row]}</b> is hostile to:", style, GUILayout.Width(140));
             for (int col = 0; col < count; col++)
             {
                 bool current = matrix.GetRelation(row, col);

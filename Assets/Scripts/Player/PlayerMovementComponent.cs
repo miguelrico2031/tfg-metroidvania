@@ -46,7 +46,7 @@ public class PlayerMovementComponent : MonoBehaviour
         m_DashTimer = m_Stats.DashDuration;
         if(dashDirection != Mathf.CeilToInt(m_Transform.right.x))
         {
-            Flip(right: dashDirection > 0f);
+            Turn(right: dashDirection > 0f);
         }
         float dashSpeedX = m_Stats.DashDistance / m_Stats.DashDuration;
         m_Rigidbody.linearVelocityX = m_Transform.right.x * dashSpeedX;
@@ -74,7 +74,7 @@ public class PlayerMovementComponent : MonoBehaviour
         bool currentlyFacingRight = m_Transform.right.x > 0f;
         if (currentlyFacingRight != sourceIsToTheRight) //Ensure facing attack source
         {
-            Flip(right: sourceIsToTheRight);
+            Turn(right: sourceIsToTheRight);
         }
 
         if (knockback.Height > 0.1f)
@@ -131,7 +131,7 @@ public class PlayerMovementComponent : MonoBehaviour
         bool directionChanged = movementDirection != 0 && movementDirection != Mathf.CeilToInt(m_Transform.right.x);
         if (directionChanged)
         {
-            Flip(right: movementDirection > 0f);
+            Turn(right: movementDirection > 0f);
         }
 
         if (directionChanged && !m_Stats.MoveOnChangeDirection)
@@ -144,7 +144,7 @@ public class PlayerMovementComponent : MonoBehaviour
         }
     }
 
-    private void Flip(bool right)
+    private void Turn(bool right)
     {
         m_Transform.rotation = Quaternion.Euler(0f, right ? 0f : 180f, 0f);
         OnDirectionChanged?.Invoke();

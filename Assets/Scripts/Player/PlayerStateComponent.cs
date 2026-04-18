@@ -1,16 +1,16 @@
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(PlayerMovementComponent), typeof(PlayerInputComponent), typeof(PlayerGroundCheckComponent))]
-[RequireComponent(typeof(PlayerObstacleCheckComponent), typeof(PlayerAnimatorComponent), typeof(PlayerStaminaComponent))]
+[RequireComponent(typeof(PlayerMovementComponent), typeof(PlayerInputComponent), typeof(GroundCheckComponent))]
+[RequireComponent(typeof(ObstacleCheckComponent), typeof(AnimatorComponent), typeof(PlayerStaminaComponent))]
 [RequireComponent(typeof(AttackTargetComponent), typeof(HealthComponent))]
 public class PlayerStateComponent : MonoBehaviour
 {
     public PlayerMovementComponent Movement { get; private set; }
     public PlayerInputComponent Input { get; private set; }
-    public PlayerGroundCheckComponent GroundCheck { get; private set; }
-    public PlayerObstacleCheckComponent ObstacleCheck { get; private set; }
-    public PlayerAnimatorComponent Animator { get; private set; }
+    public GroundCheckComponent GroundCheck { get; private set; }
+    public ObstacleCheckComponent ObstacleCheck { get; private set; }
+    public AnimatorComponent Animator { get; private set; }
     public PlayerStaminaComponent Stamina { get; private set; }
     public PlayerAttackComponent Attack { get; private set; }
     public AttackTargetComponent AttackTarget { get; private set; }
@@ -23,21 +23,21 @@ public class PlayerStateComponent : MonoBehaviour
 
     private string m_DebugStrStateMachine = "Current State: None";
 
-    private StateMachine m_StateMachine;
+    private FSM.StateMachine m_StateMachine;
 
     private void Awake()
     {
         Movement = GetComponent<PlayerMovementComponent>();
         Input = GetComponent<PlayerInputComponent>();
-        GroundCheck = GetComponent<PlayerGroundCheckComponent>();
-        ObstacleCheck = GetComponent<PlayerObstacleCheckComponent>();
-        Animator = GetComponent<PlayerAnimatorComponent>();
+        GroundCheck = GetComponent<GroundCheckComponent>();
+        ObstacleCheck = GetComponent<ObstacleCheckComponent>();
+        Animator = GetComponent<AnimatorComponent>();
         Stamina = GetComponent<PlayerStaminaComponent>();
         Attack = GetComponent<PlayerAttackComponent>();
         AttackTarget = GetComponent<AttackTargetComponent>();
         Health = GetComponent<HealthComponent>();
 
-        m_StateMachine = new StateMachineBuilder()
+        m_StateMachine = new FSM.StateMachineBuilder()
 
             .AddState(new PlayerGroundedState(this), isInitialState: true)
             .AddState(new PlayerJumpingState(this))
@@ -63,7 +63,7 @@ public class PlayerStateComponent : MonoBehaviour
             .AddTransition<PlayerJumpingState, PlayerKnockbackState>(() => HasBeenHitWithKnockback())
 
             .AddTransition<PlayerFallingState, PlayerGroundedState>(() => GroundCheck.IsGrounded)
-            .AddTransition<PlayerFallingState, PlayerJumpingState>(() => GroundCheck.CheckCoyoteTime() && IsJumpRequestedAndAllowed())
+            .AddTransition<PlayerFallingState, PlayerJumpingState>(() => GroundCheck.CoyoteTimeBuffer.Check() && IsJumpRequestedAndAllowed())
             .AddTransition<PlayerFallingState, PlayerKnockbackState>(() => HasBeenHitWithKnockback())
 
             .AddTransition<PlayerDashingState, PlayerGroundedState>(() => GroundCheck.IsGrounded && IsDashFinished())

@@ -1,39 +1,38 @@
 using UnityEngine;
 
-public class PlayerGroundCheckComponent : MonoBehaviour
+public class GroundCheckComponent : MonoBehaviour
 {
     public bool JustLanded { get; private set; }
     public bool JustLeftGround { get; private set; }
     public bool IsGrounded { get; private set; }
+    public BufferingTimer CoyoteTimeBuffer { get; private set; }
 
-    [SerializeField] private PlayerStats m_Stats;
+    [SerializeField] private StatsReference<IPerceptionStats> m_Stats;
     [SerializeField] private Transform m_GroundCheckOrigin;
 
     private bool m_WasGrounded;
-    private float m_CoyoteTimer;
 
-    public bool CheckCoyoteTime() => m_CoyoteTimer > 0f;
-    public void ClearCoyoteTime() => m_CoyoteTimer = 0f;
+    private void Awake()
+    {
+        CoyoteTimeBuffer = new(() => m_Stats.Value.CoyoteTime);
+    }
 
     private void Update()
     {
-        if (JustLeftGround)
-        {
-            m_CoyoteTimer = m_Stats.CoyoteTime;
-        }
-        if (m_CoyoteTimer > 0f)
-        {
-            m_CoyoteTimer -= Time.deltaTime;
-        }
+        CoyoteTimeBuffer.Tick(Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
         m_WasGrounded = IsGrounded;
         var (origin, size) = ComputeGroundCheckBox();
-        IsGrounded = Physics2D.OverlapBox( origin, size, angle: 0f, m_Stats.GroundLayers );
+        IsGrounded = Physics2D.OverlapBox( origin, size, angle: 0f, m_Stats.Value.GroundLayers );
         JustLanded = IsGrounded && !m_WasGrounded;
         JustLeftGround = !IsGrounded && m_WasGrounded;
+        if(JustLeftGround)
+        {
+            CoyoteTimeBuffer.Register();
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -48,7 +47,7 @@ public class PlayerGroundCheckComponent : MonoBehaviour
 
     private (Vector3 origin, Vector3 size) ComputeGroundCheckBox()
     {
-        float originOffsetY = m_Stats.GroundCheckSize.y * 0.5f + m_Stats.GroundCheckOffset;
-        return (m_GroundCheckOrigin.position + Vector3.down * originOffsetY, m_Stats.GroundCheckSize);
+        float originOffsetY = m_Stats.Value.GroundCheckSize.y * 0.5f + m_Stats.Value.GroundCheckOffset;
+        return (m_GroundCheckOrigin.position + Vector3.down * originOffsetY, m_Stats.Value.GroundCheckSize);
     }
 }
