@@ -40,7 +40,6 @@ public class PlayerJumpingState : APlayerState
         m_Player.GroundCheck.CoyoteTimeBuffer.Clear();
         m_Player.Input.JumpBuffer.Clear();
         m_Player.Input.OnJumpReleased += OnJumpReleased;
-        m_Player.Stamina.RegisterActionPerformed(StaminaAction.Jump);
         m_Player.Animator.StartJumpAnimation();
     }
     public override void End() => m_Player.Input.OnJumpReleased -= OnJumpReleased;
@@ -79,7 +78,6 @@ public class PlayerDashingState : APlayerState
         m_Player.Movement.ApplyDash(dashDirection);
         m_Player.AttackTarget.SetInvulnerable(true);
         m_Player.Input.DashBuffer.Clear();
-        m_Player.Stamina.RegisterActionPerformed(StaminaAction.Dash);
         m_Player.Animator.StartDashAnimation();
     }
     public override void End()
@@ -114,7 +112,6 @@ public class PlayerKnockbackState : APlayerState
         AttackData attack = m_Player.AttackTarget.ResolvedAttackThisFrame.Attack;
         m_Player.Movement.ApplyAttackKnockback(attack);
         m_Player.AttackTarget.SetInvulnerable(true);
-        m_Player.Stamina.RegisterActionPerformed(StaminaAction.Knockback);
         m_IsAirborne = attack.Knockback.Height > 0.1f || !m_Player.GroundCheck.IsGrounded;
         m_Player.Animator.StartKnockbackAnimation(m_IsAirborne);
     }
@@ -153,7 +150,6 @@ public class PlayerAttackingState : APlayerState
         m_Player.Movement.Stop();
         m_Player.AttackCombo.StartAttack();
         m_Player.Input.AttackBuffer.Clear();
-        m_Player.Stamina.RegisterActionPerformed(StaminaAction.Attack);
         m_Player.Animator.StartAttackAnimation(isFirstAttack: m_Player.AttackCombo.ActiveAttack == 1);
     }
     public override void Update()

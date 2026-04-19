@@ -2,8 +2,8 @@ using UnityEngine;
 using System;
 
 [RequireComponent(typeof(PlayerMovementComponent), typeof(PlayerInputComponent), typeof(GroundCheckComponent))]
-[RequireComponent(typeof(ObstacleCheckComponent), typeof(AnimatorComponent), typeof(PlayerStaminaComponent))]
-[RequireComponent(typeof(AttackTargetComponent), typeof(HealthComponent))]
+[RequireComponent(typeof(ObstacleCheckComponent), typeof(AnimatorComponent), typeof(AttackTargetComponent))]
+[RequireComponent(typeof(HealthComponent))]
 public class PlayerStateComponent : MonoBehaviour
 {
     public PlayerMovementComponent Movement { get; private set; }
@@ -11,7 +11,6 @@ public class PlayerStateComponent : MonoBehaviour
     public GroundCheckComponent GroundCheck { get; private set; }
     public ObstacleCheckComponent ObstacleCheck { get; private set; }
     public AnimatorComponent Animator { get; private set; }
-    public PlayerStaminaComponent Stamina { get; private set; }
     public AttackComboComponent AttackCombo { get; private set; }
     public AttackTargetComponent AttackTarget { get; private set; }
     public HealthComponent Health { get; private set; }
@@ -32,7 +31,6 @@ public class PlayerStateComponent : MonoBehaviour
         GroundCheck = GetComponent<GroundCheckComponent>();
         ObstacleCheck = GetComponent<ObstacleCheckComponent>();
         Animator = GetComponent<AnimatorComponent>();
-        Stamina = GetComponent<PlayerStaminaComponent>();
         AttackCombo = GetComponent<AttackComboComponent>();
         AttackTarget = GetComponent<AttackTargetComponent>();
         Health = GetComponent<HealthComponent>();
@@ -88,16 +86,16 @@ public class PlayerStateComponent : MonoBehaviour
                 state != typeof(PlayerDyingState))
 
             .AddTransition<PlayerGroundedState, PlayerKnockbackState>(HasBeenHitWithKnockback)
-            .AddTransition<PlayerGroundedState, PlayerJumpingState>(IsJumpRequestedAndAllowed)
+            .AddTransition<PlayerGroundedState, PlayerJumpingState>(() => Input.JumpBuffer.Check())
             .AddTransition<PlayerGroundedState, PlayerDashingState>(IsDashRequestedAndAllowed)
             .AddTransition<PlayerGroundedState, PlayerFallingState>(() => !GroundCheck.IsGrounded)
-            .AddTransition<PlayerGroundedState, PlayerAttackingState>(IsAttack1RequestedAndAllowed)
+            .AddTransition<PlayerGroundedState, PlayerAttackingState>(() => Input.AttackBuffer.Check())
 
             .AddTransition<PlayerJumpingState, PlayerFallingState>(() => Movement.VerticalVelocity <= 0f)
             .AddTransition<PlayerJumpingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
 
             .AddTransition<PlayerFallingState, PlayerGroundedState>(() => GroundCheck.IsGrounded)
-            .AddTransition<PlayerFallingState, PlayerJumpingState>(() => GroundCheck.CoyoteTimeBuffer.Check() && IsJumpRequestedAndAllowed())
+            .AddTransition<PlayerFallingState, PlayerJumpingState>(() => GroundCheck.CoyoteTimeBuffer.Check() && Input.JumpBuffer.Check())
             .AddTransition<PlayerFallingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
 
             .AddTransition<PlayerDashingState, PlayerFallingState>(() => !GroundCheck.IsGrounded && IsDashFinished())
@@ -116,15 +114,11 @@ public class PlayerStateComponent : MonoBehaviour
 
 
             .Build();
-    }
-
-    private bool IsJumpRequestedAndAllowed() =>
-        Input.JumpBuffer.Check() &&
-        Stamina.CanPerformAction(StaminaAction.Jump);
+    }       
 
     private bool IsDashRequestedAndAllowed()
     {
-        if(!Input.DashBuffer.Check() || !Stamina.CanPerformAction(StaminaAction.Dash))
+        if(!Input.DashBuffer.Check())
             return false;
 
         int forwardDirection = Mathf.CeilToInt(transform.right.x);
@@ -147,14 +141,9 @@ public class PlayerStateComponent : MonoBehaviour
         !Movement.IsInKnockback ||
         ObstacleCheck.IsObstructedBehind;
 
-    private bool IsAttack1RequestedAndAllowed() =>
-        Input.AttackBuffer.Check() &&
-        Stamina.CanPerformAction(StaminaAction.Attack);
-
     private bool IsAttack2RequestedAndAllowed() =>
         Input.AttackBuffer.Check() &&
         Animator.AttackAnimationPhase is AttackAnimationPhase.Withdrawing &&
-        Stamina.CanPerformAction(StaminaAction.Attack) &&
         AttackCombo.ActiveAttack == 1;
 
     private bool HasAttackAnimationJustFinished() => Animator.AttackAnimationPhaseCompletedThisFrame is AttackAnimationPhase.Withdrawing;

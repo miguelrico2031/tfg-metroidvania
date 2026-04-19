@@ -67,17 +67,6 @@ public class PlayerStats : ScriptableObject, IAnimationStats, ICombatStats, IHea
     public LayerMask ObstacleLayers { get; private set; }
 
 
-    [field: Header("Stamina"), SerializeField, Tooltip("Max amount of stamina the player can have.")]
-    public int MaxStamina { get; private set; }
-
-    [field: SerializeField, Tooltip("Stamina points recovered per second when player stamina is below max.")]
-    public int StaminaRecoveryRate { get; private set; }
-
-    [SerializeField, Tooltip("Info about each action that consumes stamina.")]
-    private StaminaActionData[] m_StaminaActions;
-    public IReadOnlyCollection<StaminaActionData> StaminaActions => m_StaminaActions;
-
-
     [field: Header("Health & Damage"), SerializeField, Tooltip("Max amount of health the player can have.")]
     public int MaxHealth { get; private set; }
 
@@ -105,20 +94,4 @@ public class PlayerStats : ScriptableObject, IAnimationStats, ICombatStats, IHea
     //This is not currenlty used in the player components but it implements IPerceptionStats
     public Vector2 EdgeCheckOffset { get; }
     public float EdgeCheckDepth { get; }
-}
-
-public enum StaminaAction
-{
-    Jump,
-    Dash,
-    Attack,
-    Knockback
-}
-
-[Serializable]
-public struct StaminaActionData
-{
-    public StaminaAction Action;
-    public int Cost;
-    public bool IsInvoluntary;
 }
