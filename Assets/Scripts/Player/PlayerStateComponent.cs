@@ -37,7 +37,40 @@ public class PlayerStateComponent : MonoBehaviour
         AttackTarget = GetComponent<AttackTargetComponent>();
         Health = GetComponent<HealthComponent>();
 
-        m_StateMachine = new FSM.StateMachineBuilder()
+        m_StateMachine = SetUpStateMachine();
+
+        m_StateMachine.OnStateChanged += HandleStateChanged;
+    }
+    private void Start()
+    {
+        m_StateMachine?.Start();
+    }
+
+    private void Update()
+    {
+        m_StateMachine?.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        m_StateMachine?.FixedUpdate();
+    }
+
+    private void HandleStateChanged()
+    {
+        string stateName = CurrentState?.Name ?? "None";
+        m_DebugStrStateMachine = $"Current State: {stateName}";
+        if (m_LogStateChanges)
+        {
+            Debug.Log($"Player State Machine Current State changed to {stateName}");
+        }
+
+        OnStateChanged?.Invoke(CurrentState);
+    }
+
+    private FSM.StateMachine SetUpStateMachine()
+    {
+        return new FSM.StateMachineBuilder()
 
             .AddState(new PlayerGroundedState(this), isInitialState: true)
             .AddState(new PlayerJumpingState(this))
@@ -77,36 +110,8 @@ public class PlayerStateComponent : MonoBehaviour
             .AddTransition<PlayerAttackingState, PlayerAttackingState>(IsAttack2RequestedAndAllowed)
             .AddTransition<PlayerAttackingState, PlayerGroundedState>(HasAttackAnimationJustFinished)
 
-            
+
             .Build();
-
-        m_StateMachine.OnStateChanged += HandleStateChanged;
-    }
-    private void Start()
-    {
-        m_StateMachine?.Start();
-    }
-
-    private void Update()
-    {
-        m_StateMachine?.Update();
-    }
-
-    private void FixedUpdate()
-    {
-        m_StateMachine?.FixedUpdate();
-    }
-
-    private void HandleStateChanged()
-    {
-        string stateName = CurrentState?.Name ?? "None";
-        m_DebugStrStateMachine = $"Current State: {stateName}";
-        if (m_LogStateChanges)
-        {
-            Debug.Log($"Player State Machine Current State changed to {stateName}");
-        }
-
-        OnStateChanged?.Invoke(CurrentState);
     }
 
     private bool IsJumpRequestedAndAllowed() =>

@@ -18,54 +18,70 @@ namespace BT
         public Output Run();
     }
 
+    public interface INodeWithState : INode
+    {
+        public event Action<INodeWithState> OnRun;
+        public void ResetState();
+    }
+
     public class BehaviorTree
     {
         public readonly INode Root;
         
-        private readonly List<ITask> m_Tasks;
-        private readonly HashSet<ITask> m_TasksRunThisFrame = new();
+        private readonly List<INodeWithState> m_NodesWithState;
+        private readonly HashSet<INodeWithState> m_NodesWithStateRunThisFrame = new();
+        private bool m_RunSinceLastReset = false;
 
         public BehaviorTree(INode root)
         {
             Root = root;
-            m_Tasks = RegisterTasks();
+            m_NodesWithState = RegisterNodesWithState();
         }
 
         public Output Run()
         {
-            m_TasksRunThisFrame.Clear();
+            m_RunSinceLastReset = true;
+            m_NodesWithStateRunThisFrame.Clear();
             Output output = Root.Run();
-            HandleInterruptedTasks();
+            ResetNodesWithStateNotRun();
             return output;
         }
 
-        private List<ITask> RegisterTasks()
+        public void Reset()
         {
-            List<ITask> tasks = new();
+            if (!m_RunSinceLastReset)
+                return;
+            m_RunSinceLastReset = false;
+            m_NodesWithStateRunThisFrame.Clear();
+            foreach(INodeWithState node in m_NodesWithState)
+            {
+                node.ResetState();
+            }
+        }
+
+        private List<INodeWithState> RegisterNodesWithState()
+        {
+            List<INodeWithState> nodesWithState = new();
             TraverseTree(Root, node =>
             {
-                if (node is TaskAction taskAction)
+                if (node is INodeWithState nodeWithState)
                 {
-                    tasks.Add(taskAction.Task);
-                    taskAction.OnTaskRun += OnTaskRun;
+                    nodesWithState.Add(nodeWithState);
+                    nodeWithState.OnRun += OnNodeWithStateRun;
                 }
             });
-            return tasks;
+            return nodesWithState;
         }
 
-        private void OnTaskRun(ITask task)
+        private void OnNodeWithStateRun(INodeWithState node) => m_NodesWithStateRunThisFrame.Add(node);
+        
+        private void ResetNodesWithStateNotRun()
         {
-            m_TasksRunThisFrame.Add(task);
-        }
-
-        private void HandleInterruptedTasks()
-        {
-            foreach(ITask task in m_Tasks)
+            foreach(INodeWithState node in m_NodesWithState)
             {
-                if(task.Running && !m_TasksRunThisFrame.Contains(task))
+                if(!m_NodesWithStateRunThisFrame.Contains(node))
                 {
-                    task.Running = false;
-                    task.OnInterrupted();
+                    node.ResetState();
                 }
             }
         }
@@ -85,9 +101,10 @@ namespace BT
         }
     }
 
-    public class Sequencer : INode
+    public class Sequencer : INodeWithState
     {
         public IReadOnlyCollection<INode> Children => m_Children;
+        public event Action<INodeWithState> OnRun;
         private readonly INode[] m_Children;
         private int m_Active;
         public Sequencer(params INode[] children)
@@ -98,6 +115,7 @@ namespace BT
         }
         public Output Run()
         {
+            OnRun?.Invoke(this);
             for (int i = m_Active; i < m_Children.Length; i++)
             {
                 Output output = m_Children[i].Run();
@@ -117,6 +135,7 @@ namespace BT
             m_Active = 0;
             return Output.Success;
         }
+        public void ResetState() => m_Active = 0;
     }
 
     public class ReactiveSequencer : INode
@@ -140,9 +159,10 @@ namespace BT
         }
     }
 
-    public class Selector : INode
+    public class Selector : INodeWithState
     {
         public IReadOnlyCollection<INode> Children => m_Children;
+        public event Action<INodeWithState> OnRun;
         private readonly INode[] m_Children;
         private int m_Active;
         public Selector(params INode[] children)
@@ -153,6 +173,7 @@ namespace BT
         }
         public Output Run()
         {
+            OnRun?.Invoke(this);
             for (int i = m_Active; i < m_Children.Length; i++)
             {
                 Output output = m_Children[i].Run();
@@ -172,6 +193,7 @@ namespace BT
             m_Active = 0;
             return Output.Failure;
         }
+        public void ResetState() => m_Active = 0;
     }
 
     public class ReactiveSelector : INode
@@ -195,21 +217,25 @@ namespace BT
         }
     }
 
-    public class Loop : INode
+    public class Loop : INodeWithState
     {
         public IReadOnlyCollection<INode> Children => new[] { m_Child };
+        public event Action<INodeWithState> OnRun;
         private readonly INode m_Child;
         private readonly Type m_Type;
+        private readonly int m_TotalTimes;
         private int m_RemainingTimes;
         public Loop(INode child, Type type, int times = -1)
         {
             m_Child = child;
             m_Type = type;
-            m_RemainingTimes = times;
+            m_TotalTimes = times;
+            m_RemainingTimes = m_TotalTimes;
             Assert.IsFalse(m_Type is Type.FixedTimes && m_RemainingTimes <= 0, "Minimum 1 fixed execution for a Fixed Times Loop node.");
         }
         public Output Run()
         {
+            OnRun?.Invoke(this);
             Output output = m_Child.Run();
             return m_Type switch
             {
@@ -219,6 +245,7 @@ namespace BT
                 _ => Output.Running,
             };
         }
+        public void ResetState() => m_RemainingTimes = m_TotalTimes;
         public enum Type
         {
             Infinite,
@@ -294,14 +321,15 @@ namespace BT
         public void OnInterrupted();
     }
 
-    public class TaskAction : INode
+    public class TaskAction : INodeWithState
     {
         public IReadOnlyCollection<INode> Children => null;
         public readonly ITask Task;
-        public event Action<ITask> OnTaskRun;
+        public event Action<INodeWithState> OnRun;
         public TaskAction(ITask task) { Task = task; }
         public Output Run()
         {
+            OnRun?.Invoke(this);
             if (!Task.Running)
             {
                 Task.Running = true;
@@ -313,8 +341,15 @@ namespace BT
                 Task.Running = false;
                 Task.End(output);
             }
-            OnTaskRun?.Invoke(Task);
             return output;
+        }
+        public void ResetState()
+        {
+            if(Task.Running)
+            {
+                Task.Running = false;
+                Task.OnInterrupted();
+            }
         }
     }
 }

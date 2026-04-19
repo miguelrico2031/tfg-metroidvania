@@ -2,7 +2,8 @@
 using UnityEngine.Assertions;
 
 [RequireComponent(typeof(AnimatorComponent), typeof(ObstacleCheckComponent), typeof(EdgeCheckComponent))]
-[RequireComponent(typeof(AITargetterComponent), typeof(AIMovementComponent))]
+[RequireComponent(typeof(AITargetterComponent), typeof(AIMovementComponent), typeof(HealthComponent))]
+[RequireComponent(typeof(AttackTargetComponent))]
 public class AIAgentComponent : MonoBehaviour
 {
     public AIMovementComponent Movement { get; private set; }
@@ -10,13 +11,14 @@ public class AIAgentComponent : MonoBehaviour
     public EdgeCheckComponent EdgeCheck { get; private set; }
     public AITargetterComponent Targetter { get; private set; }
     public AnimatorComponent Animator { get; private set; }
+    public HealthComponent Health { get; private set; }
+    public AttackTargetComponent AttackTarget { get; private set; }
 
     [SerializeField] private BehaviorTree m_SelectedBehaviorTree;
     [SerializeField] private bool m_LogBehavior;
 
-    private BT.BehaviorTree m_BehaviorTree;
-    private BT.Output m_BehaviorTreeOutput = BT.Output.Running;
 
+    private FSM.StateMachine m_StateMachine;
 
     private void Awake()
     {
@@ -25,22 +27,37 @@ public class AIAgentComponent : MonoBehaviour
         EdgeCheck = GetComponent<EdgeCheckComponent>();
         Targetter = GetComponent<AITargetterComponent>();
         Animator = GetComponent<AnimatorComponent>();
+        Health = GetComponent<HealthComponent>();
+        AttackTarget = GetComponent<AttackTargetComponent>();
 
-        m_BehaviorTree = SetUpSelectedBehaviorTree();
+        m_StateMachine = SetUpStateMachine();
+    }
+
+    private void Start()
+    {
+        m_StateMachine.Start();
     }
 
     private void Update()
     {
-        if (m_BehaviorTreeOutput is BT.Output.Running)
-        {
-            Log("----------------------------FRAME START----------------------------");
-            m_BehaviorTreeOutput = m_BehaviorTree.Run();
-            if (m_BehaviorTreeOutput is not BT.Output.Running)
-            {
-                Log($"Behavior Tree finished: {m_BehaviorTreeOutput}");
-            }
-            Log("----------------------------FRAME END------------------------------");
-        }
+        m_StateMachine.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        m_StateMachine.FixedUpdate();
+    }
+
+    private FSM.StateMachine SetUpStateMachine()
+    {
+        return new FSM.StateMachineBuilder()
+
+            .AddState(new AIBehaviorTreeState(this, SetUpSelectedBehaviorTree()), isInitialState: true)
+            .AddState(new AIDyingState(this))
+
+            .AddTransition<AIBehaviorTreeState, AIDyingState>(() => Health.CurrentHealth == 0)
+
+            .Build();
     }
 
     private BT.BehaviorTree SetUpSelectedBehaviorTree()
@@ -56,33 +73,33 @@ public class AIAgentComponent : MonoBehaviour
         return new BT.BehaviorTree(selectedBT);
     }
 
-    private void Log(string message)
+    public void BTLog(string message)
     {
         if (m_LogBehavior)
         {
             Debug.Log($"[BT] [{gameObject.name}] {message}");
         }
     }
-    public void LogAction(string message) => Log($"[ACTION] {message}");
-    public void LogCondition(string message) => Log($"[CONDITION] {message}");
+    public void BTLogAction(string message) => BTLog($"[ACTION] {message}");
+    public void BTLogCondition(string message) => BTLog($"[CONDITION] {message}");
 
     #region CONDITIONS
     private bool IsFacingObstacle()
     {
-        LogCondition($"IsFacingObstacle: {ObstacleCheck.IsObstructedForward}");
+        BTLogCondition($"IsFacingObstacle: {ObstacleCheck.IsObstructedForward}");
         return ObstacleCheck.IsObstructedForward;
     }
 
     private bool IsFacingEdge()
     {
-        LogCondition($"IsFacingEdge: {EdgeCheck.HasEdgeForward}");
+        BTLogCondition($"IsFacingEdge: {EdgeCheck.HasEdgeForward}");
         return EdgeCheck.HasEdgeForward;
     }
 
     private bool HasAliveTarget()
     {
         bool hasAliveTarget = Targetter.ActiveTarget is { IsAlive: true };
-        LogCondition($"HasAliveTarget: {hasAliveTarget}");
+        BTLogCondition($"HasAliveTarget: {hasAliveTarget}");
         return hasAliveTarget;
     }
 
@@ -92,7 +109,7 @@ public class AIAgentComponent : MonoBehaviour
         float directionToTarget = Targetter.ActiveTarget.transform.position.x - transform.position.x;
         bool isFacingTarget = Mathf.Abs(directionToTarget) < 0.01f ||
             Mathf.CeilToInt(Mathf.Sign(directionToTarget)) == Mathf.CeilToInt(Mathf.Sign(transform.right.x));
-        LogCondition($"IsFacingTarget: {isFacingTarget}");
+        BTLogCondition($"IsFacingTarget: {isFacingTarget}");
         return isFacingTarget;
     }
 
@@ -102,7 +119,7 @@ public class AIAgentComponent : MonoBehaviour
         bool isTargetMelee = ObstacleCheck.ObstacleForward != null &&
             ObstacleCheck.ObstacleForward.TryGetComponent<AttackTargetComponent>(out var target) &&
             target == Targetter.ActiveTarget;
-        LogCondition($"IsTargetMelee: {isTargetMelee}");
+        BTLogCondition($"IsTargetMelee: {isTargetMelee}");
         return isTargetMelee;
     }
     #endregion
@@ -110,14 +127,23 @@ public class AIAgentComponent : MonoBehaviour
     #region ACTIONS
     private void Turn()
     {
-        LogAction("Turn");
+        BTLogAction("Turn");
         Movement.Turn();
     }
 
     private void Stop()
     {
-        LogAction("Stop");
+        BTLogAction("Stop");
         Movement.Stop();
+    }
+
+    public void DisableAllHitboxes()
+    {
+        BTLogAction("DisableAllHitboxes");
+        foreach (var hitbox in GetComponentsInChildren<Hitbox>(true))
+        {
+            hitbox.enabled = false;
+        }
     }
     #endregion
 
@@ -174,90 +200,4 @@ public class AIAgentComponent : MonoBehaviour
         BT.Loop.Type.UntilFailure
     );
     #endregion
-}
-
-public abstract class AAIBehaviorTask : BT.ITask
-{
-    public bool Running { get ; set; }
-    protected AIAgentComponent m_Agent;
-    public AAIBehaviorTask(AIAgentComponent agent) => m_Agent = agent;
-    public virtual void Start() { }
-    public abstract BT.Output Run();
-    public virtual void End(BT.Output output) { }
-    public virtual void OnInterrupted() { }
-}
-
-public class WaitForSecondsTask : AAIBehaviorTask
-{
-    private readonly float m_Time;
-    private float m_Timer = 0f;
-    public WaitForSecondsTask(AIAgentComponent agent, float time) : base(agent) { m_Time = time; }
-    public override void Start()
-    {
-        m_Agent.LogAction($"Wait for {m_Time} seconds Started");
-        m_Timer = m_Time;
-    }
-    public override BT.Output Run()
-    {
-        m_Timer -= Time.deltaTime;
-        return m_Timer <= 0f ? BT.Output.Success : BT.Output.Running;
-    }
-
-    public override void End(BT.Output output)
-    {
-        m_Agent.LogAction($"Wait for {m_Time} seconds Ended");
-    }
-}
-
-public class MoveForwardTask : AAIBehaviorTask
-{
-    public MoveForwardTask(AIAgentComponent agent) : base(agent) { }
-
-    public override void Start()
-    {
-        m_Agent.LogAction("MoveForward Started");
-        m_Agent.Animator.StartGroundedAnimation();
-    }
-    public override BT.Output Run()
-    {
-        m_Agent.LogAction("MoveForward Run");
-        m_Agent.Movement.MoveForward();
-        return BT.Output.Running;
-    }
-
-    public override void End(BT.Output output)
-    {
-        m_Agent.LogAction("MoveForward Ended");
-    }
-    public override void OnInterrupted()
-    {
-        m_Agent.LogAction("MoveForward Interrupted");
-    }
-}
-
-public class AttackTargetTask : AAIBehaviorTask
-{
-    public AttackTargetTask(AIAgentComponent agent) : base(agent) { }
-
-    public override void Start()
-    {
-        m_Agent.LogAction("Attack Started");
-        m_Agent.Animator.StartAttackAnimation(true);
-    }
-    public override BT.Output Run()
-    {
-        m_Agent.LogAction("Attack Run");
-        return m_Agent.Animator.AttackAnimationPhaseCompletedThisFrame is AttackAnimationPhase.Withdrawing
-            ? BT.Output.Success
-            : BT.Output.Running;
-    }
-
-    public override void End(BT.Output output)
-    {
-        m_Agent.LogAction("Attack Ended");
-    }
-    public override void OnInterrupted()
-    {
-        m_Agent.LogAction("Attack Interrupted");
-    }
 }

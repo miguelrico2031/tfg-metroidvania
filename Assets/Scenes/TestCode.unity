@@ -10298,7 +10298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72371f0195da6849a7238a98e2d059b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehaviorComponent
-  m_SelectedBehaviorTree: 0
+  m_SelectedBehaviorTree: 3
   m_LogBehavior: 0
 --- !u!114 &1750114997
 MonoBehaviour:
