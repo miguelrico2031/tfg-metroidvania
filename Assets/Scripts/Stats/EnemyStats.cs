@@ -2,7 +2,7 @@
 
 
 [CreateAssetMenu(menuName = "ScriptableObjects/EnemyStats")]
-public class EnemyStats : ScriptableObject, IAnimationStats, IHealthStats, IPerceptionStats
+public class EnemyStats : ScriptableObject, IAnimationStats, ICombatStats, IHealthStats, IPerceptionStats
 {
     [field: SerializeField] public int MaxHealth { get; private set; }
 
@@ -27,4 +27,9 @@ public class EnemyStats : ScriptableObject, IAnimationStats, IHealthStats, IPerc
 
     [field: SerializeField] public float DamageFlashAnimationDuration { get; private set; }
 
+
+    [field: SerializeField] public float HitInvulnerabilityTime { get; private set; }
+
+    public float AdvanceAttackComboBufferTime => 0f;
+    public int AttackComboCount => 0;
 }

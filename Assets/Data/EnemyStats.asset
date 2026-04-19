@@ -27,3 +27,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 192
   <DamageFlashAnimationDuration>k__BackingField: 0.125
+  <HitInvulnerabilityTime>k__BackingField: 0.15

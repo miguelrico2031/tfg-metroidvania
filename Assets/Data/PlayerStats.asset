@@ -52,4 +52,6 @@ MonoBehaviour:
   <MaxHealth>k__BackingField: 10
   <DamageFlashAnimationDuration>k__BackingField: 0.125
   <AttackBufferTime>k__BackingField: 0.3
-  <AdvanceAttackBufferTime>k__BackingField: 0.25
+  <AdvanceAttackComboBufferTime>k__BackingField: 0.25
+  <AttackComboCount>k__BackingField: 2
+  <HitInvulnerabilityTime>k__BackingField: 0.15

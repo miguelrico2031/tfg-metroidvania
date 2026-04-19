@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/PlayerStats")]
-public class PlayerStats : ScriptableObject, IAnimationStats, IHealthStats, IPerceptionStats
+public class PlayerStats : ScriptableObject, IAnimationStats, ICombatStats, IHealthStats, IPerceptionStats
 {
     [field: Header("Movement"), SerializeField, Tooltip("Movement speed when grounded.")]
     public float GroundSpeed { get; private set; }
@@ -91,7 +91,15 @@ public class PlayerStats : ScriptableObject, IAnimationStats, IHealthStats, IPer
 
     [field: SerializeField, Tooltip("Time window in seconds between completing the first attack and attacking again where that attack will be a " +
         "second attack combo instead of the first attack again.")]
-    public float AdvanceAttackBufferTime { get; private set; }
+    public float AdvanceAttackComboBufferTime { get; private set; }
+
+    [field: SerializeField, Tooltip("Number of attacks in the attack combo.")]
+    public int AttackComboCount { get; private set; }
+
+    [field: SerializeField, Tooltip("Time window in seconds after being attacked when the player becomes invulnerable to other attacks.")]
+    public float HitInvulnerabilityTime { get; private set; }
+
+
 
 
     //This is not currenlty used in the player components but it implements IPerceptionStats

@@ -126,24 +126,24 @@ public class PlayerAttackingState : APlayerState
     {
         m_AttackFinished = false;
         m_Player.Movement.Stop();
-        m_Player.Attack.StartAttack();
+        m_Player.AttackCombo.StartAttack();
         m_Player.Input.AttackBuffer.Clear();
         m_Player.Stamina.RegisterActionPerformed(StaminaAction.Attack);
-        m_Player.Animator.StartAttackAnimation(isFirstAttack: m_Player.Attack.ActiveAttack is PlayerAttack.Attack1);
+        m_Player.Animator.StartAttackAnimation(isFirstAttack: m_Player.AttackCombo.ActiveAttack == 1);
     }
     public override void Update()
     {
-        if (!m_AttackFinished && m_Player.Animator.AttackAnimationPhase is AttackAnimationPhase.JustCompleted)
+        if (!m_AttackFinished && m_Player.Animator.AttackAnimationPhaseCompletedThisFrame is AttackAnimationPhase.Striking)
         {
             m_AttackFinished = true;
-            m_Player.Attack.FinishAttack();
+            m_Player.AttackCombo.FinishAttack();
         }
     }
     public override void End()
     {
         if (!m_AttackFinished)
         {
-            m_Player.Attack.FinishAttack();
+            m_Player.AttackCombo.FinishAttack();
         }
     }
 }

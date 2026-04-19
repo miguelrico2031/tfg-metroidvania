@@ -1,6 +1,13 @@
 using System;
 using UnityEngine;
 
+public interface ICombatStats
+{
+    public float HitInvulnerabilityTime { get; }
+    public float AdvanceAttackComboBufferTime { get; }
+    public int AttackComboCount { get; }
+}
+
 public interface IAttackSource
 {
     public Vector2 Position { get; }

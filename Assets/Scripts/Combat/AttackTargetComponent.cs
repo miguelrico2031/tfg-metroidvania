@@ -11,7 +11,7 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
     public bool IsInvulnerable => m_InvulnerabilitySources > 0;
     public bool IsAlive => m_Health is { CurrentHealth: > 0 };
 
-    [SerializeField] private float m_HitInvulnerabilityTime;
+    [SerializeField] private StatsReference<ICombatStats> m_Stats;
 
     private int m_InvulnerabilitySources = 0;
     private float m_HitInvulnerabilityTimer = 0f;
@@ -31,7 +31,7 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
 
         foreach (var hurtbox in m_Hurtboxes)
         {
-            hurtbox.SetActive(!IsInvulnerable);
+            hurtbox.enabled = !IsInvulnerable;
         }
     }
 
@@ -46,9 +46,9 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
         {
             m_Health.TakeDamage(attack.Damage);
         }
-        if (IsAlive && m_HitInvulnerabilityTime > 0.01f)
+        if (IsAlive && m_Stats.Value.HitInvulnerabilityTime > 0.01f)
         {
-            m_HitInvulnerabilityTimer = m_HitInvulnerabilityTime;
+            m_HitInvulnerabilityTimer = m_Stats.Value.HitInvulnerabilityTime;
             SetInvulnerable(true);
         }
         OnAttackReceived?.Invoke();

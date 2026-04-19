@@ -10,16 +10,16 @@ public class AIMovementComponent : MonoBehaviour
 
     private bool m_MoveRequested;
 
-    public void MoveForward()
-    {
-        m_MoveRequested = true;
-    }
+    public void MoveForward() => m_MoveRequested = true; 
+
+    public void Stop() => m_Rigidbody.linearVelocityX = 0f;
 
     public void Turn()
     {
         m_Transform.Rotate(Vector3.up, 180f);
-        m_Rigidbody.linearVelocityX = 0f;
+        Stop();
     }
+
 
     private void Awake()
     {

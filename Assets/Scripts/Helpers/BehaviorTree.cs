@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace BT
@@ -227,56 +228,6 @@ namespace BT
         }
     }
 
-    public class Condition : INode
-    {
-        public IReadOnlyCollection<INode> Children => null;
-        public readonly Func<bool> m_Condition;
-        public Condition(Func<bool> condition) => m_Condition = condition;
-        public Output Run() => m_Condition.Invoke() ? Output.Success : Output.Failure;
-    }
-
-    public class InstantAction : INode
-    {
-        public IReadOnlyCollection<INode> Children => null;
-        public readonly Func<Output> m_Action;
-        public InstantAction(Func<Output> action) => m_Action = action;
-        public InstantAction(Action action) => m_Action = () => { action.Invoke(); return Output.Success; };
-        public Output Run() => m_Action.Invoke();
-    }
-
-    public interface ITask
-    {
-        public bool Running { get; set; }
-        public void Start();
-        public Output Run();
-        public void End(Output output);
-        public void OnInterrupted();
-    }
-
-    public class TaskAction : INode
-    {
-        public IReadOnlyCollection<INode> Children => null;
-        public readonly ITask Task;
-        public event Action<ITask> OnTaskRun;
-        public TaskAction(ITask task) { Task = task; }
-        public Output Run()
-        {
-            if(!Task.Running)
-            {
-                Task.Running = true;
-                Task.Start();
-            }
-            Output output = Task.Run();
-            if(output is not Output.Running)
-            {
-                Task.Running = false;
-                Task.End(output);
-            }
-            OnTaskRun?.Invoke(Task);
-            return output;
-        }
-    }
-
     public class Inverter : INode
     {
         public IReadOnlyCollection<INode> Children => new[] { m_Child };
@@ -317,4 +268,53 @@ namespace BT
         }
     }
 
+    public class Condition : INode
+    {
+        public IReadOnlyCollection<INode> Children => null;
+        public readonly Func<bool> m_Condition;
+        public Condition(Func<bool> condition) => m_Condition = condition;
+        public Output Run() => m_Condition.Invoke() ? Output.Success : Output.Failure;
+    }
+
+    public class InstantAction : INode
+    {
+        public IReadOnlyCollection<INode> Children => null;
+        public readonly Func<Output> m_Action;
+        public InstantAction(Func<Output> action) => m_Action = action;
+        public InstantAction(Action action) => m_Action = () => { action.Invoke(); return Output.Success; };
+        public Output Run() => m_Action.Invoke();
+    }
+
+    public interface ITask
+    {
+        public bool Running { get; set; }
+        public void Start();
+        public Output Run();
+        public void End(Output output);
+        public void OnInterrupted();
+    }
+
+    public class TaskAction : INode
+    {
+        public IReadOnlyCollection<INode> Children => null;
+        public readonly ITask Task;
+        public event Action<ITask> OnTaskRun;
+        public TaskAction(ITask task) { Task = task; }
+        public Output Run()
+        {
+            if (!Task.Running)
+            {
+                Task.Running = true;
+                Task.Start();
+            }
+            Output output = Task.Run();
+            if (output is not Output.Running)
+            {
+                Task.Running = false;
+                Task.End(output);
+            }
+            OnTaskRun?.Invoke(Task);
+            return output;
+        }
+    }
 }

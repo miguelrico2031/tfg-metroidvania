@@ -12,7 +12,7 @@ public class PlayerStateComponent : MonoBehaviour
     public ObstacleCheckComponent ObstacleCheck { get; private set; }
     public AnimatorComponent Animator { get; private set; }
     public PlayerStaminaComponent Stamina { get; private set; }
-    public PlayerAttackComponent Attack { get; private set; }
+    public AttackComboComponent AttackCombo { get; private set; }
     public AttackTargetComponent AttackTarget { get; private set; }
     public HealthComponent Health { get; private set; }
 
@@ -33,7 +33,7 @@ public class PlayerStateComponent : MonoBehaviour
         ObstacleCheck = GetComponent<ObstacleCheckComponent>();
         Animator = GetComponent<AnimatorComponent>();
         Stamina = GetComponent<PlayerStaminaComponent>();
-        Attack = GetComponent<PlayerAttackComponent>();
+        AttackCombo = GetComponent<AttackComboComponent>();
         AttackTarget = GetComponent<AttackTargetComponent>();
         Health = GetComponent<HealthComponent>();
 
@@ -53,18 +53,18 @@ public class PlayerStateComponent : MonoBehaviour
                 state != typeof(PlayerKnockbackState) &&
                 state != typeof(PlayerDyingState))
 
-            .AddTransition<PlayerGroundedState, PlayerKnockbackState>(() => HasBeenHitWithKnockback())
-            .AddTransition<PlayerGroundedState, PlayerJumpingState>(() => IsJumpRequestedAndAllowed())
-            .AddTransition<PlayerGroundedState, PlayerDashingState>(() => IsDashRequestedAndAllowed())
+            .AddTransition<PlayerGroundedState, PlayerKnockbackState>(HasBeenHitWithKnockback)
+            .AddTransition<PlayerGroundedState, PlayerJumpingState>(IsJumpRequestedAndAllowed)
+            .AddTransition<PlayerGroundedState, PlayerDashingState>(IsDashRequestedAndAllowed)
             .AddTransition<PlayerGroundedState, PlayerFallingState>(() => !GroundCheck.IsGrounded)
-            .AddTransition<PlayerGroundedState, PlayerAttackingState>(() => IsAttack1RequestedAndAllowed())
+            .AddTransition<PlayerGroundedState, PlayerAttackingState>(IsAttack1RequestedAndAllowed)
 
             .AddTransition<PlayerJumpingState, PlayerFallingState>(() => Movement.VerticalVelocity <= 0f)
-            .AddTransition<PlayerJumpingState, PlayerKnockbackState>(() => HasBeenHitWithKnockback())
+            .AddTransition<PlayerJumpingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
 
             .AddTransition<PlayerFallingState, PlayerGroundedState>(() => GroundCheck.IsGrounded)
             .AddTransition<PlayerFallingState, PlayerJumpingState>(() => GroundCheck.CoyoteTimeBuffer.Check() && IsJumpRequestedAndAllowed())
-            .AddTransition<PlayerFallingState, PlayerKnockbackState>(() => HasBeenHitWithKnockback())
+            .AddTransition<PlayerFallingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
 
             .AddTransition<PlayerDashingState, PlayerGroundedState>(() => GroundCheck.IsGrounded && IsDashFinished())
             .AddTransition<PlayerDashingState, PlayerFallingState>(() => !GroundCheck.IsGrounded && IsDashFinished())
@@ -73,9 +73,9 @@ public class PlayerStateComponent : MonoBehaviour
             .AddTransition<PlayerKnockbackState, PlayerGroundedState>(() => GroundCheck.IsGrounded && IsKnockbackFinished())
             .AddTransition<PlayerKnockbackState, PlayerFallingState>(() => !GroundCheck.IsGrounded && IsKnockbackFinished())
 
-            .AddTransition<PlayerAttackingState, PlayerDashingState>(() => IsDashRequestedAndAllowed())
-            .AddTransition<PlayerAttackingState, PlayerAttackingState>(() => IsAttack2RequestedAndAllowed())
-            .AddTransition<PlayerAttackingState, PlayerGroundedState>(() => Animator.AttackAnimationPhase is AttackAnimationPhase.JustWithdrawn)
+            .AddTransition<PlayerAttackingState, PlayerDashingState>(IsDashRequestedAndAllowed)
+            .AddTransition<PlayerAttackingState, PlayerAttackingState>(IsAttack2RequestedAndAllowed)
+            .AddTransition<PlayerAttackingState, PlayerGroundedState>(HasAttackAnimationJustFinished)
 
             
             .Build();
@@ -144,7 +144,9 @@ public class PlayerStateComponent : MonoBehaviour
 
     private bool IsAttack2RequestedAndAllowed() =>
         Input.AttackBuffer.Check() &&
-        Animator.AttackAnimationPhase is AttackAnimationPhase.JustCompleted or AttackAnimationPhase.Withdrawing &&
+        Animator.AttackAnimationPhase is AttackAnimationPhase.Withdrawing &&
         Stamina.CanPerformAction(StaminaAction.Attack) &&
-        Attack.ActiveAttack is PlayerAttack.Attack1;
+        AttackCombo.ActiveAttack == 1;
+
+    private bool HasAttackAnimationJustFinished() => Animator.AttackAnimationPhaseCompletedThisFrame is AttackAnimationPhase.Withdrawing;
 }

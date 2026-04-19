@@ -3,36 +3,50 @@ using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(FactionComponent))]
-public class EnemyTargetterComponent : MonoBehaviour
+public class AITargetterComponent : MonoBehaviour
 {
     public AttackTargetComponent ActiveTarget { get; private set; }
 
-    [SerializeField] private AIBounds m_Bounds;
     [SerializeField] private EnemyStats m_Stats;
     [SerializeField] private FactionsData m_FactionsData;
 
+    private AIBounds m_Bounds;
     private FactionComponent m_Faction;
-
-    private void Awake()
-    {
-        m_Faction = GetComponent<FactionComponent>();    
-    }
 
     private void OnEnable()
     {
-        m_Bounds.OnIntruderEnterBounds += OnIntruderEnterBounds;
-        m_Bounds.OnIntruderLeaveBounds += OnIntruderLeaveBounds;
+        m_Faction = GetComponent<FactionComponent>();
+        m_Bounds = LocateBounds();
+        if (m_Bounds)
+        {
+            m_Bounds.OnIntruderEnterBounds += OnIntruderEnterBounds;
+            m_Bounds.OnIntruderLeaveBounds += OnIntruderLeaveBounds;
+        }
     }
 
     private void OnDisable()
     {
-        m_Bounds.OnIntruderEnterBounds -= OnIntruderEnterBounds;
-        m_Bounds.OnIntruderLeaveBounds -= OnIntruderLeaveBounds;
+        if (m_Bounds)
+        {
+            m_Bounds.OnIntruderEnterBounds -= OnIntruderEnterBounds;
+            m_Bounds.OnIntruderLeaveBounds -= OnIntruderLeaveBounds;
+        }
+    }
+
+    private AIBounds LocateBounds()
+    {
+        Collider2D[] overlaps = Physics2D.OverlapPointAll(transform.position);
+        foreach (var overlap in overlaps)
+        {
+            if (overlap.TryGetComponent<AIBounds>(out var aiBounds))
+                return aiBounds;
+        }
+        return null;
     }
 
     private void OnIntruderEnterBounds(Collider2D intruder)
     {
-        if(intruder.TryGetComponent<AttackTargetComponent>(out var intruderTarget) &&
+        if (intruder.TryGetComponent<AttackTargetComponent>(out var intruderTarget) &&
             m_FactionsData.IsHostileTo(m_Faction.Faction, intruderTarget.Faction))
         {
             ActiveTarget = intruderTarget;

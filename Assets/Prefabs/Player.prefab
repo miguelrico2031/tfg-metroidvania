@@ -262,10 +262,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c742f6b056a995c4ab6fe1ac9de1aa09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackComponent
-  m_AttackHitboxes:
-  - {fileID: 7519906546890267047}
-  - {fileID: 3537356413552960125}
-  m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
+  m_Stats:
+    m_Scriptable: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
 --- !u!114 &6979729729511003500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,7 +343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c866cc9499324a748a53096aa44f6461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackTargetComponent
-  m_HitInvulnerabilityTime: 0.5
+  m_Stats:
+    m_Scriptable: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
 --- !u!114 &8139115761965825953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,7 +491,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4713941999215080765}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -515,7 +514,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -538,13 +537,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4713941999215080765}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 669b15f690e96f84eb5cc0237a09d3d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   <HitboxMode>k__BackingField: 0
-  <Faction>k__BackingField: 0
   m_PersistentAttackCooldown: 0
   m_AttackData:
     Damage: 1
@@ -553,6 +551,7 @@ MonoBehaviour:
       Distance: 5
       Height: 2
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
+  m_Faction: {fileID: 1053925383963158729}
 --- !u!1 &5289088717557987205
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,7 +615,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -715,7 +714,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6693236646004013254}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -738,7 +737,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -751,13 +750,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6693236646004013254}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 669b15f690e96f84eb5cc0237a09d3d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   <HitboxMode>k__BackingField: 0
-  <Faction>k__BackingField: 0
   m_PersistentAttackCooldown: 0
   m_AttackData:
     Damage: 1
@@ -766,6 +764,7 @@ MonoBehaviour:
       Distance: 0
       Height: 0
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
+  m_Faction: {fileID: 1053925383963158729}
 --- !u!1 &7534215566333620168
 GameObject:
   m_ObjectHideFlags: 0

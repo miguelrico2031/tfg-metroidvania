@@ -10,10 +10,17 @@ public class Hurtbox : MonoBehaviour
     private Collider2D m_Collider;
 
     public void SetAttackTarget(IAttackTarget attackTarget) => AttackTarget = attackTarget;
-    public void SetActive(bool active)
+
+    private void OnEnable()
     {
-        IsActive = active;
-        m_Collider.enabled = active;
+        m_Collider = GetComponent<Collider2D>();
+        m_Collider.isTrigger = true;
+        m_Collider.enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        m_Collider.enabled = false;
     }
 
     private void Awake()
@@ -28,7 +35,7 @@ public class Hurtbox : MonoBehaviour
         {
             m_Collider = GetComponent<Collider2D>();
         }
-        Gizmos.color = IsActive ? new Color32(255, 251, 20, 150) : new Color32(255, 251, 20, 50);
+        Gizmos.color = new Color32(255, 251, 20, 150);
         DrawColliderGizmo();
     }
     private void DrawColliderGizmo()

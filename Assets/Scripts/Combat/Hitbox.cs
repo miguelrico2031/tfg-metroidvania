@@ -8,46 +8,38 @@ using UnityEngine;
 public class Hitbox : MonoBehaviour, IAttackSource
 {
     public Vector2 Position => transform.position;
-    public bool IsActive { get; private set; } = true;
+    public Faction Faction => m_Faction.Faction;
+
     [field: SerializeField] public Mode HitboxMode { get; private set; }
-    [field: SerializeField] public Faction Faction { get; private set; }
 
     [SerializeField] private float m_PersistentAttackCooldown;
     [SerializeField] private AttackData m_AttackData;
     [SerializeField] private FactionsData m_FactionsData;
+    [SerializeField] private FactionComponent m_Faction;
 
-    private Collider2D m_Collider;
     private readonly HashSet<IAttackTarget> m_AttackedThisActivation = new();
     private readonly Dictionary<IAttackTarget, float> m_TargetsOnCooldown = new();
     private readonly Dictionary<IAttackTarget, float> m_UpdatedTargetsOnCooldown = new();
     private readonly Collider2D[] m_Overlaps = new Collider2D[10];
+    private Collider2D m_Collider;
 
-    public void SetActive(bool active)
-    {
-        if(IsActive == active)
-            return;
-        IsActive = active;
-        m_Collider.enabled = active;
-        if (!active)
-        {
-            m_AttackedThisActivation.Clear();
-        }
-        else if (HitboxMode is Mode.OneShot)
-        {
-            CheckTriggerOverlaps();
-        }
-    }
-
-    private void Awake()
+    private void OnEnable()
     {
         m_AttackData.Source = this;
 
         m_Collider = GetComponent<Collider2D>();
         m_Collider.isTrigger = true;
+        m_Collider.enabled = true;
         if (HitboxMode is Mode.OneShot)
         {
-            SetActive(false);
+            CheckTriggerOverlaps();
         }
+    }
+
+    private void OnDisable()
+    {
+        m_Collider.enabled = false;
+        m_AttackedThisActivation.Clear();
     }
 
     private void Update()
@@ -95,7 +87,7 @@ public class Hitbox : MonoBehaviour, IAttackSource
         {
             m_Collider = GetComponent<Collider2D>();
         }
-        Gizmos.color = IsActive ? new Color32(5, 10, 255, 150) : new Color32(5, 10, 255, 50);
+        Gizmos.color = new Color32(5, 10, 255, 150);
         DrawColliderGizmo();
     }
 
@@ -126,7 +118,7 @@ public class Hitbox : MonoBehaviour, IAttackSource
 
     private void TryAttack(Collider2D other)
     {
-        if (!IsActive ||
+        if (!enabled ||
             other.attachedRigidbody == m_Collider.attachedRigidbody ||
             !other.TryGetComponent<Hurtbox>(out var hurtbox) ||
             !hurtbox.IsActive ||

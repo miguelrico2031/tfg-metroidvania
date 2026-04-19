@@ -3,17 +3,17 @@ using UnityEngine.Assertions;
 
 public enum AttackAnimationPhase
 {
-    None,
-    Attacking,
-    JustCompleted,
-    Withdrawing,
-    JustWithdrawn
+    NotAttacking,
+    Drawing,
+    Striking,
+    Withdrawing
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class AnimatorComponent : MonoBehaviour
 {
-    public AttackAnimationPhase AttackAnimationPhase { get; private set; } = AttackAnimationPhase.None;
+    public AttackAnimationPhase AttackAnimationPhase { get; private set; } = AttackAnimationPhase.NotAttacking;
+    public AttackAnimationPhase? AttackAnimationPhaseCompletedThisFrame { get; private set; } = null;
 
     [SerializeField] private Animator m_Animator;
     [SerializeField] private AnimationEvents m_AnimationEvents;
@@ -77,17 +77,16 @@ public class AnimatorComponent : MonoBehaviour
     {
         Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
         m_TriggerThisFrame = isFirstAttack ? s_Attack : s_AttackContinue;
-        AttackAnimationPhase = AttackAnimationPhase.Attacking;
+        AttackAnimationPhase = AttackAnimationPhase.Drawing;
     }
 
     private void OnEnable()
     {
         if (m_AnimationEvents != null)
         {
-            m_AnimationEvents.OnPlayerAttack1Completed += OnAttackCompleted;
-            m_AnimationEvents.OnPlayerAttack1Withdrawn += OnAttackWithdrawn;
-            m_AnimationEvents.OnPlayerAttack2Completed += OnAttackCompleted;
-            m_AnimationEvents.OnPlayerAttack2Withdrawn += OnAttackWithdrawn;
+            m_AnimationEvents.OnAttackDrawCompleted += OnAttackDrawCompleted;
+            m_AnimationEvents.OnAttackStrikeCompleted += OnAttackStrikeCompleted;
+            m_AnimationEvents.OnAttackWithdrawCompleted += OnAttackWithdrawCompleted;
         }
     }
 
@@ -95,10 +94,9 @@ public class AnimatorComponent : MonoBehaviour
     {
         if (m_AnimationEvents != null)
         {
-            m_AnimationEvents.OnPlayerAttack1Completed -= OnAttackCompleted;
-            m_AnimationEvents.OnPlayerAttack1Withdrawn -= OnAttackWithdrawn;
-            m_AnimationEvents.OnPlayerAttack2Completed -= OnAttackCompleted;
-            m_AnimationEvents.OnPlayerAttack2Withdrawn -= OnAttackWithdrawn;
+            m_AnimationEvents.OnAttackDrawCompleted -= OnAttackDrawCompleted;
+            m_AnimationEvents.OnAttackStrikeCompleted -= OnAttackStrikeCompleted;
+            m_AnimationEvents.OnAttackWithdrawCompleted -= OnAttackWithdrawCompleted;
         }
     }
 
@@ -117,11 +115,7 @@ public class AnimatorComponent : MonoBehaviour
 
         //This is not in late update because this script execution order is set to +10, so it will run at the end of the frame anyway
 
-        AttackAnimationPhase = AttackAnimationPhase is AttackAnimationPhase.JustCompleted
-            ? AttackAnimationPhase.Withdrawing
-            : AttackAnimationPhase is AttackAnimationPhase.JustWithdrawn
-            ? AttackAnimationPhase.None
-            : AttackAnimationPhase;
+        AttackAnimationPhaseCompletedThisFrame = null;
     }
 
     private void LateUpdate()
@@ -133,12 +127,26 @@ public class AnimatorComponent : MonoBehaviour
         }
     }
 
-    private void OnAttackCompleted()
+    private void OnAttackDrawCompleted() => AdvanceAttackAnimationPhase(AttackAnimationPhase.Striking);
+    private void OnAttackStrikeCompleted() => AdvanceAttackAnimationPhase(AttackAnimationPhase.Withdrawing);
+    private void OnAttackWithdrawCompleted() => AdvanceAttackAnimationPhase(AttackAnimationPhase.NotAttacking);
+
+    private void AdvanceAttackAnimationPhase(AttackAnimationPhase newPhase)
     {
-        AttackAnimationPhase = AttackAnimationPhase.JustCompleted;
-    }
-    private void OnAttackWithdrawn()
-    {
-        AttackAnimationPhase = AttackAnimationPhase.JustWithdrawn;
+        var expectedCurrentPhase = newPhase switch
+        {
+            AttackAnimationPhase.NotAttacking => AttackAnimationPhase.Withdrawing,
+            AttackAnimationPhase.Drawing => AttackAnimationPhase.NotAttacking,
+            AttackAnimationPhase.Striking => AttackAnimationPhase.Drawing,
+            AttackAnimationPhase.Withdrawing => AttackAnimationPhase.Striking,
+            _ => throw new System.NotImplementedException()
+        };
+        Assert.AreEqual(AttackAnimationPhase, expectedCurrentPhase,
+            $"Wrong attack animation phase progression: transitioning from {AttackAnimationPhase} to {newPhase}.");
+
+        Assert.IsTrue(AttackAnimationPhaseCompletedThisFrame is null, "More than one phase completed this frame, unallowed behavior.");
+
+        AttackAnimationPhaseCompletedThisFrame = AttackAnimationPhase;
+        AttackAnimationPhase = newPhase;
     }
 }
