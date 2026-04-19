@@ -341,7 +341,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   <HitboxMode>k__BackingField: 1
-  <Faction>k__BackingField: 1
   m_PersistentAttackCooldown: 0.5
   m_AttackData:
     Damage: 1
@@ -350,6 +349,7 @@ MonoBehaviour:
       Distance: 6
       Height: 2
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
+  m_Faction: {fileID: 0}
 --- !u!61 &948772323
 BoxCollider2D:
   m_ObjectHideFlags: 0
