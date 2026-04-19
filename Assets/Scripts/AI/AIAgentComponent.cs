@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 
-[RequireComponent(typeof(AIMovementComponent), typeof(ObstacleCheckComponent), typeof(EdgeCheckComponent))]
-[RequireComponent(typeof(AITargetterComponent), typeof(AnimatorComponent))]
-public class EnemyBehaviorComponent : MonoBehaviour
+[RequireComponent(typeof(AnimatorComponent), typeof(ObstacleCheckComponent), typeof(EdgeCheckComponent))]
+[RequireComponent(typeof(AITargetterComponent), typeof(AIMovementComponent))]
+public class AIAgentComponent : MonoBehaviour
 {
     public AIMovementComponent Movement { get; private set; }
     public ObstacleCheckComponent ObstacleCheck { get; private set; }
@@ -176,25 +176,25 @@ public class EnemyBehaviorComponent : MonoBehaviour
     #endregion
 }
 
-public abstract class AEnemyTask : BT.ITask
+public abstract class AAIBehaviorTask : BT.ITask
 {
     public bool Running { get ; set; }
-    protected EnemyBehaviorComponent m_Enemy;
-    public AEnemyTask(EnemyBehaviorComponent enemy) => m_Enemy = enemy;
+    protected AIAgentComponent m_Agent;
+    public AAIBehaviorTask(AIAgentComponent agent) => m_Agent = agent;
     public virtual void Start() { }
     public abstract BT.Output Run();
     public virtual void End(BT.Output output) { }
     public virtual void OnInterrupted() { }
 }
 
-public class WaitForSecondsTask : AEnemyTask
+public class WaitForSecondsTask : AAIBehaviorTask
 {
     private readonly float m_Time;
     private float m_Timer = 0f;
-    public WaitForSecondsTask(EnemyBehaviorComponent enemy, float time) : base(enemy) { m_Time = time; }
+    public WaitForSecondsTask(AIAgentComponent agent, float time) : base(agent) { m_Time = time; }
     public override void Start()
     {
-        m_Enemy.LogAction($"Wait for {m_Time} seconds Started");
+        m_Agent.LogAction($"Wait for {m_Time} seconds Started");
         m_Timer = m_Time;
     }
     public override BT.Output Run()
@@ -205,59 +205,59 @@ public class WaitForSecondsTask : AEnemyTask
 
     public override void End(BT.Output output)
     {
-        m_Enemy.LogAction($"Wait for {m_Time} seconds Ended");
+        m_Agent.LogAction($"Wait for {m_Time} seconds Ended");
     }
 }
 
-public class MoveForwardTask : AEnemyTask
+public class MoveForwardTask : AAIBehaviorTask
 {
-    public MoveForwardTask(EnemyBehaviorComponent enemy) : base(enemy) { }
+    public MoveForwardTask(AIAgentComponent agent) : base(agent) { }
 
     public override void Start()
     {
-        m_Enemy.LogAction("MoveForward Started");
-        m_Enemy.Animator.StartGroundedAnimation();
+        m_Agent.LogAction("MoveForward Started");
+        m_Agent.Animator.StartGroundedAnimation();
     }
     public override BT.Output Run()
     {
-        m_Enemy.LogAction("MoveForward Run");
-        m_Enemy.Movement.MoveForward();
+        m_Agent.LogAction("MoveForward Run");
+        m_Agent.Movement.MoveForward();
         return BT.Output.Running;
     }
 
     public override void End(BT.Output output)
     {
-        m_Enemy.LogAction("MoveForward Ended");
+        m_Agent.LogAction("MoveForward Ended");
     }
     public override void OnInterrupted()
     {
-        m_Enemy.LogAction("MoveForward Interrupted");
+        m_Agent.LogAction("MoveForward Interrupted");
     }
 }
 
-public class AttackTargetTask : AEnemyTask
+public class AttackTargetTask : AAIBehaviorTask
 {
-    public AttackTargetTask(EnemyBehaviorComponent enemy) : base(enemy) { }
+    public AttackTargetTask(AIAgentComponent agent) : base(agent) { }
 
     public override void Start()
     {
-        m_Enemy.LogAction("Attack Started");
-        m_Enemy.Animator.StartAttackAnimation(true);
+        m_Agent.LogAction("Attack Started");
+        m_Agent.Animator.StartAttackAnimation(true);
     }
     public override BT.Output Run()
     {
-        m_Enemy.LogAction("Attack Run");
-        return m_Enemy.Animator.AttackAnimationPhaseCompletedThisFrame is AttackAnimationPhase.Withdrawing
+        m_Agent.LogAction("Attack Run");
+        return m_Agent.Animator.AttackAnimationPhaseCompletedThisFrame is AttackAnimationPhase.Withdrawing
             ? BT.Output.Success
             : BT.Output.Running;
     }
 
     public override void End(BT.Output output)
     {
-        m_Enemy.LogAction("Attack Ended");
+        m_Agent.LogAction("Attack Ended");
     }
     public override void OnInterrupted()
     {
-        m_Enemy.LogAction("Attack Interrupted");
+        m_Agent.LogAction("Attack Interrupted");
     }
 }
