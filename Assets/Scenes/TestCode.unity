@@ -375,8 +375,8 @@ MonoBehaviour:
   m_AttackData:
     Damage: 1
     Knockback:
-      Duration: 0.4
-      Distance: 2
+      Duration: 0.2
+      Distance: 3
       Height: 0
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
   m_Faction: {fileID: 1750115001}

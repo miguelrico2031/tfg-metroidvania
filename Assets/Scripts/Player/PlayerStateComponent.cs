@@ -76,6 +76,7 @@ public class PlayerStateComponent : MonoBehaviour
             .AddState(new PlayerJumpingState(this))
             .AddState(new PlayerFallingState(this))
             .AddState(new PlayerDashingState(this))
+            .AddState(new PlayerStandingState(this))
             .AddState(new PlayerKnockbackState(this))
             .AddState(new PlayerDyingState(this))
             .AddState(new PlayerAttackingState(this))
@@ -99,13 +100,16 @@ public class PlayerStateComponent : MonoBehaviour
             .AddTransition<PlayerFallingState, PlayerJumpingState>(() => GroundCheck.CoyoteTimeBuffer.Check() && IsJumpRequestedAndAllowed())
             .AddTransition<PlayerFallingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
 
-            .AddTransition<PlayerDashingState, PlayerGroundedState>(() => GroundCheck.IsGrounded && IsDashFinished())
             .AddTransition<PlayerDashingState, PlayerFallingState>(() => !GroundCheck.IsGrounded && IsDashFinished())
+            .AddTransition<PlayerDashingState, PlayerStandingState>(() => GroundCheck.IsGrounded && IsDashFinished())
 
-            .AddTransition<PlayerKnockbackState, PlayerDyingState>(() => Health.CurrentHealth == 0 && IsKnockbackFinished())
+            .AddTransition<PlayerStandingState, PlayerGroundedState>(() => Animator.IsStandingFinished)
+
+            .AddTransition<PlayerKnockbackState, PlayerDyingState>(() => Health.CurrentHealth == 0 && GroundCheck.IsGrounded && IsKnockbackFinished())
+            .AddTransition<PlayerKnockbackState, PlayerStandingState>(() => GroundCheck.JustLanded && IsKnockbackFinished())
             .AddTransition<PlayerKnockbackState, PlayerGroundedState>(() => GroundCheck.IsGrounded && IsKnockbackFinished())
-            .AddTransition<PlayerKnockbackState, PlayerFallingState>(() => !GroundCheck.IsGrounded && IsKnockbackFinished())
 
+            .AddTransition<PlayerAttackingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
             .AddTransition<PlayerAttackingState, PlayerDashingState>(IsDashRequestedAndAllowed)
             .AddTransition<PlayerAttackingState, PlayerAttackingState>(IsAttack2RequestedAndAllowed)
             .AddTransition<PlayerAttackingState, PlayerGroundedState>(HasAttackAnimationJustFinished)

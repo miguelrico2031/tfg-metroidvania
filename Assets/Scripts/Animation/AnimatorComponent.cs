@@ -14,6 +14,7 @@ public class AnimatorComponent : MonoBehaviour
 {
     public AttackAnimationPhase AttackAnimationPhase { get; private set; } = AttackAnimationPhase.NotAttacking;
     public AttackAnimationPhase? AttackAnimationPhaseCompletedThisFrame { get; private set; } = null;
+    public bool IsStandingFinished { get; private set; } = true;
 
     [SerializeField] private Animator m_Animator;
     [SerializeField] private AnimationEvents m_AnimationEvents;
@@ -24,6 +25,8 @@ public class AnimatorComponent : MonoBehaviour
     private static readonly int s_Fall = Animator.StringToHash("Fall");
     private static readonly int s_FallFromJump = Animator.StringToHash("FallFromJump");
     private static readonly int s_Dash = Animator.StringToHash("Dash");
+    private static readonly int s_Stand = Animator.StringToHash("Stand");
+    private static readonly int s_StandFromKnockback = Animator.StringToHash("StandFromKnockback");
     private static readonly int s_Knockback = Animator.StringToHash("Knockback");
     private static readonly int s_KnockbackAirborne = Animator.StringToHash("KnockbackAirborne");
     private static readonly int s_Death = Animator.StringToHash("Death");
@@ -62,6 +65,14 @@ public class AnimatorComponent : MonoBehaviour
         m_TriggerThisFrame = s_Dash;
     }
 
+    public void StartStandAnimation(bool transitionFromKnockback)
+    {
+        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
+        m_IsGrounded = true;
+        m_TriggerThisFrame = transitionFromKnockback ? s_StandFromKnockback : s_Stand;
+        IsStandingFinished = false;
+    }
+
     public void StartKnockbackAnimation(bool isAirborne)
     {
         Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
@@ -87,6 +98,8 @@ public class AnimatorComponent : MonoBehaviour
             m_AnimationEvents.OnAttackDrawCompleted += OnAttackDrawCompleted;
             m_AnimationEvents.OnAttackStrikeCompleted += OnAttackStrikeCompleted;
             m_AnimationEvents.OnAttackWithdrawCompleted += OnAttackWithdrawCompleted;
+            m_AnimationEvents.OnStandCompleted += OnStandCompleted;
+            m_AnimationEvents.OnStandCompleted += OnStandCompleted;
         }
     }
 
@@ -97,6 +110,7 @@ public class AnimatorComponent : MonoBehaviour
             m_AnimationEvents.OnAttackDrawCompleted -= OnAttackDrawCompleted;
             m_AnimationEvents.OnAttackStrikeCompleted -= OnAttackStrikeCompleted;
             m_AnimationEvents.OnAttackWithdrawCompleted -= OnAttackWithdrawCompleted;
+            m_AnimationEvents.OnStandCompleted -= OnStandCompleted;
         }
     }
 
@@ -130,6 +144,7 @@ public class AnimatorComponent : MonoBehaviour
     private void OnAttackDrawCompleted() => AdvanceAttackAnimationPhase(AttackAnimationPhase.Striking);
     private void OnAttackStrikeCompleted() => AdvanceAttackAnimationPhase(AttackAnimationPhase.Withdrawing);
     private void OnAttackWithdrawCompleted() => AdvanceAttackAnimationPhase(AttackAnimationPhase.NotAttacking);
+    private void OnStandCompleted() => IsStandingFinished = true;
 
     private void AdvanceAttackAnimationPhase(AttackAnimationPhase newPhase)
     {

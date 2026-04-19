@@ -93,7 +93,6 @@ public class PlayerMovementComponent : MonoBehaviour
     public void FinishKnockback()
     {
         m_KnockbackTimer = 0f;
-        m_Rigidbody.linearVelocityX = 0f;
     }
 
     public void SetRisingGravity() => m_Rigidbody.gravityScale = m_Stats.RisingGravity;

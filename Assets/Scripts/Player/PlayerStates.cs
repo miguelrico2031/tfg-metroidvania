@@ -89,17 +89,42 @@ public class PlayerDashingState : APlayerState
     }
 }
 
+public class PlayerStandingState : APlayerState
+{
+    public PlayerStandingState(PlayerStateComponent player) : base(player) { }
+    public override void Start(Type lastState)
+    {
+        m_Player.Movement.Stop();
+        m_Player.AttackTarget.SetInvulnerable(true);
+        m_Player.Animator.StartStandAnimation(transitionFromKnockback: lastState == typeof(PlayerKnockbackState));
+    }
+    public override void End()
+    {
+        m_Player.AttackTarget.SetInvulnerable(false);
+    }
+
+}
+
 public class PlayerKnockbackState : APlayerState
 {
+    private bool m_IsAirborne;
     public PlayerKnockbackState(PlayerStateComponent player) : base(player) { }
     public override void Start()
     {
         AttackData attack = m_Player.AttackTarget.ResolvedAttackThisFrame.Attack;
         m_Player.Movement.ApplyAttackKnockback(attack);
         m_Player.AttackTarget.SetInvulnerable(true);
-        bool isAirborne = attack.Knockback.Height > 0.1f || !m_Player.GroundCheck.IsGrounded;
         m_Player.Stamina.RegisterActionPerformed(StaminaAction.Knockback);
-        m_Player.Animator.StartKnockbackAnimation(isAirborne);
+        m_IsAirborne = attack.Knockback.Height > 0.1f || !m_Player.GroundCheck.IsGrounded;
+        m_Player.Animator.StartKnockbackAnimation(m_IsAirborne);
+    }
+    public override void Update()
+    {
+        if(!m_IsAirborne && !m_Player.GroundCheck.IsGrounded)
+        {
+            m_IsAirborne = true;
+            m_Player.Animator.StartKnockbackAnimation(isAirborne: true);
+        }
     }
     public override void End()
     {
