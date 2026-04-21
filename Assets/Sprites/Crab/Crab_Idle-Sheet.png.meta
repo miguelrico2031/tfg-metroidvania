@@ -64,7 +64,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -78,7 +78,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -102,7 +102,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -132,10 +132,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 45
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 44
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -154,10 +154,10 @@ TextureImporter:
         serializedVersion: 2
         x: 44
         y: 0
-        width: 45
+        width: 44
         height: 73
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -176,10 +176,10 @@ TextureImporter:
         serializedVersion: 2
         x: 88
         y: 0
-        width: 45
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 44
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -198,10 +198,10 @@ TextureImporter:
         serializedVersion: 2
         x: 132
         y: 0
-        width: 45
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 44
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -220,10 +220,10 @@ TextureImporter:
         serializedVersion: 2
         x: 176
         y: 0
-        width: 45
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 44
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -242,10 +242,10 @@ TextureImporter:
         serializedVersion: 2
         x: 220
         y: 0
-        width: 45
-        height: 70
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 44
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -264,10 +264,10 @@ TextureImporter:
         serializedVersion: 2
         x: 264
         y: 0
-        width: 45
-        height: 70
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 44
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -286,10 +286,10 @@ TextureImporter:
         serializedVersion: 2
         x: 308
         y: 0
-        width: 45
-        height: 70
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 44
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -308,10 +308,10 @@ TextureImporter:
         serializedVersion: 2
         x: 352
         y: 0
-        width: 45
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 44
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -330,10 +330,10 @@ TextureImporter:
         serializedVersion: 2
         x: 396
         y: 0
-        width: 45
-        height: 72
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 44
+        height: 73
+      alignment: 9
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -350,7 +350,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 11be516cf85664c4a9592af98172fa4b
     internalID: 0
     vertices: []
     indices: 
@@ -358,7 +358,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":10.0,"y":1.0},"gridSpriteSize":{"x":44.0,"y":73.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.013698630034923554},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Crab_Idle-Sheet_0: 3747957085362800927
       Crab_Idle-Sheet_1: -1762388312209185550
