@@ -7,7 +7,7 @@ public class AttackComboComponent : MonoBehaviour
     //ActiveAttack = 0 means no attack, first attack is 1, second is 2, etc.
     public int ActiveAttack { get; private set; } = 0;
 
-    [SerializeField] private StatsReference<ICombatStats> m_Stats;
+    [SerializeField] private DataReference<ICombatStats> m_Stats;
 
     private BufferingTimer m_AdvanceAttackBuffer;
     private int m_NextAttackInCombo = 0;

@@ -137,6 +137,7 @@ public class PlayerDyingState : APlayerState
     {
         m_Player.Movement.Stop();
         m_Player.Animator.StartDeathAnimation();
+        m_Player.DeathHandler.Value.HandleDeadPlayer(m_Player.transform.root.gameObject);
     }
 }
 

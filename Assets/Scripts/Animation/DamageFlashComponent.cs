@@ -6,7 +6,7 @@ public class DamageFlashComponent : MonoBehaviour
     [SerializeField] private Material m_DefaultMaterial;
     [SerializeField] private Material m_DamageFlashMaterial;
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
-    [SerializeField] private StatsReference<IAnimationStats> m_Stats;
+    [SerializeField] private DataReference<IAnimationStats> m_Stats;
 
     private float m_DamageFlashTimer;
     private AttackTargetComponent m_AttackTarget;

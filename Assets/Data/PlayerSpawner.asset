@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34fa4c04bcea77546851e879e699eddd, type: 3}
+  m_Name: PlayerSpawner
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawner
+  m_PlayerGameObjectName: Player
+  m_PlayerPrefab: {fileID: 2447350854869887539, guid: c70c225b484b0764d807c696458fd860, type: 3}

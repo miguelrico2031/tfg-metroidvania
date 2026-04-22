@@ -8,7 +8,7 @@ public class ObstacleCheckComponent : MonoBehaviour
     public Collider2D ObstacleForward => m_CheckedThisFrame ? m_ObstacleForward : CheckObstacles(true);
     public Collider2D ObstacleBehind => m_CheckedThisFrame ? m_ObstacleBehind : CheckObstacles(true);
 
-    [SerializeField] private StatsReference<IPerceptionStats> m_Stats;
+    [SerializeField] private DataReference<IPerceptionStats> m_Stats;
 
     private bool m_CheckedThisFrame = false;
     private Collider2D m_ObstacleForward;

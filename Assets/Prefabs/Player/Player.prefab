@@ -144,7 +144,6 @@ GameObject:
   - component: {fileID: 6250383913026902393}
   - component: {fileID: 6979729729511003500}
   - component: {fileID: 5329591190482078227}
-  - component: {fileID: 4272854151132827983}
   - component: {fileID: 6710058346935322963}
   - component: {fileID: 2442672136224439288}
   - component: {fileID: 8444577324351739029}
@@ -291,19 +290,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
---- !u!114 &4272854151132827983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938255937634021066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4db61b4e69372ce4ba45c5251e3fcbea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerStaminaComponent
-  m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
 --- !u!114 &6710058346935322963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +302,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba7a7b6946f1e94fbe116db1efd7474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateComponent
+  <DeathHandler>k__BackingField:
+    m_Scriptable: {fileID: 11400000, guid: 75b0d8a984751064b834d94fe626fea1, type: 2}
   m_LogStateChanges: 0
 --- !u!114 &2442672136224439288
 MonoBehaviour:

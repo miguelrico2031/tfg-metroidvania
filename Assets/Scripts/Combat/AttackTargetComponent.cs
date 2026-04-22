@@ -11,7 +11,7 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
     public bool IsInvulnerable => m_InvulnerabilitySources > 0;
     public bool IsAlive => m_Health is { CurrentHealth: > 0 };
 
-    [SerializeField] private StatsReference<ICombatStats> m_Stats;
+    [SerializeField] private DataReference<ICombatStats> m_Stats;
 
     private int m_InvulnerabilitySources = 0;
     private float m_HitInvulnerabilityTimer = 0f;

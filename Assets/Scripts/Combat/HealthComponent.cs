@@ -12,7 +12,7 @@ public class HealthComponent : MonoBehaviour
     public int MaxHealth => m_Stats.Value.MaxHealth;
     public event Action<int> OnHealthChanged;
 
-    [SerializeField] private StatsReference<IHealthStats> m_Stats;
+    [SerializeField] private DataReference<IHealthStats> m_Stats;
 
     public void TakeDamage(int damage)
     {

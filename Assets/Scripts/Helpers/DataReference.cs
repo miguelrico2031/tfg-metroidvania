@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [Serializable]
-public class StatsReference<T> where T : class
+public class DataReference<T> where T : class
 {
     public T Value => m_Scriptable as T;
 

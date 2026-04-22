@@ -5,7 +5,7 @@ public class EdgeCheckComponent : MonoBehaviour
     public bool HasEdgeForward => m_CheckedThisFrame ? m_HasEdgeForward : CheckEdges(true);
     public bool HasEdgeBehind => m_CheckedThisFrame ? m_HasEdgeBehind : CheckEdges(false);
 
-    [SerializeField] private StatsReference<IPerceptionStats> m_Stats;
+    [SerializeField] private DataReference<IPerceptionStats> m_Stats;
     [SerializeField] private Transform m_GroundCheckOrigin;
 
 

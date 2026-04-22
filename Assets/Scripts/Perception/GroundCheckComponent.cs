@@ -7,7 +7,7 @@ public class GroundCheckComponent : MonoBehaviour
     public bool IsGrounded { get; private set; }
     public BufferingTimer CoyoteTimeBuffer { get; private set; }
 
-    [SerializeField] private StatsReference<IPerceptionStats> m_Stats;
+    [SerializeField] private DataReference<IPerceptionStats> m_Stats;
     [SerializeField] private Transform m_GroundCheckOrigin;
 
     private bool m_WasGrounded;

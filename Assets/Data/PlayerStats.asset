@@ -34,22 +34,7 @@ MonoBehaviour:
   <ObstacleLayers>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
-  <MaxStamina>k__BackingField: 50
-  <StaminaRecoveryRate>k__BackingField: 20
-  m_StaminaActions:
-  - Action: 0
-    Cost: 3
-    IsInvoluntary: 0
-  - Action: 1
-    Cost: 3
-    IsInvoluntary: 0
-  - Action: 2
-    Cost: 2
-    IsInvoluntary: 0
-  - Action: 3
-    Cost: 2
-    IsInvoluntary: 1
-  <MaxHealth>k__BackingField: 10
+  <MaxHealth>k__BackingField: 5
   <DamageFlashAnimationDuration>k__BackingField: 0.125
   <AttackBufferTime>k__BackingField: 0.3
   <AdvanceAttackComboBufferTime>k__BackingField: 0.25
