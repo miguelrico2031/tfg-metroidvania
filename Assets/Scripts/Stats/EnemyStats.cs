@@ -30,6 +30,11 @@ public class EnemyStats : ScriptableObject, IAnimationStats, ICombatStats, IHeal
 
     [field: SerializeField] public float HitInvulnerabilityTime { get; private set; }
 
+    [field: SerializeField] public float DelayBeforeAttacking { get; private set; }
+    [field: SerializeField] public float DelayAfterAttacking { get; private set; }
+
+    [field: SerializeField] public float DelayBeforeSeekingPost { get; private set; }
+
     public float AdvanceAttackComboBufferTime => 0f;
     public int AttackComboCount => 0;
 }

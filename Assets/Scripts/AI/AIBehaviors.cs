@@ -96,7 +96,6 @@ public class MoveForwardTask : AAIBehaviorTask
         m_Agent.Movement.MoveForward();
         return BT.Output.Running;
     }
-
     public override void End(BT.Output output)
     {
         m_Agent.BTLogAction("MoveForward Ended");
@@ -123,13 +122,21 @@ public class AttackTargetTask : AAIBehaviorTask
             ? BT.Output.Success
             : BT.Output.Running;
     }
+}
 
-    public override void End(BT.Output output)
+public class IdleTask : AAIBehaviorTask
+{
+    public IdleTask(AIAgentComponent agent) : base(agent) { }
+
+    public override void Start()
     {
-        m_Agent.BTLogAction("Attack Ended");
+        m_Agent.BTLogAction("Idle Started");
+        m_Agent.Movement.Stop();
+        m_Agent.Animator.StartGroundedAnimation();
     }
-    public override void OnInterrupted()
+    public override BT.Output Run()
     {
-        m_Agent.BTLogAction("Attack Interrupted");
+        m_Agent.BTLogAction("Idle Run");
+        return BT.Output.Running;
     }
 }

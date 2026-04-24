@@ -189,6 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72371f0195da6849a7238a98e2d059b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehaviorComponent
+  <Stats>k__BackingField: {fileID: 11400000, guid: ced8cebd575475545963211bbb62abc0, type: 2}
   m_SelectedBehaviorTree: 3
   m_LogBehavior: 0
 --- !u!114 &2912545961642989717

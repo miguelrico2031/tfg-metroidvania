@@ -28,3 +28,6 @@ MonoBehaviour:
     m_Bits: 192
   <DamageFlashAnimationDuration>k__BackingField: 0.125
   <HitInvulnerabilityTime>k__BackingField: 0.15
+  <DelayBeforeAttacking>k__BackingField: 0.25
+  <DelayAfterAttacking>k__BackingField: 0.25
+  <DelayBeforeSeekingPost>k__BackingField: 1

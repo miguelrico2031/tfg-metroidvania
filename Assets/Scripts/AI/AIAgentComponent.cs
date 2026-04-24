@@ -6,6 +6,8 @@ using UnityEngine.Assertions;
 [RequireComponent(typeof(AttackTargetComponent))]
 public class AIAgentComponent : MonoBehaviour
 {
+    [field: SerializeField] public EnemyStats Stats { get; private set; }
+
     public AIMovementComponent Movement { get; private set; }
     public ObstacleCheckComponent ObstacleCheck { get; private set; }
     public EdgeCheckComponent EdgeCheck { get; private set; }
@@ -17,7 +19,7 @@ public class AIAgentComponent : MonoBehaviour
     [SerializeField] private BehaviorTree m_SelectedBehaviorTree;
     [SerializeField] private bool m_LogBehavior;
 
-
+    private Vector3 m_PostPosition;
     private FSM.StateMachine m_StateMachine;
 
     private void Awake()
@@ -31,6 +33,7 @@ public class AIAgentComponent : MonoBehaviour
         AttackTarget = GetComponent<AttackTargetComponent>();
 
         m_StateMachine = SetUpStateMachine();
+        m_PostPosition = transform.position;
     }
 
     private void Start()
@@ -122,6 +125,22 @@ public class AIAgentComponent : MonoBehaviour
         BTLogCondition($"IsTargetMelee: {isTargetMelee}");
         return isTargetMelee;
     }
+
+    private bool IsFacingPost()
+    {
+        float directionToPost = m_PostPosition.x - transform.position.x;
+        bool isFacingPost = Mathf.Abs(directionToPost) < 0.1f ||
+            Mathf.CeilToInt(Mathf.Sign(directionToPost)) == Mathf.CeilToInt(Mathf.Sign(transform.right.x));
+        BTLogCondition($"IsFacingPost: {isFacingPost}");
+        return isFacingPost;
+    }
+
+    private bool IsInPost()
+    {
+        bool isInPost = Vector2.Distance(transform.position, m_PostPosition) < 0.1f;
+        BTLogCondition($"IsInPost: {isInPost}");
+        return isInPost;
+    }
     #endregion
 
     #region ACTIONS
@@ -169,6 +188,22 @@ public class AIAgentComponent : MonoBehaviour
         new BT.TaskAction(new MoveForwardTask(this))
     );
 
+    private BT.INode m_SeekPostBT => new BT.Sequencer(
+        new BT.Succeeder(new BT.TaskAction(new IdleTask(this))),
+        new BT.TaskAction(new WaitForSecondsTask(this, Stats.DelayBeforeSeekingPost)),
+        new BT.ReactiveSequencer(
+            new BT.Selector(
+                new BT.Condition(IsFacingPost),
+                new BT.InstantAction(Turn)
+            ),
+            new BT.ReactiveSelector(
+                new BT.Inverter(new BT.Condition(IsInPost)),
+                new BT.TaskAction(new IdleTask(this))
+            ),
+            new BT.TaskAction(new MoveForwardTask(this))
+        )
+    );
+
     private BT.INode m_ChaseTargetBT => new BT.ReactiveSequencer(
         new BT.Selector(
             new BT.Condition(IsFacingTarget),
@@ -181,9 +216,9 @@ public class AIAgentComponent : MonoBehaviour
         new BT.Condition(HasAliveTarget),
         new BT.Condition(IsTargetMelee),
         new BT.InstantAction(Stop),
-        new BT.TaskAction(new WaitForSecondsTask(this, .25f)),
+        new BT.TaskAction(new WaitForSecondsTask(this, Stats.DelayBeforeAttacking)),
         new BT.TaskAction(new AttackTargetTask(this)),
-        new BT.TaskAction(new WaitForSecondsTask(this, .25f))
+        new BT.TaskAction(new WaitForSecondsTask(this, Stats.DelayAfterAttacking))
     );
 
     private BT.INode m_CrabClawBT => new BT.Loop(
@@ -195,7 +230,7 @@ public class AIAgentComponent : MonoBehaviour
                     m_ChaseTargetBT
                 )
             ),
-            m_PatrolBT
+            m_SeekPostBT
         ),
         BT.Loop.Type.UntilFailure
     );
