@@ -33,7 +33,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_idle
+  m_Name: Crab_idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -47,7 +47,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e13ca922d04960f4f86ba67afb4ab775, type: 2}
+  m_Motion: {fileID: 7400000, guid: bf2b081b3bd33474482ca8a9117212a2, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -536,8 +536,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_run
-  m_Speed: 2
+  m_Name: Crab_walk
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 6997110286189865596}
@@ -546,13 +546,13 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 0
+  m_SpeedParameterActive: 1
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e0bd7d89488c0204bbf4d8a825a6d98a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4a6490c0f67b9e84599a12754455b1cb, type: 2}
   m_Tag: 
-  m_SpeedParameter: 
+  m_SpeedParameter: MoveSpeed
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
@@ -887,7 +887,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Player_Attack_1
+  m_Name: Crab_Attack_1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -900,7 +900,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b86682fe978febc48b5324c0be2fd248, type: 2}
+  m_Motion: {fileID: 7400000, guid: f771fe93aa405a648965358958101611, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
