@@ -302,8 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba7a7b6946f1e94fbe116db1efd7474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateComponent
-  <DeathHandler>k__BackingField:
-    m_Scriptable: {fileID: 11400000, guid: 75b0d8a984751064b834d94fe626fea1, type: 2}
+  <DeathHandler>k__BackingField: {fileID: 11400000, guid: 75b0d8a984751064b834d94fe626fea1, type: 2}
   m_LogStateChanges: 0
 --- !u!114 &2442672136224439288
 MonoBehaviour:
@@ -534,10 +533,14 @@ MonoBehaviour:
   m_PersistentAttackCooldown: 0
   m_AttackData:
     Damage: 1
-    Knockback:
-      Duration: 0.3
-      Distance: 5
-      Height: 2
+    HitKnockback:
+      Duration: 0
+      Distance: 0
+      Height: 0
+    BlockedKnockback:
+      Duration: 0
+      Distance: 0
+      Height: 0
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
   m_Faction: {fileID: 1053925383963158729}
 --- !u!1 &5289088717557987205
@@ -747,7 +750,11 @@ MonoBehaviour:
   m_PersistentAttackCooldown: 0
   m_AttackData:
     Damage: 1
-    Knockback:
+    HitKnockback:
+      Duration: 0
+      Distance: 0
+      Height: 0
+    BlockedKnockback:
       Duration: 0
       Distance: 0
       Height: 0

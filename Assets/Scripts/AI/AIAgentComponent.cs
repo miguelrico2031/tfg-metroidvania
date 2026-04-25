@@ -191,17 +191,15 @@ public class AIAgentComponent : MonoBehaviour
     private BT.INode m_SeekPostBT => new BT.Sequencer(
         new BT.Succeeder(new BT.TaskAction(new IdleTask(this))),
         new BT.TaskAction(new WaitForSecondsTask(this, Stats.DelayBeforeSeekingPost)),
-        new BT.ReactiveSequencer(
-            new BT.Selector(
-                new BT.Condition(IsFacingPost),
-                new BT.InstantAction(Turn)
-            ),
-            new BT.ReactiveSelector(
-                new BT.Inverter(new BT.Condition(IsInPost)),
-                new BT.TaskAction(new IdleTask(this))
-            ),
+        new BT.Selector(
+            new BT.Condition(IsFacingPost),
+            new BT.InstantAction(Turn)
+        ),
+        new BT.ReactiveSelector(
+            new BT.Condition(IsInPost),
             new BT.TaskAction(new MoveForwardTask(this))
-        )
+        ),
+        new BT.TaskAction(new IdleTask(this))
     );
 
     private BT.INode m_ChaseTargetBT => new BT.ReactiveSequencer(

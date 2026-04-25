@@ -6,7 +6,7 @@ using System;
 [RequireComponent(typeof(HealthComponent))]
 public class PlayerStateComponent : MonoBehaviour
 {
-    [field: SerializeField] public DataReference<IPlayerDeathHandler> DeathHandler { get; private set; }
+    [field: SerializeField] public PlayerDeathHandler DeathHandler { get; private set; }
 
     public PlayerMovementComponent Movement { get; private set; }
     public PlayerInputComponent Input { get; private set; }

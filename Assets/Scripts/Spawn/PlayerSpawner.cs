@@ -1,13 +1,8 @@
 ﻿using System;
 using UnityEngine;
-public interface IPlayerSpawner
-{
-    public event Action OnPlayerSpawned;
-    public void SpawnPlayer();
-}
 
 [CreateAssetMenu(menuName = "ScriptableObjects/PlayerSpawner")]
-public class PlayerSpawner : ScriptableObject, IPlayerSpawner
+public class PlayerSpawner : ScriptableObject
 {
     [SerializeField] private string m_PlayerGameObjectName;
     [SerializeField] private GameObject m_PlayerPrefab;
