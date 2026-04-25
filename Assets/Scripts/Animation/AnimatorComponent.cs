@@ -9,11 +9,21 @@ public enum AttackAnimationPhase
     Withdrawing
 }
 
+public enum BlockAnimationPhase
+{
+    NotBlocking,
+    Drawing,
+    Blocking,
+    Withdrawing
+}
+
 [RequireComponent(typeof(Rigidbody2D))]
 public class AnimatorComponent : MonoBehaviour
 {
     public AttackAnimationPhase AttackAnimationPhase { get; private set; } = AttackAnimationPhase.NotAttacking;
     public AttackAnimationPhase? AttackAnimationPhaseCompletedThisFrame { get; private set; } = null;
+
+    public BlockAnimationPhase BlockAnimationPhase { get; private set; } = BlockAnimationPhase.NotBlocking;
     public bool IsStandingFinished { get; private set; } = true;
 
     [SerializeField] private Animator m_Animator;
@@ -32,6 +42,8 @@ public class AnimatorComponent : MonoBehaviour
     private static readonly int s_Death = Animator.StringToHash("Death");
     private static readonly int s_Attack = Animator.StringToHash("Attack");
     private static readonly int s_AttackContinue = Animator.StringToHash("AttackContinue");
+    private static readonly int s_Block = Animator.StringToHash("Block");
+    private static readonly int s_StopBlock = Animator.StringToHash("StopBlock");
 
     private bool m_IsGrounded;
     private int m_TriggerThisFrame = -1;
@@ -77,6 +89,7 @@ public class AnimatorComponent : MonoBehaviour
     {
         Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
         m_TriggerThisFrame = isAirborne ? s_KnockbackAirborne : s_Knockback;
+        BlockAnimationPhase = BlockAnimationPhase.NotBlocking;
     }
 
     public void StartDeathAnimation()
@@ -91,6 +104,20 @@ public class AnimatorComponent : MonoBehaviour
         AttackAnimationPhase = AttackAnimationPhase.Drawing;
     }
 
+    public void StartBlockAnimation()
+    {
+        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
+        m_TriggerThisFrame = s_Block;
+        AdvanceBlockAnimationPhase(BlockAnimationPhase.Drawing);
+    }
+
+    public void StartStopBlockAnimation()
+    {
+        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
+        m_TriggerThisFrame = s_StopBlock;
+        AdvanceBlockAnimationPhase(BlockAnimationPhase.Withdrawing);
+    }
+
     private void OnEnable()
     {
         if (m_AnimationEvents != null)
@@ -100,6 +127,8 @@ public class AnimatorComponent : MonoBehaviour
             m_AnimationEvents.OnAttackWithdrawCompleted += OnAttackWithdrawCompleted;
             m_AnimationEvents.OnStandCompleted += OnStandCompleted;
             m_AnimationEvents.OnStandCompleted += OnStandCompleted;
+            m_AnimationEvents.OnStartBlockCompleted += OnStartBlockCompleted;
+            m_AnimationEvents.OnStopBlockCompleted += OnStopBlockCompleted;
         }
     }
 
@@ -111,6 +140,8 @@ public class AnimatorComponent : MonoBehaviour
             m_AnimationEvents.OnAttackStrikeCompleted -= OnAttackStrikeCompleted;
             m_AnimationEvents.OnAttackWithdrawCompleted -= OnAttackWithdrawCompleted;
             m_AnimationEvents.OnStandCompleted -= OnStandCompleted;
+            m_AnimationEvents.OnStopBlockCompleted -= OnStopBlockCompleted;
+            m_AnimationEvents.OnStartBlockCompleted -= OnStartBlockCompleted;
         }
     }
 
@@ -145,6 +176,8 @@ public class AnimatorComponent : MonoBehaviour
     private void OnAttackStrikeCompleted() => AdvanceAttackAnimationPhase(AttackAnimationPhase.Withdrawing);
     private void OnAttackWithdrawCompleted() => AdvanceAttackAnimationPhase(AttackAnimationPhase.NotAttacking);
     private void OnStandCompleted() => IsStandingFinished = true;
+    private void OnStartBlockCompleted() => AdvanceBlockAnimationPhase(BlockAnimationPhase.Blocking);
+    private void OnStopBlockCompleted() => AdvanceBlockAnimationPhase(BlockAnimationPhase.NotBlocking);
 
     private void AdvanceAttackAnimationPhase(AttackAnimationPhase newPhase)
     {
@@ -163,5 +196,21 @@ public class AnimatorComponent : MonoBehaviour
 
         AttackAnimationPhaseCompletedThisFrame = AttackAnimationPhase;
         AttackAnimationPhase = newPhase;
+    }
+
+    private void AdvanceBlockAnimationPhase(BlockAnimationPhase newPhase)
+    {
+        var expectedCurrentPhase = newPhase switch
+        {
+            BlockAnimationPhase.NotBlocking => BlockAnimationPhase.Withdrawing,
+            BlockAnimationPhase.Drawing => BlockAnimationPhase.NotBlocking,
+            BlockAnimationPhase.Blocking => BlockAnimationPhase.Drawing,
+            BlockAnimationPhase.Withdrawing => BlockAnimationPhase.Blocking,
+            _ => throw new System.NotImplementedException()
+        };
+        Assert.AreEqual(BlockAnimationPhase, expectedCurrentPhase,
+            $"Wrong Block animation phase progression: transitioning from {BlockAnimationPhase} to {newPhase}.");
+
+        BlockAnimationPhase = newPhase;
     }
 }

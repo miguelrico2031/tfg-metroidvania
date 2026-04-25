@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public interface ICombatStats
 {
@@ -40,7 +41,8 @@ public struct KnockbackData
 public struct AttackData
 {
     public int Damage;
-    public KnockbackData Knockback;
+    public KnockbackData HitKnockback;
+    public KnockbackData BlockedKnockback;
     public IAttackSource Source;
 }
 

@@ -472,10 +472,14 @@ MonoBehaviour:
   m_PersistentAttackCooldown: 0
   m_AttackData:
     Damage: 2
-    Knockback:
+    HitKnockback:
       Duration: 0.5
       Distance: 4
       Height: 1.5
+    BlockedKnockback:
+      Duration: 0.25
+      Distance: 3
+      Height: 0
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
   m_Faction: {fileID: 8743556247166418084}
 --- !u!61 &6081950187138758918
@@ -619,9 +623,13 @@ MonoBehaviour:
   m_PersistentAttackCooldown: 0.5
   m_AttackData:
     Damage: 1
-    Knockback:
+    HitKnockback:
       Duration: 0.4
       Distance: 2
+      Height: 0
+    BlockedKnockback:
+      Duration: 0
+      Distance: 0
       Height: 0
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
   m_Faction: {fileID: 8743556247166418084}

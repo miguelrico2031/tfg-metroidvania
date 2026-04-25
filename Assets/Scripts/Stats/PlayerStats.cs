@@ -90,7 +90,6 @@ public class PlayerStats : ScriptableObject, IAnimationStats, ICombatStats, IHea
 
 
 
-
     //This is not currenlty used in the player components but it implements IPerceptionStats
     public Vector2 EdgeCheckOffset { get; }
     public float EdgeCheckDepth { get; }

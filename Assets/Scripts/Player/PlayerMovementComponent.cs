@@ -58,19 +58,18 @@ public class PlayerMovementComponent : MonoBehaviour
         m_Rigidbody.linearVelocityX = 0f;
     }
 
-    public bool ApplyAttackKnockback(AttackData attack)
+    public bool ApplyAttackKnockback(KnockbackData knockback, Vector2 sourcePosition)
     {
-        KnockbackData knockback = attack.Knockback;
         if (knockback.Distance < 0.01f || knockback.Duration < 0.01f)
             return false;
 
-        float knockbackDirection = Mathf.Sign(m_Transform.position.x - attack.Source.Position.x);
+        float knockbackDirection = Mathf.Sign(m_Transform.position.x - sourcePosition.x);
         if (Mathf.Approximately(knockbackDirection, 0f))
         {
             knockbackDirection = -m_Transform.right.x;
         }
 
-        bool sourceIsToTheRight = attack.Source.Position.x > m_Transform.position.x;
+        bool sourceIsToTheRight = sourcePosition.x > m_Transform.position.x;
         bool currentlyFacingRight = m_Transform.right.x > 0f;
         if (currentlyFacingRight != sourceIsToTheRight) //Ensure facing attack source
         {

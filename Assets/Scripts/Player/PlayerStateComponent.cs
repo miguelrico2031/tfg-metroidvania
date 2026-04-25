@@ -80,6 +80,8 @@ public class PlayerStateComponent : MonoBehaviour
             .AddState(new PlayerKnockbackState(this))
             .AddState(new PlayerDyingState(this))
             .AddState(new PlayerAttackingState(this))
+            .AddState(new PlayerBlockingState(this))
+            .AddState(new PlayerStopBlockingState(this))
 
             .AddTransitionFromAnyState<PlayerDyingState>((state) =>
                 Health.CurrentHealth == 0 &&
@@ -92,6 +94,7 @@ public class PlayerStateComponent : MonoBehaviour
             .AddTransition<PlayerGroundedState, PlayerDashingState>(IsDashRequestedAndAllowed)
             .AddTransition<PlayerGroundedState, PlayerFallingState>(() => !GroundCheck.IsGrounded)
             .AddTransition<PlayerGroundedState, PlayerAttackingState>(() => Input.AttackBuffer.Check())
+            .AddTransition<PlayerGroundedState, PlayerBlockingState>(IsBlockingRequestedAndAllowed)
 
             .AddTransition<PlayerJumpingState, PlayerFallingState>(() => Movement.VerticalVelocity <= 0f)
             .AddTransition<PlayerJumpingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
@@ -114,6 +117,11 @@ public class PlayerStateComponent : MonoBehaviour
             .AddTransition<PlayerAttackingState, PlayerAttackingState>(IsAttack2RequestedAndAllowed)
             .AddTransition<PlayerAttackingState, PlayerGroundedState>(HasAttackAnimationJustFinished)
 
+            .AddTransition<PlayerBlockingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
+            .AddTransition<PlayerBlockingState, PlayerStopBlockingState>(IsStopBlockingRequestedAndAllowed)
+
+            .AddTransition<PlayerStopBlockingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
+            .AddTransition<PlayerStopBlockingState, PlayerGroundedState>(() => Animator.BlockAnimationPhase is BlockAnimationPhase.NotBlocking)
 
             .Build();
     }       
@@ -136,7 +144,7 @@ public class PlayerStateComponent : MonoBehaviour
     private bool HasBeenHitWithKnockback() => AttackTarget.ResolvedAttackThisFrame is
     {
         Result: AttackResult.Blocked or AttackResult.Hit,
-        Attack: { Knockback: { Distance: > 0.01f, Duration: > 0.01f } }
+        Knockback: { Distance: > 0.01f, Duration: > 0.01f }
     };
 
     private bool IsKnockbackFinished() =>
@@ -148,5 +156,12 @@ public class PlayerStateComponent : MonoBehaviour
         Animator.AttackAnimationPhase is AttackAnimationPhase.Withdrawing &&
         AttackCombo.ActiveAttack == 1;
 
-    private bool HasAttackAnimationJustFinished() => Animator.AttackAnimationPhaseCompletedThisFrame is AttackAnimationPhase.Withdrawing;
+    private bool HasAttackAnimationJustFinished() =>
+        Animator.AttackAnimationPhaseCompletedThisFrame is AttackAnimationPhase.Withdrawing;
+
+    private bool IsBlockingRequestedAndAllowed() =>
+        Input.PressingBlock && Animator.BlockAnimationPhase is BlockAnimationPhase.NotBlocking;
+
+    private bool IsStopBlockingRequestedAndAllowed() =>
+        !Input.PressingBlock && Animator.BlockAnimationPhase is BlockAnimationPhase.Blocking;
 }

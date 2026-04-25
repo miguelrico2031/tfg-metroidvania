@@ -39,18 +39,18 @@ public class PlayerJumpingState : APlayerState
         m_Player.Movement.SetRisingGravity();
         m_Player.GroundCheck.CoyoteTimeBuffer.Clear();
         m_Player.Input.JumpBuffer.Clear();
-        m_Player.Input.OnJumpReleased += OnJumpReleased;
         m_Player.Animator.StartJumpAnimation();
     }
-    public override void End() => m_Player.Input.OnJumpReleased -= OnJumpReleased;
+    public override void Update()
+    {
+        if(m_Player.Input.ReleaseJumpBuffer.Consume())
+        {
+            m_Player.Movement.CutJump();
+        }
+    }
     public override void FixedUpdate()
     {
         m_Player.Movement.MoveAirborne(m_Player.Input.Movement);
-    }
-    private void OnJumpReleased()
-    {
-        m_Player.Movement.CutJump();
-        m_Player.Input.OnJumpReleased -= OnJumpReleased; //Avoid cutting jump more than once
     }
 }
 
@@ -109,8 +109,8 @@ public class PlayerKnockbackState : APlayerState
     public PlayerKnockbackState(PlayerStateComponent player) : base(player) { }
     public override void Start()
     {
-        AttackData attack = m_Player.AttackTarget.ResolvedAttackThisFrame.Attack;
-        m_Player.Movement.ApplyAttackKnockback(attack);
+        var attack = m_Player.AttackTarget.ResolvedAttackThisFrame;
+        m_Player.Movement.ApplyAttackKnockback(attack.Knockback, attack.Source.Position);
         m_Player.AttackTarget.SetInvulnerable(true);
         m_IsAirborne = attack.Knockback.Height > 0.1f || !m_Player.GroundCheck.IsGrounded;
         m_Player.Animator.StartKnockbackAnimation(m_IsAirborne);
@@ -167,6 +167,36 @@ public class PlayerAttackingState : APlayerState
         {
             m_Player.AttackCombo.FinishAttack();
         }
+    }
+}
+
+public class PlayerBlockingState : APlayerState
+{
+    private bool m_BlockingSet;
+    public PlayerBlockingState(PlayerStateComponent player) : base(player) { }
+    public override void Start()
+    {
+        m_BlockingSet = false;
+        m_Player.Movement.Stop();
+        m_Player.Animator.StartBlockAnimation();
+    }
+    public override void Update()
+    {
+        if(!m_BlockingSet && m_Player.Animator.BlockAnimationPhase is BlockAnimationPhase.Blocking)
+        {
+            m_BlockingSet = true;
+            m_Player.AttackTarget.StartBlocking(right: m_Player.transform.right.x > 0f);
+        }
+    }
+}
+
+public class PlayerStopBlockingState : APlayerState
+{
+    public PlayerStopBlockingState(PlayerStateComponent player) : base(player) { }
+    public override void Start()
+    {
+        m_Player.AttackTarget.StopBlocking();
+        m_Player.Animator.StartStopBlockAnimation();
     }
 }
 

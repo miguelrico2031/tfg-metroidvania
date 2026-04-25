@@ -6,13 +6,9 @@ using System.Collections.Generic;
 public class PlayerInputComponent : MonoBehaviour
 {
     public int Movement { get; private set; }
-    public event Action<int> OnMovementChanged;
-    public event Action OnJumpPressed;
-    public event Action OnJumpReleased;
-    public event Action OnDashPressed;
-    public event Action OnAttackPressed;
-
+    public bool PressingBlock { get; private set; }
     public BufferingTimer JumpBuffer { get; private set; }
+    public BufferingTimer ReleaseJumpBuffer { get; private set; }
     public BufferingTimer DashBuffer { get; private set; }
     public BufferingTimer AttackBuffer { get; private set; }
 
@@ -23,7 +19,11 @@ public class PlayerInputComponent : MonoBehaviour
     private InputAction m_JumpAction;
     private InputAction m_DashAction;
     private InputAction m_AttackAction;
-    private IEnumerable<BufferingTimer> m_Buffers => new[] { JumpBuffer, DashBuffer, AttackBuffer };
+    private InputAction m_BlockAction;
+    private IEnumerable<BufferingTimer> m_Buffers => 
+        new[] { JumpBuffer, ReleaseJumpBuffer, DashBuffer, AttackBuffer };
+
+    private const float c_BufferAliveForAFewFramesTime = 0.05f;
 
     private void OnEnable()
     {
@@ -41,6 +41,10 @@ public class PlayerInputComponent : MonoBehaviour
 
         m_AttackAction ??= m_InputActionAsset.FindAction("Player/Attack", throwIfNotFound: true);
         m_AttackAction.started += OnAttackAction;
+
+        m_BlockAction ??= m_InputActionAsset.FindAction("Player/Block", throwIfNotFound: true);
+        m_BlockAction.canceled += OnBlockAction;
+        m_BlockAction.started += OnBlockAction;
     }
 
     private void OnDisable()
@@ -64,11 +68,17 @@ public class PlayerInputComponent : MonoBehaviour
         {
             m_AttackAction.started -= OnAttackAction;
         }
+        if (m_BlockAction is not null)
+        {
+            m_BlockAction.canceled -= OnBlockAction;
+            m_BlockAction.started -= OnBlockAction;
+        }
     }
 
     private void Awake()
     {
         JumpBuffer = new(() => m_Stats.JumpBufferTime);
+        ReleaseJumpBuffer = new(() => c_BufferAliveForAFewFramesTime);
         DashBuffer = new(() => m_Stats.DashBufferTime);
         AttackBuffer = new(() => m_Stats.AttackBufferTime);
     }
@@ -83,12 +93,7 @@ public class PlayerInputComponent : MonoBehaviour
 
     private void OnMoveAction(InputAction.CallbackContext context)
     {
-        int newMovement = Mathf.CeilToInt(context.ReadValue<Vector2>().x);
-        if (newMovement != Movement)
-        {
-            Movement = newMovement;
-            OnMovementChanged?.Invoke(Movement);
-        }
+        Movement = Mathf.CeilToInt(context.ReadValue<Vector2>().x);
     }
 
     private void OnJumpAction(InputAction.CallbackContext context)
@@ -96,11 +101,10 @@ public class PlayerInputComponent : MonoBehaviour
         if (context.started)
         {
             JumpBuffer.Register();
-            OnJumpPressed?.Invoke();
         }
         if (context.canceled)
         {
-            OnJumpReleased?.Invoke();
+            ReleaseJumpBuffer.Register();
         }
     }
 
@@ -109,7 +113,6 @@ public class PlayerInputComponent : MonoBehaviour
         if(context.started)
         {
             DashBuffer.Register();
-            OnDashPressed?.Invoke();
         }
     }
 
@@ -118,7 +121,18 @@ public class PlayerInputComponent : MonoBehaviour
         if (context.started)
         {
             AttackBuffer.Register();
-            OnAttackPressed?.Invoke();
+        }
+    }
+
+    private void OnBlockAction(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            PressingBlock = true;
+        }
+        if (context.canceled)
+        {
+            PressingBlock = false;
         }
     }
 }
