@@ -27,6 +27,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 192
   <DamageFlashAnimationDuration>k__BackingField: 0.125
+  <DamageFlashMaterial>k__BackingField: {fileID: 2100000, guid: 07917a5811fa35d4ab38af8f8c3553df, type: 2}
   <HitInvulnerabilityTime>k__BackingField: 0.15
   <DelayBeforeAttacking>k__BackingField: 0.25
   <DelayAfterAttacking>k__BackingField: 0.25

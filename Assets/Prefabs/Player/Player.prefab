@@ -152,6 +152,9 @@ GameObject:
   - component: {fileID: 1017920111075680247}
   - component: {fileID: 3336796847241308167}
   - component: {fileID: 165671683098578377}
+  - component: {fileID: 3558698034495076201}
+  - component: {fileID: 8068806377036672000}
+  - component: {fileID: 8167207318274591021}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -344,8 +347,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98081461e0026a44989afeb5f32551e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageFlashComponent
-  m_DefaultMaterial: {fileID: 2100000, guid: 71d715af238681a4ca71c34dbc9cc3bf, type: 2}
-  m_DamageFlashMaterial: {fileID: 2100000, guid: 07917a5811fa35d4ab38af8f8c3553df, type: 2}
   m_SpriteRenderer: {fileID: 6741937748817235486}
   m_Stats:
     m_Scriptable: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
@@ -405,6 +406,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealthComponent
   m_Stats:
     m_Scriptable: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
+--- !u!114 &3558698034495076201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91422019bda39f44bb474318a542537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealComponent
+  m_Stats:
+    m_Scriptable: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
+  m_Persistence:
+    m_Scriptable: {fileID: 11400000, guid: d6457fff946a2ef46ac575337d141460, type: 2}
+--- !u!114 &8068806377036672000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c48afa4d91e894a8808e2f5fe72996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractorComponent
+--- !u!114 &8167207318274591021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938255937634021066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e90a8a96bfe6e4e43be32579d726f63e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPersistenceComponent
+  m_Spawner: {fileID: 11400000, guid: 0913eae862cca194ea6332864b4e5de9, type: 2}
 --- !u!1 &4067200855875449082
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthBar : MonoBehaviour
+public class PlayerHealthUI : MonoBehaviour
 {
     [SerializeField] private float m_LoseHealthSpeed;
     [SerializeField] private Slider m_Bar;

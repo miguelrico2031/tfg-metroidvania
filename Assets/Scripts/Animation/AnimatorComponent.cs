@@ -24,7 +24,7 @@ public class AnimatorComponent : MonoBehaviour
     public AttackAnimationPhase? AttackAnimationPhaseCompletedThisFrame { get; private set; } = null;
 
     public BlockAnimationPhase BlockAnimationPhase { get; private set; } = BlockAnimationPhase.NotBlocking;
-    public bool IsStandingFinished { get; private set; } = true;
+    public AnimationEventType? AnimationCompleted { get; private set; } = null;
 
     [SerializeField] private Animator m_Animator;
     [SerializeField] private AnimationEvents m_AnimationEvents;
@@ -44,6 +44,8 @@ public class AnimatorComponent : MonoBehaviour
     private static readonly int s_AttackContinue = Animator.StringToHash("AttackContinue");
     private static readonly int s_Block = Animator.StringToHash("Block");
     private static readonly int s_StopBlock = Animator.StringToHash("StopBlock");
+    private static readonly int s_PickUpHeal = Animator.StringToHash("PickUpHeal");
+    private static readonly int s_Heal = Animator.StringToHash("Heal");
 
     private bool m_IsGrounded;
     private int m_TriggerThisFrame = -1;
@@ -51,84 +53,78 @@ public class AnimatorComponent : MonoBehaviour
 
     public void StartGroundedAnimation()
     {
-        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
+        SetAnimation(s_Grounded);
         m_IsGrounded = true;
-        m_TriggerThisFrame = s_Grounded;
     }
 
     public void StartJumpAnimation()
     {
-        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
+        SetAnimation(s_Jump);
         m_IsGrounded = false;
-        m_TriggerThisFrame = s_Jump;
     }
 
     public void StartFallAnimation(bool transitionFromJump)
     {
-        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
+        SetAnimation(transitionFromJump ? s_FallFromJump : s_Fall);
         m_IsGrounded = false;
-        m_TriggerThisFrame = transitionFromJump ? s_FallFromJump : s_Fall;
     }
 
     public void StartDashAnimation()
     {
-        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
+        SetAnimation(s_Dash);
         m_IsGrounded = true;
-        m_TriggerThisFrame = s_Dash;
     }
 
     public void StartStandAnimation(bool transitionFromKnockback)
     {
-        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
+        SetAnimation(transitionFromKnockback ? s_StandFromKnockback : s_Stand);
         m_IsGrounded = true;
-        m_TriggerThisFrame = transitionFromKnockback ? s_StandFromKnockback : s_Stand;
-        IsStandingFinished = false;
     }
 
     public void StartKnockbackAnimation(bool isAirborne)
     {
-        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
-        m_TriggerThisFrame = isAirborne ? s_KnockbackAirborne : s_Knockback;
+        SetAnimation(isAirborne ? s_KnockbackAirborne : s_Knockback);
         BlockAnimationPhase = BlockAnimationPhase.NotBlocking;
+        m_IsGrounded = !isAirborne;
     }
 
     public void StartDeathAnimation()
     {
-        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
-        m_TriggerThisFrame = s_Death;
+        SetAnimation(s_Death);
     }
     public void StartAttackAnimation(bool isFirstAttack)
     {
-        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
-        m_TriggerThisFrame = isFirstAttack ? s_Attack : s_AttackContinue;
+        SetAnimation(isFirstAttack ? s_Attack : s_AttackContinue);
         AttackAnimationPhase = AttackAnimationPhase.Drawing;
     }
 
     public void StartBlockAnimation()
     {
-        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
-        m_TriggerThisFrame = s_Block;
+        SetAnimation(s_Block);
         AdvanceBlockAnimationPhase(BlockAnimationPhase.Drawing);
     }
 
     public void StartStopBlockAnimation()
     {
-        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
-        m_TriggerThisFrame = s_StopBlock;
+        SetAnimation(s_StopBlock);
         AdvanceBlockAnimationPhase(BlockAnimationPhase.Withdrawing);
+    }
+
+    public void StartPickUpHealAnimation()
+    {
+        SetAnimation(s_PickUpHeal);
+    }
+
+    public void StartHealAnimation()
+    {
+        SetAnimation(s_Heal);
     }
 
     private void OnEnable()
     {
         if (m_AnimationEvents != null)
         {
-            m_AnimationEvents.OnAttackDrawCompleted += OnAttackDrawCompleted;
-            m_AnimationEvents.OnAttackStrikeCompleted += OnAttackStrikeCompleted;
-            m_AnimationEvents.OnAttackWithdrawCompleted += OnAttackWithdrawCompleted;
-            m_AnimationEvents.OnStandCompleted += OnStandCompleted;
-            m_AnimationEvents.OnStandCompleted += OnStandCompleted;
-            m_AnimationEvents.OnStartBlockCompleted += OnStartBlockCompleted;
-            m_AnimationEvents.OnStopBlockCompleted += OnStopBlockCompleted;
+            m_AnimationEvents.OnEventReceived += OnAnimationEventReceived;
         }
     }
 
@@ -136,12 +132,7 @@ public class AnimatorComponent : MonoBehaviour
     {
         if (m_AnimationEvents != null)
         {
-            m_AnimationEvents.OnAttackDrawCompleted -= OnAttackDrawCompleted;
-            m_AnimationEvents.OnAttackStrikeCompleted -= OnAttackStrikeCompleted;
-            m_AnimationEvents.OnAttackWithdrawCompleted -= OnAttackWithdrawCompleted;
-            m_AnimationEvents.OnStandCompleted -= OnStandCompleted;
-            m_AnimationEvents.OnStopBlockCompleted -= OnStopBlockCompleted;
-            m_AnimationEvents.OnStartBlockCompleted -= OnStartBlockCompleted;
+            m_AnimationEvents.OnEventReceived -= OnAnimationEventReceived;
         }
     }
 
@@ -159,7 +150,6 @@ public class AnimatorComponent : MonoBehaviour
         }
 
         //This is not in late update because this script execution order is set to +10, so it will run at the end of the frame anyway
-
         AttackAnimationPhaseCompletedThisFrame = null;
     }
 
@@ -172,13 +162,39 @@ public class AnimatorComponent : MonoBehaviour
         }
     }
 
-    private void OnAttackDrawCompleted() => AdvanceAttackAnimationPhase(AttackAnimationPhase.Striking);
-    private void OnAttackStrikeCompleted() => AdvanceAttackAnimationPhase(AttackAnimationPhase.Withdrawing);
-    private void OnAttackWithdrawCompleted() => AdvanceAttackAnimationPhase(AttackAnimationPhase.NotAttacking);
-    private void OnStandCompleted() => IsStandingFinished = true;
-    private void OnStartBlockCompleted() => AdvanceBlockAnimationPhase(BlockAnimationPhase.Blocking);
-    private void OnStopBlockCompleted() => AdvanceBlockAnimationPhase(BlockAnimationPhase.NotBlocking);
+    private void SetAnimation(int animationTrigger)
+    {
+        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
+        m_TriggerThisFrame = animationTrigger;
+        AnimationCompleted = null;
+    }
 
+    private void OnAnimationEventReceived(AnimationEventType type)
+    {
+        switch (type)
+        {
+            case AnimationEventType.AttackDrawCompleted:
+                AdvanceAttackAnimationPhase(AttackAnimationPhase.Striking);
+                break;
+            case AnimationEventType.AttackStrikeCompleted:
+                AdvanceAttackAnimationPhase(AttackAnimationPhase.Withdrawing);
+                break;
+            case AnimationEventType.AttackWithdrawCompleted:
+                AdvanceAttackAnimationPhase(AttackAnimationPhase.NotAttacking);
+                break;
+            case AnimationEventType.StartBlockCompleted:
+                AdvanceBlockAnimationPhase(BlockAnimationPhase.Blocking);
+                break;
+            case AnimationEventType.StopBlockCompleted:
+                AdvanceBlockAnimationPhase(BlockAnimationPhase.NotBlocking);
+                break;   
+            case AnimationEventType.StandCompleted:
+            case AnimationEventType.PickUpHealCompleted:
+            case AnimationEventType.HealCompleted:
+                AnimationCompleted = type;
+                break;
+        }
+    }
     private void AdvanceAttackAnimationPhase(AttackAnimationPhase newPhase)
     {
         var expectedCurrentPhase = newPhase switch

@@ -3,13 +3,12 @@
 [RequireComponent(typeof(AttackTargetComponent))]
 public class DamageFlashComponent : MonoBehaviour
 {
-    [SerializeField] private Material m_DefaultMaterial;
-    [SerializeField] private Material m_DamageFlashMaterial;
     [SerializeField] private SpriteRenderer m_SpriteRenderer;
     [SerializeField] private DataReference<IAnimationStats> m_Stats;
 
     private float m_DamageFlashTimer;
     private AttackTargetComponent m_AttackTarget;
+    private Material m_DefaultMaterial;
 
     private void OnEnable()
     {
@@ -20,6 +19,11 @@ public class DamageFlashComponent : MonoBehaviour
     private void OnDisable()
     {
         m_AttackTarget.OnAttackReceived -= OnAttackReceived;
+    }
+
+    private void Start()
+    {
+        m_DefaultMaterial = m_SpriteRenderer.sharedMaterial;
     }
 
     private void Update()
@@ -41,7 +45,7 @@ public class DamageFlashComponent : MonoBehaviour
             m_Stats.Value.DamageFlashAnimationDuration < 0.01f)
             return;
 
-        m_SpriteRenderer.material = m_DamageFlashMaterial;
+        m_SpriteRenderer.material = m_Stats.Value.DamageFlashMaterial;
         m_DamageFlashTimer = m_Stats.Value.DamageFlashAnimationDuration;
     }
 }

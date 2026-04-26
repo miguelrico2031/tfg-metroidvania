@@ -11,6 +11,8 @@ public class PlayerInputComponent : MonoBehaviour
     public BufferingTimer ReleaseJumpBuffer { get; private set; }
     public BufferingTimer DashBuffer { get; private set; }
     public BufferingTimer AttackBuffer { get; private set; }
+    public BufferingTimer InteractBuffer { get; private set; }
+    public BufferingTimer HealBuffer { get; private set; }
 
     [SerializeField] private PlayerStats m_Stats;
     [SerializeField] private InputActionAsset m_InputActionAsset;
@@ -20,9 +22,12 @@ public class PlayerInputComponent : MonoBehaviour
     private InputAction m_DashAction;
     private InputAction m_AttackAction;
     private InputAction m_BlockAction;
+    private InputAction m_InteractAction;
+    private InputAction m_HealAction;
     private IEnumerable<BufferingTimer> m_Buffers => 
-        new[] { JumpBuffer, ReleaseJumpBuffer, DashBuffer, AttackBuffer };
+        new[] { JumpBuffer, ReleaseJumpBuffer, DashBuffer, AttackBuffer, InteractBuffer, HealBuffer };
 
+    //This allows using the input buffer approach for instant actions without relying on update execution order
     private const float c_BufferAliveForAFewFramesTime = 0.05f;
 
     private void OnEnable()
@@ -45,6 +50,12 @@ public class PlayerInputComponent : MonoBehaviour
         m_BlockAction ??= m_InputActionAsset.FindAction("Player/Block", throwIfNotFound: true);
         m_BlockAction.canceled += OnBlockAction;
         m_BlockAction.started += OnBlockAction;
+
+        m_InteractAction ??= m_InputActionAsset.FindAction("Player/Interact", throwIfNotFound: true);
+        m_InteractAction.started += OnInteractAction;
+
+        m_HealAction ??= m_InputActionAsset.FindAction("Player/Heal", throwIfNotFound: true);
+        m_HealAction.started += OnHealAction;
     }
 
     private void OnDisable()
@@ -73,6 +84,14 @@ public class PlayerInputComponent : MonoBehaviour
             m_BlockAction.canceled -= OnBlockAction;
             m_BlockAction.started -= OnBlockAction;
         }
+        if (m_InteractAction is not null)
+        {
+            m_InteractAction.started -= OnInteractAction;
+        }
+        if (m_HealAction is not null)
+        {
+            m_HealAction.started -= OnHealAction;
+        }
     }
 
     private void Awake()
@@ -81,6 +100,8 @@ public class PlayerInputComponent : MonoBehaviour
         ReleaseJumpBuffer = new(() => c_BufferAliveForAFewFramesTime);
         DashBuffer = new(() => m_Stats.DashBufferTime);
         AttackBuffer = new(() => m_Stats.AttackBufferTime);
+        InteractBuffer = new(() => c_BufferAliveForAFewFramesTime);
+        HealBuffer = new(() => c_BufferAliveForAFewFramesTime);
     }
 
     private void Update()
@@ -133,6 +154,22 @@ public class PlayerInputComponent : MonoBehaviour
         if (context.canceled)
         {
             PressingBlock = false;
+        }
+    }
+
+    private void OnInteractAction(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            InteractBuffer.Register();
+        }
+    }
+
+    private void OnHealAction(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            HealBuffer.Register();
         }
     }
 }

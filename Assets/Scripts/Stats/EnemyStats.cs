@@ -26,6 +26,7 @@ public class EnemyStats : ScriptableObject, IAnimationStats, ICombatStats, IHeal
 
 
     [field: SerializeField] public float DamageFlashAnimationDuration { get; private set; }
+    [field: SerializeField] public Material DamageFlashMaterial { get; private set; }
 
 
     [field: SerializeField] public float HitInvulnerabilityTime { get; private set; }
@@ -37,4 +38,7 @@ public class EnemyStats : ScriptableObject, IAnimationStats, ICombatStats, IHeal
 
     public float AdvanceAttackComboBufferTime => 0f;
     public int AttackComboCount => 0;
+    public int MaxHeals => 0;
+    public int HealAmount => 0;
+
 }

@@ -3,7 +3,7 @@ using System;
 
 [RequireComponent(typeof(PlayerMovementComponent), typeof(PlayerInputComponent), typeof(GroundCheckComponent))]
 [RequireComponent(typeof(ObstacleCheckComponent), typeof(AnimatorComponent), typeof(AttackTargetComponent))]
-[RequireComponent(typeof(HealthComponent))]
+[RequireComponent(typeof(HealthComponent), typeof(HealComponent), typeof(InteractorComponent))]
 public class PlayerStateComponent : MonoBehaviour
 {
     [field: SerializeField] public PlayerDeathHandler DeathHandler { get; private set; }
@@ -16,6 +16,8 @@ public class PlayerStateComponent : MonoBehaviour
     public AttackComboComponent AttackCombo { get; private set; }
     public AttackTargetComponent AttackTarget { get; private set; }
     public HealthComponent Health { get; private set; }
+    public HealComponent Heal { get; private set; }
+    public InteractorComponent Interactor { get; private set; }
 
     public Type CurrentState => m_StateMachine?.CurrentState;
     public event Action<Type> OnStateChanged;
@@ -36,6 +38,8 @@ public class PlayerStateComponent : MonoBehaviour
         AttackCombo = GetComponent<AttackComboComponent>();
         AttackTarget = GetComponent<AttackTargetComponent>();
         Health = GetComponent<HealthComponent>();
+        Heal = GetComponent<HealComponent>();
+        Interactor = GetComponent<InteractorComponent>();
 
         m_StateMachine = SetUpStateMachine();
 
@@ -58,13 +62,12 @@ public class PlayerStateComponent : MonoBehaviour
 
     private void HandleStateChanged()
     {
-        string stateName = CurrentState?.Name ?? "None";
-        m_DebugStrStateMachine = $"Current State: {stateName}";
         if (m_LogStateChanges)
         {
+            string stateName = CurrentState?.Name ?? "None";
+            m_DebugStrStateMachine = $"Current State: {stateName}";
             Debug.Log($"Player State Machine Current State changed to {stateName}");
         }
-
         OnStateChanged?.Invoke(CurrentState);
     }
 
@@ -82,6 +85,8 @@ public class PlayerStateComponent : MonoBehaviour
             .AddState(new PlayerAttackingState(this))
             .AddState(new PlayerBlockingState(this))
             .AddState(new PlayerStopBlockingState(this))
+            .AddState(new PlayerPickingUpHealState(this))
+            .AddState(new PlayerHealingState(this))
 
             .AddTransitionFromAnyState<PlayerDyingState>((state) =>
                 Health.CurrentHealth == 0 &&
@@ -95,6 +100,8 @@ public class PlayerStateComponent : MonoBehaviour
             .AddTransition<PlayerGroundedState, PlayerFallingState>(() => !GroundCheck.IsGrounded)
             .AddTransition<PlayerGroundedState, PlayerAttackingState>(() => Input.AttackBuffer.Check())
             .AddTransition<PlayerGroundedState, PlayerBlockingState>(IsBlockingRequestedAndAllowed)
+            .AddTransition<PlayerGroundedState, PlayerPickingUpHealState>(IsPickUpHealInteractionRequestedAndAllowed)
+            .AddTransition<PlayerGroundedState, PlayerHealingState>(IsHealRequestedAndAllowed)
 
             .AddTransition<PlayerJumpingState, PlayerFallingState>(() => Movement.VerticalVelocity <= 0f)
             .AddTransition<PlayerJumpingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
@@ -106,7 +113,7 @@ public class PlayerStateComponent : MonoBehaviour
             .AddTransition<PlayerDashingState, PlayerFallingState>(() => !GroundCheck.IsGrounded && IsDashFinished())
             .AddTransition<PlayerDashingState, PlayerStandingState>(() => GroundCheck.IsGrounded && IsDashFinished())
 
-            .AddTransition<PlayerStandingState, PlayerGroundedState>(() => Animator.IsStandingFinished)
+            .AddTransition<PlayerStandingState, PlayerGroundedState>(() => Animator.AnimationCompleted is AnimationEventType.StandCompleted)
 
             .AddTransition<PlayerKnockbackState, PlayerDyingState>(() => Health.CurrentHealth == 0 && GroundCheck.IsGrounded && IsKnockbackFinished())
             .AddTransition<PlayerKnockbackState, PlayerStandingState>(() => GroundCheck.JustLanded && IsKnockbackFinished())
@@ -122,6 +129,11 @@ public class PlayerStateComponent : MonoBehaviour
 
             .AddTransition<PlayerStopBlockingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
             .AddTransition<PlayerStopBlockingState, PlayerGroundedState>(() => Animator.BlockAnimationPhase is BlockAnimationPhase.NotBlocking)
+
+            .AddTransition<PlayerPickingUpHealState, PlayerKnockbackState>(HasBeenHitWithKnockback)
+            .AddTransition<PlayerPickingUpHealState, PlayerGroundedState>(() => Animator.AnimationCompleted is AnimationEventType.PickUpHealCompleted)
+
+            .AddTransition<PlayerHealingState, PlayerGroundedState>(() => Animator.AnimationCompleted is AnimationEventType.HealCompleted)
 
             .Build();
     }       
@@ -164,4 +176,17 @@ public class PlayerStateComponent : MonoBehaviour
 
     private bool IsStopBlockingRequestedAndAllowed() =>
         !Input.PressingBlock && Animator.BlockAnimationPhase is BlockAnimationPhase.Blocking;
+
+    private bool IsInteractionRequestedAndAllowed() =>
+        Input.InteractBuffer.Check() && Interactor.ClosestInteractable != null;
+
+    private bool IsPickUpHealInteractionRequestedAndAllowed() =>
+        IsInteractionRequestedAndAllowed() && 
+        !Heal.HasFullHeals &&
+        Interactor.ClosestInteractable.TryGetComponent<HealItem>(out _);
+
+    private bool IsHealRequestedAndAllowed() =>
+        Input.HealBuffer.Check() &&
+        Heal.CurrentHeals > 0 &&
+        Health.CurrentHealth < Health.MaxHealth;
 }

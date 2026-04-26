@@ -3,16 +3,13 @@ using UnityEngine;
 
 public class AnimationEvents : MonoBehaviour
 {
-    public event Action OnAttackDrawCompleted;
-    public event Action OnAttackStrikeCompleted;
-    public event Action OnAttackWithdrawCompleted;
-    public event Action OnStandCompleted;
-    public event Action OnStartBlockCompleted;
-    public event Action OnStopBlockCompleted;
-    public void AttackDrawCompleted() => OnAttackDrawCompleted?.Invoke();
-    public void AttackStrikeCompleted() => OnAttackStrikeCompleted?.Invoke();
-    public void AttackWithdrawCompleted() => OnAttackWithdrawCompleted?.Invoke();
-    public void StandCompleted() => OnStandCompleted?.Invoke();
-    public void StartBlockCompleted() => OnStartBlockCompleted?.Invoke();
-    public void StopBlockCompleted() => OnStopBlockCompleted?.Invoke();
+    public event Action<AnimationEventType> OnEventReceived;
+    public void AttackDrawCompleted() => OnEventReceived?.Invoke(AnimationEventType.AttackDrawCompleted);
+    public void AttackStrikeCompleted() => OnEventReceived?.Invoke(AnimationEventType.AttackStrikeCompleted);
+    public void AttackWithdrawCompleted() => OnEventReceived?.Invoke(AnimationEventType.AttackWithdrawCompleted);
+    public void StandCompleted() => OnEventReceived?.Invoke(AnimationEventType.StandCompleted);
+    public void StartBlockCompleted() => OnEventReceived?.Invoke(AnimationEventType.StartBlockCompleted);
+    public void StopBlockCompleted() => OnEventReceived?.Invoke(AnimationEventType.StopBlockCompleted);
+    public void PickUpHealCompleted() => OnEventReceived?.Invoke(AnimationEventType.PickUpHealCompleted);
+    public void HealCompleted() => OnEventReceived?.Invoke(AnimationEventType.HealCompleted);
 }

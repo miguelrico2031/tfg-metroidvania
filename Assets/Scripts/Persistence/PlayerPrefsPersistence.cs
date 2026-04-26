@@ -1,98 +1,61 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/PlayerPrefsPersistence")]
 public class PlayerPrefsPersistence : ScriptableObject, IPersistence
 {
-    [SerializeField] private bool m_LogOperation;
+    public event Action OnSave;
+    public event Action OnLoad;
 
-    public void Save(PersistentData key, object value)
+    [SerializeField] private bool m_LogSaveLoad;
+
+    private readonly Dictionary<PersistentData, string> m_Entries = new();
+
+    public void Save()
     {
-        string keyStr = key.ToString();
-        string valueStr = "";
-        if(value is float f)
+        OnSave?.Invoke();
+        foreach(var (key, value) in m_Entries)
         {
-            PlayerPrefs.SetFloat(keyStr, f);
-            valueStr = f.ToString();
-        }
-        else if(value is int i)
-        {
-            PlayerPrefs.SetInt(keyStr, i);
-            valueStr = i.ToString();
-
-        }
-        else if(value is string s)
-        {
-            PlayerPrefs.SetString(keyStr,s);
-            valueStr = s;
-        }
-        else if(value is ISerializable sz)
-        {
-            valueStr = sz.Serialize();
-            PlayerPrefs.SetString(keyStr, valueStr);
-        }
-        else
-        {
-            Assert.IsNotNull(null, "Unable to serialize data.");
+            PlayerPrefs.SetString(key.ToString(), value);
+            if(m_LogSaveLoad)
+            {
+                Debug.Log($"[PlayerPrefsPersistence] [Save] Key: {key.ToString()}, Value : [{value}]");
+            }
         }
         PlayerPrefs.Save();
-        Log(key, valueStr, true);
     }
-
-    public void Clear(PersistentData key)
+    public void Load()
     {
-        PlayerPrefs.DeleteKey(key.ToString());
-        PlayerPrefs.Save();
-        Log("Cleared", key.ToString());
+        m_Entries.Clear();
+        foreach(PersistentData key in Enum.GetValues(typeof(PersistentData)))
+        {
+            string value = PlayerPrefs.GetString(key.ToString());
+            if (!String.IsNullOrEmpty(value))
+            {
+                m_Entries[key] = value;
+                if (m_LogSaveLoad)
+                {
+                    Debug.Log($"[PlayerPrefsPersistence] [Load] Key: {key.ToString()}, Value : [{value}]");
+                }
+            }
+        }
+        OnLoad?.Invoke();
     }
-
-    public void ClearAll()
+    public void SetEntry(PersistentData key, string value)
     {
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
-        Log("Cleared", "All keys");
+        m_Entries[key] = value;
     }
-
-    public bool Load<T>(PersistentData key, out T output, T fallback = default)
+    public void ClearEntry(PersistentData key)
     {
-        string keyStr = key.ToString();
-        string valueStr = "";
-        output = fallback;
-        if (!PlayerPrefs.HasKey(keyStr))
-            return false;
-
-        if (typeof(T) == typeof(int))
-        {
-            output =  (T)(object)PlayerPrefs.GetInt(keyStr, (int)(object)fallback);
-            valueStr = output.ToString();
-        }
-        else if (typeof(T) == typeof(float))
-        {
-            output = (T)(object)PlayerPrefs.GetFloat(keyStr, (float)(object)fallback);
-            valueStr = output.ToString();
-        }
-        else if (typeof(T) == typeof(string))
-        {
-            output = (T)(object)PlayerPrefs.GetString(keyStr, (string)(object)fallback);
-            valueStr = output.ToString();
-        }
-        else if (typeof(ISerializable).IsAssignableFrom(typeof(T)))
-        {
-            valueStr = PlayerPrefs.GetString(keyStr);
-            (output as ISerializable).Deserialize(valueStr);
-        }
-        Log(key, valueStr, false);
-        return true;
+        m_Entries.Remove(key);
     }
-
-    private void Log(PersistentData key, string value, bool save) =>
-        Log(save ? "Saved" : "Loaded", $"Key: {key}, Value: {value}");
-
-    private void Log(string operation, string message)
+    public void ClearAllEntries()
     {
-        if(m_LogOperation)
-        {
-            Debug.Log($"[PlayerPrefsPersistence] [{operation}] {message}");
-        }
+        m_Entries.Clear();
+    }
+    public bool TryGetEntry(PersistentData key, out string value)
+    {
+        return m_Entries.TryGetValue(key, out value);
     }
 }

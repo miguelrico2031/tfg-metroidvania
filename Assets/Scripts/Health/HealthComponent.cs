@@ -1,11 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-public interface IHealthStats
-{
-    public int MaxHealth { get; }
-}
-
 public class HealthComponent : MonoBehaviour
 {
     public int CurrentHealth { get; private set; }
@@ -14,14 +9,26 @@ public class HealthComponent : MonoBehaviour
 
     [SerializeField] private DataReference<IHealthStats> m_Stats;
 
-    public void TakeDamage(int damage)
+    public bool TakeDamage(int damage)
     {
         int appliedDamage = Mathf.Min(damage, CurrentHealth);
         if (appliedDamage <= 0)
-            return;
+            return false;
 
         CurrentHealth -= appliedDamage;
         OnHealthChanged?.Invoke(-appliedDamage);
+        return true;
+    }
+
+    public bool Heal(int heal)
+    {
+        int appliedHeal = Mathf.Min(heal, MaxHealth - CurrentHealth);
+        if (appliedHeal <= 0 || CurrentHealth == 0)
+            return false;
+
+        CurrentHealth += appliedHeal;
+        OnHealthChanged?.Invoke(appliedHeal);
+        return true;
     }
 
     private void Awake()

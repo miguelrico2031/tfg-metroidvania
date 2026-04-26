@@ -273,8 +273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98081461e0026a44989afeb5f32551e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageFlashComponent
-  m_DefaultMaterial: {fileID: 2100000, guid: 71d715af238681a4ca71c34dbc9cc3bf, type: 2}
-  m_DamageFlashMaterial: {fileID: 2100000, guid: 07917a5811fa35d4ab38af8f8c3553df, type: 2}
   m_SpriteRenderer: {fileID: 3792824973122747305}
   m_Stats:
     m_Scriptable: {fileID: 11400000, guid: ced8cebd575475545963211bbb62abc0, type: 2}
@@ -624,8 +622,8 @@ MonoBehaviour:
   m_AttackData:
     Damage: 1
     HitKnockback:
-      Duration: 0.4
-      Distance: 2
+      Duration: 0.25
+      Distance: 3
       Height: 0
     BlockedKnockback:
       Duration: 0

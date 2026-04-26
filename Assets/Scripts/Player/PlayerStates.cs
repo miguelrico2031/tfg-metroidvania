@@ -200,4 +200,30 @@ public class PlayerStopBlockingState : APlayerState
     }
 }
 
+public class PlayerPickingUpHealState : APlayerState
+{
+    public PlayerPickingUpHealState(PlayerStateComponent player) : base(player) { }
+    public override void Start()
+    {
+        HealItem healItem = m_Player.Interactor.ClosestInteractable.GetComponent<HealItem>();
+        healItem.PickUp();
+        m_Player.Heal.AddHeal();
+        m_Player.Input.InteractBuffer.Clear();
+        m_Player.Animator.StartPickUpHealAnimation();
+    }
+}
+
+public class PlayerHealingState : APlayerState
+{
+    public PlayerHealingState(PlayerStateComponent player) : base(player) { }
+    public override void Start()
+    {
+        m_Player.Heal.ConsumeHeal();
+        m_Player.Input.HealBuffer.Clear();
+        m_Player.Animator.StartHealAnimation();
+    }
+}
+
+
+
 #endregion

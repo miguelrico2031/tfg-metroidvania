@@ -35,6 +35,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   <MaxHealth>k__BackingField: 5
+  <MaxHeals>k__BackingField: 3
+  <HealAmount>k__BackingField: 2
+  <DamageFlashMaterial>k__BackingField: {fileID: 2100000, guid: 07917a5811fa35d4ab38af8f8c3553df, type: 2}
   <DamageFlashAnimationDuration>k__BackingField: 0.125
   <AttackBufferTime>k__BackingField: 0.3
   <AdvanceAttackComboBufferTime>k__BackingField: 0.25

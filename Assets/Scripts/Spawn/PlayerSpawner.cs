@@ -9,12 +9,17 @@ public class PlayerSpawner : ScriptableObject
 
     public event Action OnPlayerSpawned;
 
-    public void SpawnPlayer()
+    public void SpawnPlayer(Transform existingPlayerTransform = null)
     {
-        var playerRoot = Instantiate(m_PlayerPrefab);
-        var playerTransform = playerRoot.transform.Find(m_PlayerGameObjectName);
-        var activeCheckpoint = Checkpoint.GetActiveCheckpoint();
-        playerTransform.position = activeCheckpoint.transform.position;
+        if (existingPlayerTransform == null)
+        {
+            var playerRoot = Instantiate(m_PlayerPrefab);
+            existingPlayerTransform = playerRoot.transform.Find(m_PlayerGameObjectName);
+        }
+        if (Checkpoint.TryGetActiveCheckpoint(out var activeCheckpoint))
+        {
+            existingPlayerTransform.position = activeCheckpoint.transform.position;
+        }
         OnPlayerSpawned?.Invoke();
     }
 }

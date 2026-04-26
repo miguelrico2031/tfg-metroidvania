@@ -70,6 +70,15 @@ public class PlayerStats : ScriptableObject, IAnimationStats, ICombatStats, IHea
     [field: Header("Health & Damage"), SerializeField, Tooltip("Max amount of health the player can have.")]
     public int MaxHealth { get; private set; }
 
+    [field: SerializeField, Tooltip("Max amount of heals the player can carry.")]
+    public int MaxHeals { get; private set; }
+
+    [field: SerializeField, Tooltip("Amount of health a heal heals.")]
+    public int HealAmount { get; private set; }
+
+    [field: SerializeField, Tooltip("Material of the damage flash effect.")]
+    public Material DamageFlashMaterial { get; private set; }
+
     [field: SerializeField, Tooltip("Duration of the Damage Flash animation.")]
     public float DamageFlashAnimationDuration { get; private set; }
 
@@ -87,7 +96,6 @@ public class PlayerStats : ScriptableObject, IAnimationStats, ICombatStats, IHea
 
     [field: SerializeField, Tooltip("Time window in seconds after being attacked when the player becomes invulnerable to other attacks.")]
     public float HitInvulnerabilityTime { get; private set; }
-
 
 
     //This is not currenlty used in the player components but it implements IPerceptionStats

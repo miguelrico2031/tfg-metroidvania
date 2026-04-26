@@ -42,6 +42,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8600008183807885606}
     m_Modifications:
+    - target: {fileID: 245592078267801542, guid: c68344bc1ddb014459a7c37c2fafc6b7, type: 3}
+      propertyPath: m_PlayerHeal
+      value: 
+      objectReference: {fileID: 5488309069823391589}
     - target: {fileID: 609475437223005174, guid: c68344bc1ddb014459a7c37c2fafc6b7, type: 3}
       propertyPath: m_PlayerHealth
       value: 
@@ -164,6 +168,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8600008183807885606}
     m_Modifications:
+    - target: {fileID: 1729637013290098885, guid: 6c650bd969d175640bbfeea535a7ee99, type: 3}
+      propertyPath: orthographic size
+      value: 8.4375
+      objectReference: {fileID: 0}
     - target: {fileID: 3189320157681058156, guid: 6c650bd969d175640bbfeea535a7ee99, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -306,6 +314,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b2af02068d50148aa8743a2ac1155a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+--- !u!114 &5488309069823391589 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3558698034495076201, guid: 0e72fb858a7348548ad4ee679353894b, type: 3}
+  m_PrefabInstance: {fileID: 9027866795152048140}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e91422019bda39f44bb474318a542537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HealComponent
 --- !u!4 &6415083912659592571 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2616479030495470967, guid: 0e72fb858a7348548ad4ee679353894b, type: 3}

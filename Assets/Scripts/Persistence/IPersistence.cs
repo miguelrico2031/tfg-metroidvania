@@ -1,20 +1,19 @@
-﻿
+﻿using System;
 public enum PersistentData
 {
     None = 0,
     ActiveCheckpoint,
-}
-
-public interface ISerializable
-{
-    public string Serialize();
-    public void Deserialize(string serializedData);
+    PlayerHeals,
 }
 
 public interface IPersistence
 {
-    public void Save(PersistentData key, object value);
-    public void Clear(PersistentData key);
-    public void ClearAll();
-    public bool Load<T>(PersistentData key, out T output, T fallback = default);
+    public event Action OnSave;
+    public event Action OnLoad;
+    public void Save();
+    public void Load();
+    public void SetEntry(PersistentData key, string value);
+    public void ClearEntry(PersistentData key);
+    public void ClearAllEntries();
+    public bool TryGetEntry(PersistentData key, out string value);
 }
