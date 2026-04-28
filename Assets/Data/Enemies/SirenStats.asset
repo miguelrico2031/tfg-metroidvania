@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 686e52aa4acbcc146b84a48728da02c8, type: 3}
+  m_Name: SirenStats
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
+  <MaxHealth>k__BackingField: 10
+  <EdgeCheckOffset>k__BackingField: {x: 0.8, y: 0.1}
+  <EdgeCheckDepth>k__BackingField: 0.4
+  <GroundCheckSize>k__BackingField: {x: 0, y: 0}
+  <GroundCheckOffset>k__BackingField: 0
+  <GroundLayers>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 64
+  <CoyoteTime>k__BackingField: 0
+  <ObstacleCheckSize>k__BackingField: {x: 0.3, y: 1}
+  <ObstacleCheckOffset>k__BackingField: 0
+  <ObstacleLayers>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 192
+  <DamageFlashAnimationDuration>k__BackingField: 0.125
+  <DamageFlashMaterial>k__BackingField: {fileID: 2100000, guid: 07917a5811fa35d4ab38af8f8c3553df, type: 2}
+  <HitInvulnerabilityTime>k__BackingField: 0.15
+  <DelayBeforeSeekingPost>k__BackingField: 1
+  <DelayBeforeAttackingMelee>k__BackingField: 0
+  <DelayAfterAttackingMelee>k__BackingField: 0
+  <AttackRangedCooldown>k__BackingField: 3
+  <ProjectileSpeed>k__BackingField: 5
+  <ProjectileMaxHeight>k__BackingField: 2
+  <ProjectilePrefab>k__BackingField: {fileID: 5778785337352768892, guid: a64e951061a031b4ca53f45ad7708c47, type: 3}

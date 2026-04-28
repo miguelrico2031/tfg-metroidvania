@@ -2,7 +2,7 @@
 
 
 [CreateAssetMenu(menuName = "ScriptableObjects/EnemyStats")]
-public class EnemyStats : ScriptableObject, IAnimationStats, ICombatStats, IHealthStats, IPerceptionStats
+public class EnemyStats : ScriptableObject, IAnimationStats, IAttackRangedStats, ICombatStats, IHealthStats, IPerceptionStats
 {
     [field: SerializeField] public int MaxHealth { get; private set; }
 
@@ -31,10 +31,16 @@ public class EnemyStats : ScriptableObject, IAnimationStats, ICombatStats, IHeal
 
     [field: SerializeField] public float HitInvulnerabilityTime { get; private set; }
 
-    [field: SerializeField] public float DelayBeforeAttacking { get; private set; }
-    [field: SerializeField] public float DelayAfterAttacking { get; private set; }
-
     [field: SerializeField] public float DelayBeforeSeekingPost { get; private set; }
+
+    [field: SerializeField] public float DelayBeforeAttackingMelee { get; private set; }
+    [field: SerializeField] public float DelayAfterAttackingMelee { get; private set; }
+
+    [field: SerializeField] public float AttackRangedCooldown { get; private set; }
+    [field: SerializeField] public float ProjectileSpeed { get; private set; }
+    [field: SerializeField] public float ProjectileMaxHeight { get; private set; }
+    [field: SerializeField] public Projectile ProjectilePrefab { get; private set; }
+
 
     public float AdvanceAttackComboBufferTime => 0f;
     public int AttackComboCount => 0;

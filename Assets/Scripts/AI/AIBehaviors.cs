@@ -74,7 +74,6 @@ public class WaitForSecondsTask : AAIBehaviorTask
         m_Timer -= Time.deltaTime;
         return m_Timer <= 0f ? BT.Output.Success : BT.Output.Running;
     }
-
     public override void End(BT.Output output)
     {
         m_Agent.BTLogAction($"Wait for {m_Time} seconds Ended");
@@ -106,28 +105,9 @@ public class MoveForwardTask : AAIBehaviorTask
     }
 }
 
-public class AttackTargetTask : AAIBehaviorTask
-{
-    public AttackTargetTask(AIAgentComponent agent) : base(agent) { }
-
-    public override void Start()
-    {
-        m_Agent.BTLogAction("Attack Started");
-        m_Agent.Animator.StartAttackAnimation(true);
-    }
-    public override BT.Output Run()
-    {
-        m_Agent.BTLogAction("Attack Run");
-        return m_Agent.Animator.AttackAnimationPhaseCompletedThisFrame is AttackAnimationPhase.Withdrawing
-            ? BT.Output.Success
-            : BT.Output.Running;
-    }
-}
-
 public class IdleTask : AAIBehaviorTask
 {
     public IdleTask(AIAgentComponent agent) : base(agent) { }
-
     public override void Start()
     {
         m_Agent.BTLogAction("Idle Started");
@@ -138,5 +118,36 @@ public class IdleTask : AAIBehaviorTask
     {
         m_Agent.BTLogAction("Idle Run");
         return BT.Output.Running;
+    }
+}
+
+public class AttackMeleeTask : AAIBehaviorTask
+{
+    public AttackMeleeTask(AIAgentComponent agent) : base(agent) { }
+    public override void Start()
+    {
+        m_Agent.BTLogAction("Attack Melee Started");
+        m_Agent.Animator.StartAttackAnimation(true);
+    }
+    public override BT.Output Run()
+    {
+        m_Agent.BTLogAction("Attack Melee Run");
+        return m_Agent.Animator.AttackAnimationPhaseCompletedThisFrame is AttackAnimationPhase.Withdrawing
+            ? BT.Output.Success
+            : BT.Output.Running;
+    }
+}
+
+public class AttackRangedTask : AAIBehaviorTask
+{
+    public AttackRangedTask(AIAgentComponent agent) : base(agent) { }
+    public override void Start()
+    {
+        Vector2 targetPosition = m_Agent.Targetter.ActiveTarget.transform.position;
+        m_Agent.AttackRanged.CastProjectile(targetPosition);
+    }
+    public override BT.Output Run()
+    {
+        return m_Agent.AttackRanged.IsOnCooldown ? BT.Output.Running : BT.Output.Success;
     }
 }

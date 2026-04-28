@@ -9,6 +9,15 @@ public interface ICombatStats
     public int AttackComboCount { get; }
 }
 
+public interface IAttackRangedStats
+{
+    public float AttackRangedCooldown { get; }
+    public float ProjectileSpeed { get; }
+    public float ProjectileMaxHeight { get; }
+    public Projectile ProjectilePrefab { get; }
+
+}
+
 public interface IAttackSource
 {
     public Vector2 Position { get; }

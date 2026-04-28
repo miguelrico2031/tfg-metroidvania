@@ -92,7 +92,7 @@ public class AnimatorComponent : MonoBehaviour
     {
         SetAnimation(s_Death);
     }
-    public void StartAttackAnimation(bool isFirstAttack)
+    public void StartAttackAnimation(bool isFirstAttack) //Refers to melee default attack
     {
         SetAnimation(isFirstAttack ? s_Attack : s_AttackContinue);
         AttackAnimationPhase = AttackAnimationPhase.Drawing;

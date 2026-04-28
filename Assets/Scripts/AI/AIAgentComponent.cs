@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 
-[RequireComponent(typeof(AnimatorComponent), typeof(ObstacleCheckComponent), typeof(EdgeCheckComponent))]
-[RequireComponent(typeof(AITargetterComponent), typeof(AIMovementComponent), typeof(HealthComponent))]
-[RequireComponent(typeof(AttackTargetComponent))]
+[RequireComponent(typeof(AnimatorComponent), typeof(HealthComponent), typeof(AIMovementComponent))]
 public class AIAgentComponent : MonoBehaviour
 {
     [field: SerializeField] public EnemyStats Stats { get; private set; }
-
+    
+    // Required components
+    public AnimatorComponent Animator { get; private set; }
+    public HealthComponent Health { get; private set; }
     public AIMovementComponent Movement { get; private set; }
+
+    //Optional components
     public ObstacleCheckComponent ObstacleCheck { get; private set; }
     public EdgeCheckComponent EdgeCheck { get; private set; }
     public AITargetterComponent Targetter { get; private set; }
-    public AnimatorComponent Animator { get; private set; }
-    public HealthComponent Health { get; private set; }
-    public AttackTargetComponent AttackTarget { get; private set; }
+    public AttackRangedComponent AttackRanged { get; private set; }
 
     [SerializeField] private BehaviorTree m_SelectedBehaviorTree;
     [SerializeField] private bool m_LogBehavior;
@@ -24,13 +25,13 @@ public class AIAgentComponent : MonoBehaviour
 
     private void Awake()
     {
+        Animator = GetComponent<AnimatorComponent>();
+        Health = GetComponent<HealthComponent>();
         Movement = GetComponent<AIMovementComponent>();
         ObstacleCheck = GetComponent<ObstacleCheckComponent>();
         EdgeCheck = GetComponent<EdgeCheckComponent>();
         Targetter = GetComponent<AITargetterComponent>();
-        Animator = GetComponent<AnimatorComponent>();
-        Health = GetComponent<HealthComponent>();
-        AttackTarget = GetComponent<AttackTargetComponent>();
+        AttackRanged = GetComponent<AttackRangedComponent>();
 
         m_StateMachine = SetUpStateMachine();
         m_PostPosition = transform.position;
@@ -68,9 +69,12 @@ public class AIAgentComponent : MonoBehaviour
         BT.INode selectedBT = m_SelectedBehaviorTree switch
         {
             BehaviorTree.Patrol => m_PatrolBT,
+            BehaviorTree.SeekPost => m_SeekPostBT,
             BehaviorTree.ChaseTarget => m_ChaseTargetBT,
-            BehaviorTree.TryAttackTarget => m_TryAttackTargetBT,
-            BehaviorTree.CrabClawBehavior => m_CrabClawBT,
+            BehaviorTree.TryAttackMelee => m_TryAttackMeleeBT,
+            BehaviorTree.TryAttackRanged => m_TryAttackRangedBT,
+            BehaviorTree.CrabBehavior => m_CrabBT,
+            BehaviorTree.SirenBehavior => m_SirenBT,
             _ => null
         };
         return new BT.BehaviorTree(selectedBT);
@@ -141,6 +145,12 @@ public class AIAgentComponent : MonoBehaviour
         BTLogCondition($"IsInPost: {isInPost}");
         return isInPost;
     }
+
+    private bool IsRangedAttackOnCooldown()
+    {
+        BTLogCondition($"IsRangedAttackOnCooldown: {AttackRanged.IsOnCooldown}");
+        return AttackRanged.IsOnCooldown;
+    }
     #endregion
 
     #region ACTIONS
@@ -170,9 +180,12 @@ public class AIAgentComponent : MonoBehaviour
     enum BehaviorTree
     {
         Patrol,
+        SeekPost,
         ChaseTarget,
-        TryAttackTarget,
-        CrabClawBehavior,
+        TryAttackMelee,
+        TryAttackRanged,
+        CrabBehavior,
+        SirenBehavior
     }
 
     private BT.INode m_PatrolBT => new BT.ReactiveSequencer(
@@ -210,25 +223,43 @@ public class AIAgentComponent : MonoBehaviour
         new BT.TaskAction(new MoveForwardTask(this))
     );
 
-    private BT.INode m_TryAttackTargetBT => new BT.Sequencer(
+    private BT.INode m_TryAttackMeleeBT => new BT.Sequencer(
         new BT.Condition(HasAliveTarget),
         new BT.Condition(IsTargetMelee),
         new BT.InstantAction(Stop),
-        new BT.TaskAction(new WaitForSecondsTask(this, Stats.DelayBeforeAttacking)),
-        new BT.TaskAction(new AttackTargetTask(this)),
-        new BT.TaskAction(new WaitForSecondsTask(this, Stats.DelayAfterAttacking))
+        new BT.TaskAction(new WaitForSecondsTask(this, Stats.DelayBeforeAttackingMelee)),
+        new BT.TaskAction(new AttackMeleeTask(this)),
+        new BT.TaskAction(new WaitForSecondsTask(this, Stats.DelayAfterAttackingMelee))
     );
 
-    private BT.INode m_CrabClawBT => new BT.Loop(
+    private BT.INode m_TryAttackRangedBT => new BT.Sequencer(
+        new BT.Condition(HasAliveTarget),
+        new BT.Selector(
+            new BT.Condition(IsFacingTarget),
+            new BT.InstantAction(Turn)
+        ),
+        new BT.Inverter(new BT.Condition(IsRangedAttackOnCooldown)),
+        new BT.TaskAction(new AttackRangedTask(this))
+    );
+
+    private BT.INode m_CrabBT => new BT.Loop(
         new BT.ReactiveSelector(
             new BT.ReactiveSelector(
-                m_TryAttackTargetBT,
+                m_TryAttackMeleeBT,
                 new BT.ReactiveSequencer(
                     new BT.Condition(HasAliveTarget),
                     m_ChaseTargetBT
                 )
             ),
             m_SeekPostBT
+        ),
+        BT.Loop.Type.UntilFailure
+    );
+
+    private BT.INode m_SirenBT => new BT.Loop(
+        new BT.ReactiveSelector(
+            m_TryAttackRangedBT,
+            new BT.TaskAction(new IdleTask(this))
         ),
         BT.Loop.Type.UntilFailure
     );
