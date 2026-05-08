@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 4881630100241806387}
   - component: {fileID: 7330242573039243717}
   - component: {fileID: 5778785337352768892}
-  m_Layer: 0
+  - component: {fileID: 4380284620500611179}
+  m_Layer: 9
   m_Name: Siren Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +86,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.2865774, g: 0.408805, b: 0.17354925, a: 1}
+  m_Color: {r: 0.70208484, g: 0.8238993, b: 0.58812934, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,7 +102,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701532258015360580}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -124,7 +125,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -170,3 +171,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   m_FaceMovement: 0
+--- !u!114 &4380284620500611179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701532258015360580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 669b15f690e96f84eb5cc0237a09d3d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hitbox
+  <HitboxMode>k__BackingField: 1
+  m_PersistentAttackCooldown: 1
+  m_AttackData:
+    Damage: 1
+    HitKnockback:
+      Duration: 0.15
+      Distance: 1.5
+      Height: 0
+    BlockedKnockback:
+      Duration: 0
+      Distance: 0
+      Height: 0
+    Faction: 1
+    Position: {x: 0, y: 0}
+    Velocity: {x: 0, y: 0}
+  m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}

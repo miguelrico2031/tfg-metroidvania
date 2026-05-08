@@ -33,6 +33,8 @@ MonoBehaviour:
   <DelayBeforeAttackingMelee>k__BackingField: 0
   <DelayAfterAttackingMelee>k__BackingField: 0
   <AttackRangedCooldown>k__BackingField: 3
-  <ProjectileSpeed>k__BackingField: 5
+  <ProjectileSpeed>k__BackingField: 7
   <ProjectileMaxHeight>k__BackingField: 2
+  <MinCastingDistance>k__BackingField: 2
+  <TargetPositionOffset>k__BackingField: {x: 0, y: 1.5}
   <ProjectilePrefab>k__BackingField: {fileID: 5778785337352768892, guid: a64e951061a031b4ca53f45ad7708c47, type: 3}

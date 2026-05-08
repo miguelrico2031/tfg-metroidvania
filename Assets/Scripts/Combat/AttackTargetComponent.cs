@@ -47,11 +47,11 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
 
         if(IsBlockingAttack(attack))
         {
-            ResolvedAttackThisFrame = new(attack.Damage, attack.BlockedKnockback, attack.Source, AttackResult.Blocked);
+            ResolvedAttackThisFrame = new(attack.Damage, attack.BlockedKnockback, attack.Position, attack.Velocity, AttackResult.Blocked);
         }
         else
         {
-            ResolvedAttackThisFrame = new(attack.Damage, attack.HitKnockback, attack.Source, AttackResult.Hit);
+            ResolvedAttackThisFrame = new(attack.Damage, attack.HitKnockback, attack.Position, attack.Velocity, AttackResult.Hit);
             if (m_Health != null)
             {
                 m_Health.TakeDamage(attack.Damage);
@@ -98,7 +98,7 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
     {
         if (!IsBlocking)
             return false;
-        int directionToAttack = Mathf.CeilToInt(Mathf.Sign(attack.Source.Position.x - transform.position.x));
+        int directionToAttack = Mathf.CeilToInt(Mathf.Sign(attack.Position.x - transform.position.x));
         return directionToAttack == BlockingDirection;
     }
 
@@ -106,13 +106,15 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
     {
         public readonly int Damage;
         public readonly KnockbackData Knockback;
-        public readonly IAttackSource Source;
+        public readonly Vector2 Position;
+        public readonly Vector2 Velocity;
         public readonly AttackResult Result;
-        public ResolvedAttack(int damage, KnockbackData knockback, IAttackSource source, AttackResult result)
+        public ResolvedAttack(int damage, KnockbackData knockback, Vector2 position, Vector2 velocity, AttackResult result)
         {
             Damage = damage;
             Knockback = knockback;
-            Source = source;
+            Position = position;
+            Velocity = velocity;
             Result = result;
         }
     }

@@ -151,6 +151,14 @@ public class AIAgentComponent : MonoBehaviour
         BTLogCondition($"IsRangedAttackOnCooldown: {AttackRanged.IsOnCooldown}");
         return AttackRanged.IsOnCooldown;
     }
+
+    private bool IsTargetFarEnoughForRangedAttack()
+    {
+        Vector2 targetPosition = Targetter.ActiveTarget.transform.position;
+        bool isFarEnough = AttackRanged.IsTargetFarEnough(targetPosition);
+        BTLogCondition($"IsTargetFarEnoughForRangedAttack: {isFarEnough}");
+        return isFarEnough;
+    }
     #endregion
 
     #region ACTIONS
@@ -239,6 +247,7 @@ public class AIAgentComponent : MonoBehaviour
             new BT.InstantAction(Turn)
         ),
         new BT.Inverter(new BT.Condition(IsRangedAttackOnCooldown)),
+        new BT.Condition(IsTargetFarEnoughForRangedAttack),
         new BT.TaskAction(new AttackRangedTask(this))
     );
 

@@ -5,30 +5,30 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Collider2D))]
-public class Hitbox : MonoBehaviour, IAttackSource
+public class Hitbox : MonoBehaviour
 {
-    public Vector2 Position => transform.position;
-    public Faction Faction => m_Faction.Faction;
-
     [field: SerializeField] public Mode HitboxMode { get; private set; }
 
     [SerializeField] private float m_PersistentAttackCooldown;
     [SerializeField] private AttackData m_AttackData;
     [SerializeField] private FactionsData m_FactionsData;
-    [SerializeField] private FactionComponent m_Faction;
 
     private readonly HashSet<IAttackTarget> m_AttackedThisActivation = new();
     private readonly Dictionary<IAttackTarget, float> m_TargetsOnCooldown = new();
     private readonly Dictionary<IAttackTarget, float> m_UpdatedTargetsOnCooldown = new();
     private readonly Collider2D[] m_Overlaps = new Collider2D[10];
     private Collider2D m_Collider;
+    private Rigidbody2D m_Rigidbody;
+
+    private void Awake()
+    {
+        m_Collider = GetComponent<Collider2D>();
+        m_Collider.isTrigger = true;
+        m_Rigidbody = GetComponent<Rigidbody2D>();
+    }
 
     private void OnEnable()
     {
-        m_AttackData.Source = this;
-
-        m_Collider = GetComponent<Collider2D>();
-        m_Collider.isTrigger = true;
         m_Collider.enabled = true;
         if (HitboxMode is Mode.OneShot)
         {
@@ -123,10 +123,13 @@ public class Hitbox : MonoBehaviour, IAttackSource
             !other.TryGetComponent<Hurtbox>(out var hurtbox) ||
             !hurtbox.IsActive ||
             HasJustAttackedTarget(hurtbox.AttackTarget) ||
-            !m_FactionsData.IsHostileTo(Faction, hurtbox.AttackTarget.Faction))
+            !m_FactionsData.IsHostileTo(m_AttackData.Faction, hurtbox.AttackTarget.Faction))
             return;
 
-        AttackResult result = hurtbox.AttackTarget.ResolveAttack(m_AttackData);
+        AttackData attackData = m_AttackData;
+        attackData.Position = transform.position;
+        attackData.Velocity = m_Rigidbody != null ? m_Rigidbody.linearVelocity : Vector2.zero;
+        hurtbox.AttackTarget.ResolveAttack(attackData);
 
         if (HitboxMode is Mode.OneShot)
         {

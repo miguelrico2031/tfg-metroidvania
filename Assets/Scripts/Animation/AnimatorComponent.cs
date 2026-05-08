@@ -46,6 +46,7 @@ public class AnimatorComponent : MonoBehaviour
     private static readonly int s_StopBlock = Animator.StringToHash("StopBlock");
     private static readonly int s_PickUpHeal = Animator.StringToHash("PickUpHeal");
     private static readonly int s_Heal = Animator.StringToHash("Heal");
+    private static readonly int s_Cast = Animator.StringToHash("Cast");
 
     private bool m_IsGrounded;
     private int m_TriggerThisFrame = -1;
@@ -120,6 +121,11 @@ public class AnimatorComponent : MonoBehaviour
         SetAnimation(s_Heal);
     }
 
+    public void StartCastAnimation()
+    {
+        SetAnimation(s_Cast);
+    }
+
     private void OnEnable()
     {
         if (m_AnimationEvents != null)
@@ -191,6 +197,8 @@ public class AnimatorComponent : MonoBehaviour
             case AnimationEventType.StandCompleted:
             case AnimationEventType.PickUpHealCompleted:
             case AnimationEventType.HealCompleted:
+            case AnimationEventType.CastCompleted:
+
                 AnimationCompleted = type;
                 break;
         }

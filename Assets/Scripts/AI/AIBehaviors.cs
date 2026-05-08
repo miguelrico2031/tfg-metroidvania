@@ -145,9 +145,10 @@ public class AttackRangedTask : AAIBehaviorTask
     {
         Vector2 targetPosition = m_Agent.Targetter.ActiveTarget.transform.position;
         m_Agent.AttackRanged.CastProjectile(targetPosition);
+        m_Agent.Animator.StartCastAnimation();
     }
     public override BT.Output Run()
     {
-        return m_Agent.AttackRanged.IsOnCooldown ? BT.Output.Running : BT.Output.Success;
+        return m_Agent.Animator.AnimationCompleted == AnimationEventType.CastCompleted ? BT.Output.Success : BT.Output.Running;
     }
 }

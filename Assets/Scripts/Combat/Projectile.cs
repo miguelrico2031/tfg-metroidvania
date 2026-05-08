@@ -1,45 +1,45 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private bool m_FaceMovement;
 
     private Rigidbody2D m_Rigidbody;
+    private Collider2D m_Collider;
 
     private Vector2 m_StartPosition;
     private Vector2 m_TargetPosition;
-    private float m_Speed = 10f;
     private float m_FlightDurationInv;
     private float m_ElapsedTime;
     private bool m_IsLaunched;
-    private float m_ArcHeight = 3f;
+    private float m_ArcHeight;
 
     private void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody2D>();
-
         m_Rigidbody.gravityScale = 0f;
         m_Rigidbody.freezeRotation = true;
+
+        m_Collider = GetComponent<Collider2D>();
+        m_Collider.isTrigger = true;
     }
 
-    public void Cast(Vector2 startPosition, Vector2 targetPosition, float speed, float archeight = 0f)
+    public void Cast(Vector2 startPosition, Vector2 targetPosition, float speed, float arcHeight = 0f)
     {
         m_StartPosition = startPosition;
         m_TargetPosition = targetPosition;
+        m_ArcHeight = arcHeight;
 
-        float distance = Vector2.Distance(startPosition, targetPosition);
-        m_FlightDurationInv =  m_Speed / distance; // 1 / flight duration
+        float distance = Vector2.Distance(m_StartPosition, targetPosition);
+        m_FlightDurationInv =  speed / distance; // 1 / flight duration
 
         m_ElapsedTime = 0f;
         m_IsLaunched = true;
 
         m_Rigidbody.position = startPosition;
-
-        m_Speed = speed;
-        m_ArcHeight = archeight;
+        m_Rigidbody.linearVelocity = ComputeVelocity(0f);
     }
-
 
     private void FixedUpdate()
     {
@@ -47,24 +47,31 @@ public class Projectile : MonoBehaviour
 
         m_ElapsedTime += Time.fixedDeltaTime;
         float t = m_ElapsedTime * m_FlightDurationInv;
-        Vector2 nextPosition = Vector2.LerpUnclamped(m_StartPosition, m_TargetPosition, t);
-
-        if(m_ArcHeight > 0f)
-        {
-            float arcOffset = -4f * m_ArcHeight * (t * t - t);
-            nextPosition = new Vector2(nextPosition.x, nextPosition.y + arcOffset);
-        }
+        m_Rigidbody.linearVelocity = ComputeVelocity(t);
 
         if(m_FaceMovement)
         {
-            Vector2 delta = nextPosition - m_Rigidbody.position;
-            if (delta.sqrMagnitude > 0.0001f)
+            if (m_Rigidbody.linearVelocity.sqrMagnitude > 0.0001f)
             {
-                float angle = Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg;
+                float angle = Mathf.Atan2(m_Rigidbody.linearVelocityY, m_Rigidbody.linearVelocityX) * Mathf.Rad2Deg;
                 m_Rigidbody.MoveRotation(angle);
             }
         }
+    }
 
-        m_Rigidbody.MovePosition(nextPosition);
+    private void OnTriggerEnter2D(Collider2D _)
+    {
+        //Allow its Hitbox to perform the attack if hit an attack target before destruction
+        Destroy(gameObject, Time.deltaTime);
+    }
+
+    private Vector2 ComputeVelocity(float t)
+    {
+        Vector2 baseVelocity = (m_TargetPosition - m_StartPosition) * m_FlightDurationInv;
+
+        // d/dt[-4h(t²-t)] = -4h(2t-1), then multiplied by flightDurationInv (chain rule)
+        float arcVerticalVelocity = -4f * m_ArcHeight * (2f * t - 1f) * m_FlightDurationInv;
+
+        return new Vector2(baseVelocity.x, baseVelocity.y + arcVerticalVelocity);
     }
 }

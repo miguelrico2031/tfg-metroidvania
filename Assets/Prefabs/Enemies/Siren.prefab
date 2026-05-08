@@ -103,8 +103,9 @@ MonoBehaviour:
       Duration: 0
       Distance: 0
       Height: 0
+    Position: {x: 0, y: 0}
+    Faction: 1
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
-  m_Faction: {fileID: 3528614660374757924}
 --- !u!1 &4084515008452023532
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,7 +456,7 @@ Animator:
   m_GameObject: {fileID: 4396334398339633085}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 13cac3fdab367c14b83f7cea499ee964, type: 2}
+  m_Controller: {fileID: 9100000, guid: a1a9c2f72f5a7f34ea4e0429e7619476, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

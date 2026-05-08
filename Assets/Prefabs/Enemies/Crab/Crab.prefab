@@ -478,8 +478,9 @@ MonoBehaviour:
       Duration: 0.25
       Distance: 3
       Height: 0
+    Position: {x: 0, y: 0}
+    Faction: 1
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
-  m_Faction: {fileID: 8743556247166418084}
 --- !u!61 &6081950187138758918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -629,8 +630,9 @@ MonoBehaviour:
       Duration: 0
       Distance: 0
       Height: 0
+    Position: {x: 0, y: 0}
+    Faction: 1
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
-  m_Faction: {fileID: 8743556247166418084}
 --- !u!1 &8225396941178672427
 GameObject:
   m_ObjectHideFlags: 0

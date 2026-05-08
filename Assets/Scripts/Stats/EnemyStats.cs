@@ -39,8 +39,9 @@ public class EnemyStats : ScriptableObject, IAnimationStats, IAttackRangedStats,
     [field: SerializeField] public float AttackRangedCooldown { get; private set; }
     [field: SerializeField] public float ProjectileSpeed { get; private set; }
     [field: SerializeField] public float ProjectileMaxHeight { get; private set; }
+    [field: SerializeField] public float MinCastingDistance { get; private set; }
+    [field: SerializeField] public Vector2 TargetPositionOffset { get; private set; }
     [field: SerializeField] public Projectile ProjectilePrefab { get; private set; }
-
 
     public float AdvanceAttackComboBufferTime => 0f;
     public int AttackComboCount => 0;

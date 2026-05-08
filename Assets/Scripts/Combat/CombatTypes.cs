@@ -14,14 +14,10 @@ public interface IAttackRangedStats
     public float AttackRangedCooldown { get; }
     public float ProjectileSpeed { get; }
     public float ProjectileMaxHeight { get; }
+    public float MinCastingDistance { get; }
+    public Vector2 TargetPositionOffset { get;}
     public Projectile ProjectilePrefab { get; }
 
-}
-
-public interface IAttackSource
-{
-    public Vector2 Position { get; }
-    public Faction Faction { get; }
 }
 
 public interface IAttackTarget
@@ -52,6 +48,8 @@ public struct AttackData
     public int Damage;
     public KnockbackData HitKnockback;
     public KnockbackData BlockedKnockback;
-    public IAttackSource Source;
+    public Faction Faction;
+    [HideInInspector] public Vector2 Position;
+    [HideInInspector] public Vector2 Velocity;
 }
 

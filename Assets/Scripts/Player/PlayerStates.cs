@@ -110,7 +110,7 @@ public class PlayerKnockbackState : APlayerState
     public override void Start()
     {
         var attack = m_Player.AttackTarget.ResolvedAttackThisFrame;
-        m_Player.Movement.ApplyAttackKnockback(attack.Knockback, attack.Source.Position);
+        m_Player.Movement.ApplyAttackKnockback(attack.Knockback, attack.Position, attack.Velocity);
         m_Player.AttackTarget.SetInvulnerable(true);
         m_IsAirborne = attack.Knockback.Height > 0.1f || !m_Player.GroundCheck.IsGrounded;
         m_Player.Animator.StartKnockbackAnimation(m_IsAirborne);
