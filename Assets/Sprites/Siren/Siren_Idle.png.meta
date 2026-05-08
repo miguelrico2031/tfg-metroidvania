@@ -1,0 +1,899 @@
+fileFormatVersion: 2
+guid: 391263f02faa4724ba9a592992ac4a49
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4680685351591473747
+    second: Merman_Idle_0
+  - first:
+      213: -1460455690329489991
+    second: Merman_Idle_1
+  - first:
+      213: 1088329480734778421
+    second: Merman_Idle_2
+  - first:
+      213: 7131890236224188897
+    second: Merman_Idle_3
+  - first:
+      213: 547035677587263365
+    second: Merman_Idle_4
+  - first:
+      213: 4004777060530107711
+    second: Merman_Idle_5
+  - first:
+      213: -3251925519154770404
+    second: Merman_Idle_6
+  - first:
+      213: 2441634689390198138
+    second: Merman_Idle_7
+  - first:
+      213: -5631253474883322403
+    second: Merman_Idle_8
+  - first:
+      213: -882876583477481280
+    second: Merman_Idle_9
+  - first:
+      213: 8135229582068137487
+    second: Merman_Idle_10
+  - first:
+      213: 7046508902836979528
+    second: Merman_Idle_11
+  - first:
+      213: 1015489497775881693
+    second: Merman_Idle_12
+  - first:
+      213: 1366646566973288901
+    second: Merman_Idle_13
+  - first:
+      213: -2134374381984620751
+    second: Merman_Idle_14
+  - first:
+      213: 2695673776919610972
+    second: Merman_Idle_15
+  - first:
+      213: 8233175162516572914
+    second: Merman_Idle_16
+  - first:
+      213: 3908746113042776481
+    second: Merman_Idle_17
+  - first:
+      213: -5639511886582121553
+    second: Merman_Idle_18
+  - first:
+      213: -3463319945677472419
+    second: Merman_Idle_19
+  - first:
+      213: 292422648300764906
+    second: Merman_Idle_20
+  - first:
+      213: -5550628762934006921
+    second: Merman_Idle_21
+  - first:
+      213: -1928384546125226353
+    second: Merman_Idle_22
+  - first:
+      213: -4907199988443532112
+    second: Merman_Idle_23
+  - first:
+      213: -8948177016967059391
+    second: Merman_Idle_24
+  - first:
+      213: 2465814243963239614
+    second: Merman_Idle_25
+  - first:
+      213: 5053913804733958610
+    second: Merman_Idle_26
+  - first:
+      213: -633908715428437776
+    second: Merman_Idle_27
+  - first:
+      213: 491538280552590290
+    second: Merman_Idle_28
+  - first:
+      213: -3048409034886062261
+    second: Merman_Idle_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Merman_Idle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 117
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 352fbf6278225f040800000000000000
+      internalID: 4680685351591473747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 117
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bd76b7994b6bbbe0800000000000000
+      internalID: -1460455690329489991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 117
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53428c185e58a1f00800000000000000
+      internalID: 1088329480734778421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_3
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 117
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e1383b226099f260800000000000000
+      internalID: 7131890236224188897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_4
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 117
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58fcd0aec06779700800000000000000
+      internalID: 547035677587263365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_5
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 117
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f35b781b483d39730800000000000000
+      internalID: 4004777060530107711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_6
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 117
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1e80c248f6ded2d0800000000000000
+      internalID: -3251925519154770404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_7
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 117
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7dbf5c40dd62e120800000000000000
+      internalID: 2441634689390198138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_8
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 117
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddd356ddcc4c9d1b0800000000000000
+      internalID: -5631253474883322403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_9
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 117
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c0705dcc646fb3f0800000000000000
+      internalID: -882876583477481280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 59
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0ebb6dd33426e070800000000000000
+      internalID: 8135229582068137487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_11
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 59
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 847c93c538a3ac160800000000000000
+      internalID: 7046508902836979528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_12
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 59
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddd3214615eb71e00800000000000000
+      internalID: 1015489497775881693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_13
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 59
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c133f5dfcd47f210800000000000000
+      internalID: 1366646566973288901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_14
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 59
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13fdc18decd2162e0800000000000000
+      internalID: -2134374381984620751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_15
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 59
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5601af8405f86520800000000000000
+      internalID: 2695673776919610972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_16
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 59
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fa8e57603d124270800000000000000
+      internalID: 8233175162516572914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_17
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 59
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a18a1161e7ae3630800000000000000
+      internalID: 3908746113042776481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_18
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 59
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fabfdad81dd6cb1b0800000000000000
+      internalID: -5639511886582121553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_19
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 59
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5d7e5edbd0dfefc0800000000000000
+      internalID: -3463319945677472419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aeefe3c69d4ee0400800000000000000
+      internalID: 292422648300764906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_21
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77ba0417c8438f2b0800000000000000
+      internalID: -5550628762934006921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_22
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 1
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8e5ad9e8700d35e0800000000000000
+      internalID: -1928384546125226353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_23
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 1
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b4b5072c9f16ebb0800000000000000
+      internalID: -4907199988443532112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_24
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 1
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1482d5c9960b1d380800000000000000
+      internalID: -8948177016967059391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_25
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 1
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebcf68d8df4583220800000000000000
+      internalID: 2465814243963239614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_26
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 1
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d94c9024db132640800000000000000
+      internalID: 5053913804733958610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_27
+      rect:
+        serializedVersion: 2
+        x: 511
+        y: 1
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f02dd4c167e337f0800000000000000
+      internalID: -633908715428437776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_28
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 1
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dbe7dd367b42d600800000000000000
+      internalID: 491538280552590290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Merman_Idle_29
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 1
+        width: 73
+        height: 58
+      alignment: 9
+      pivot: {x: 0.6849315, y: 0.22413793}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4f56894220e1b5d0800000000000000
+      internalID: -3048409034886062261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 9c210e35283757448921668df8a4fd70
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":10.0,"y":3.0},"gridSpriteSize":{"x":73.0,"y":58.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.6849315166473389,"y":0.22413793206214906},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Merman_Idle_0: 4680685351591473747
+      Merman_Idle_1: -1460455690329489991
+      Merman_Idle_10: 8135229582068137487
+      Merman_Idle_11: 7046508902836979528
+      Merman_Idle_12: 1015489497775881693
+      Merman_Idle_13: 1366646566973288901
+      Merman_Idle_14: -2134374381984620751
+      Merman_Idle_15: 2695673776919610972
+      Merman_Idle_16: 8233175162516572914
+      Merman_Idle_17: 3908746113042776481
+      Merman_Idle_18: -5639511886582121553
+      Merman_Idle_19: -3463319945677472419
+      Merman_Idle_2: 1088329480734778421
+      Merman_Idle_20: 292422648300764906
+      Merman_Idle_21: -5550628762934006921
+      Merman_Idle_22: -1928384546125226353
+      Merman_Idle_23: -4907199988443532112
+      Merman_Idle_24: -8948177016967059391
+      Merman_Idle_25: 2465814243963239614
+      Merman_Idle_26: 5053913804733958610
+      Merman_Idle_27: -633908715428437776
+      Merman_Idle_28: 491538280552590290
+      Merman_Idle_29: -3048409034886062261
+      Merman_Idle_3: 7131890236224188897
+      Merman_Idle_4: 547035677587263365
+      Merman_Idle_5: 4004777060530107711
+      Merman_Idle_6: -3251925519154770404
+      Merman_Idle_7: 2441634689390198138
+      Merman_Idle_8: -5631253474883322403
+      Merman_Idle_9: -882876583477481280
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
