@@ -17,15 +17,27 @@ public class Checkpoint : MonoBehaviour
             level == SceneManager.GetActiveScene().name;
     }
 
+    public void SetAsActiveCheckpoint()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        m_Persistence.Value.SetEntry(PersistentData.ActiveCheckpointLevel, sceneName);
+        m_Persistence.Value.SetEntry(PersistentData.CheckpointUnlocked, sceneName, "1");
+        m_Persistence.Value.Save();
+    }
+
+    public bool IsCheckpointUnlocked()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        return m_Persistence.Value.TryGetEntry(PersistentData.CheckpointUnlocked, sceneName, out _);
+    }
+
+    public bool IsCheckpointActive()
+    {
+        return GetActiveLevelCheckpoint(out var checkpoint) && checkpoint == this;
+    }
+
     private void Awake()
     {
         s_LevelCheckpoint = this;
-    }
-
-    //GameObject must be set to layer PlayerTrigger to only check collisions with Player
-    private void OnTriggerEnter2D(Collider2D other) 
-    {
-        m_Persistence.Value.SetEntry(PersistentData.ActiveCheckpointLevel, SceneManager.GetActiveScene().name);
-        m_Persistence.Value.Save();
     }
 }

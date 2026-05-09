@@ -44,7 +44,7 @@ public class AnimatorComponent : MonoBehaviour
     private static readonly int s_AttackContinue = Animator.StringToHash("AttackContinue");
     private static readonly int s_Block = Animator.StringToHash("Block");
     private static readonly int s_StopBlock = Animator.StringToHash("StopBlock");
-    private static readonly int s_PickUpHeal = Animator.StringToHash("PickUpHeal");
+    private static readonly int s_PickUp = Animator.StringToHash("PickUp");
     private static readonly int s_Heal = Animator.StringToHash("Heal");
     private static readonly int s_Cast = Animator.StringToHash("Cast");
 
@@ -111,9 +111,9 @@ public class AnimatorComponent : MonoBehaviour
         AdvanceBlockAnimationPhase(BlockAnimationPhase.Withdrawing);
     }
 
-    public void StartPickUpHealAnimation()
+    public void StartPickUpAnimation()
     {
-        SetAnimation(s_PickUpHeal);
+        SetAnimation(s_PickUp);
     }
 
     public void StartHealAnimation()
@@ -196,7 +196,7 @@ public class AnimatorComponent : MonoBehaviour
                 AdvanceBlockAnimationPhase(BlockAnimationPhase.NotBlocking);
                 break;   
             case AnimationEventType.StandCompleted:
-            case AnimationEventType.PickUpHealCompleted:
+            case AnimationEventType.PickUpCompleted:
             case AnimationEventType.HealCompleted:
             case AnimationEventType.CastStrikeCompleted:
             case AnimationEventType.CastCompleted:

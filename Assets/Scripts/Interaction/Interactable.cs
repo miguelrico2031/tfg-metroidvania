@@ -1,12 +1,19 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof(Collider2D))]
 public class Interactable : MonoBehaviour
 {
+    public event Action OnInteract;
+
     private Collider2D m_Collider;
     private InteractorComponent m_Interactor;
 
+    public void Interact()
+    {
+        OnInteract?.Invoke();
+    }
     private void Awake()
     {
         m_Collider = GetComponent<Collider2D>();
@@ -36,7 +43,7 @@ public class Interactable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.TryGetComponent<InteractorComponent>(out var interactor))
+        if (enabled && collider.TryGetComponent<InteractorComponent>(out var interactor))
         {
             AddInteractor(interactor);
         }

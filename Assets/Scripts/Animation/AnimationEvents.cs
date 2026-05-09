@@ -10,7 +10,7 @@ public class AnimationEvents : MonoBehaviour
     public void StandCompleted() => OnEventReceived?.Invoke(AnimationEventType.StandCompleted);
     public void StartBlockCompleted() => OnEventReceived?.Invoke(AnimationEventType.StartBlockCompleted);
     public void StopBlockCompleted() => OnEventReceived?.Invoke(AnimationEventType.StopBlockCompleted);
-    public void PickUpHealCompleted() => OnEventReceived?.Invoke(AnimationEventType.PickUpHealCompleted);
+    public void PickUpCompleted() => OnEventReceived?.Invoke(AnimationEventType.PickUpCompleted);
     public void HealCompleted() => OnEventReceived?.Invoke(AnimationEventType.HealCompleted);
     public void CastStrikeCompleted() => OnEventReceived?.Invoke(AnimationEventType.CastStrikeCompleted);
     public void CastCompleted() => OnEventReceived?.Invoke(AnimationEventType.CastCompleted);

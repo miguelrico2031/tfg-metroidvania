@@ -1,9 +1,19 @@
 ﻿using UnityEngine;
 
+[RequireComponent (typeof(Interactable))]
 public class HealItem : MonoBehaviour
 {
-    public void PickUp()
+    private Interactable m_Interactable;
+
+    private void OnEnable()
     {
-        Destroy(gameObject);
+        m_Interactable = GetComponent<Interactable>();
+        m_Interactable.OnInteract += PickUp;
+    }
+
+    private void PickUp()
+    {
+        m_Interactable.OnInteract -= PickUp;
+        Destroy(gameObject, Time.deltaTime);
     }
 }

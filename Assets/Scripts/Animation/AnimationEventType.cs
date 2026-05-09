@@ -6,7 +6,7 @@
     StandCompleted,
     StartBlockCompleted,
     StopBlockCompleted,
-    PickUpHealCompleted,
+    PickUpCompleted,
     HealCompleted,
     CastStrikeCompleted,
     CastCompleted,

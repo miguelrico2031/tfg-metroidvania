@@ -205,11 +205,21 @@ public class PlayerPickingUpHealState : APlayerState
     public PlayerPickingUpHealState(PlayerStateComponent player) : base(player) { }
     public override void Start()
     {
-        HealItem healItem = m_Player.Interactor.ClosestInteractable.GetComponent<HealItem>();
-        healItem.PickUp();
-        m_Player.Heal.AddHeal();
         m_Player.Input.InteractBuffer.Clear();
-        m_Player.Animator.StartPickUpHealAnimation();
+        m_Player.Interactor.ClosestInteractable.Interact();
+        m_Player.Heal.AddHeal();
+        m_Player.Animator.StartPickUpAnimation();
+    }
+}
+
+public class PlayerLightingBonfireState : APlayerState
+{
+    public PlayerLightingBonfireState(PlayerStateComponent player) : base(player) { }
+    public override void Start()
+    {
+        m_Player.Input.InteractBuffer.Clear();
+        m_Player.Interactor.ClosestInteractable.Interact();
+        m_Player.Animator.StartPickUpAnimation();
     }
 }
 
