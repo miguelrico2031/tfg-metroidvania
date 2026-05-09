@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 
 public abstract class AAIBehaviorState : FSM.IState
@@ -141,14 +142,32 @@ public class AttackMeleeTask : AAIBehaviorTask
 public class AttackRangedTask : AAIBehaviorTask
 {
     public AttackRangedTask(AIAgentComponent agent) : base(agent) { }
+
+    private Vector2 m_TargetPosition;
+    private bool m_HasCasted;
     public override void Start()
     {
-        Vector2 targetPosition = m_Agent.Targetter.ActiveTarget.transform.position;
-        m_Agent.AttackRanged.CastProjectile(targetPosition);
+        m_TargetPosition = m_Agent.Targetter.ActiveTarget.transform.position;
+        m_HasCasted = false;
         m_Agent.Animator.StartCastAnimation();
     }
     public override BT.Output Run()
     {
-        return m_Agent.Animator.AnimationCompleted == AnimationEventType.CastCompleted ? BT.Output.Success : BT.Output.Running;
+        switch (m_Agent.Animator.AnimationCompleted)
+        {
+            case AnimationEventType.CastStrikeCompleted:
+                if(!m_HasCasted)
+                {
+                    m_HasCasted = true;
+                    m_Agent.AttackRanged.CastProjectile(m_TargetPosition);
+                }
+                return BT.Output.Running;
+            
+            case AnimationEventType.CastCompleted:
+                return BT.Output.Success;
+            
+            default:
+                return BT.Output.Running;
+        }
     }
 }

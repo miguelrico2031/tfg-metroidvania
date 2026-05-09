@@ -8,5 +8,6 @@
     StopBlockCompleted,
     PickUpHealCompleted,
     HealCompleted,
+    CastStrikeCompleted,
     CastCompleted,
 }

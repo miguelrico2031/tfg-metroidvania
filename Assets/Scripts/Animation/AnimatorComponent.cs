@@ -197,6 +197,7 @@ public class AnimatorComponent : MonoBehaviour
             case AnimationEventType.StandCompleted:
             case AnimationEventType.PickUpHealCompleted:
             case AnimationEventType.HealCompleted:
+            case AnimationEventType.CastStrikeCompleted:
             case AnimationEventType.CastCompleted:
 
                 AnimationCompleted = type;

@@ -20,6 +20,7 @@ public class Hitbox : MonoBehaviour
     private Collider2D m_Collider;
     private Rigidbody2D m_Rigidbody;
 
+    public bool CanAttack(Faction targetFaction) => m_FactionsData.IsHostileTo(m_AttackData.Faction, targetFaction);
     private void Awake()
     {
         m_Collider = GetComponent<Collider2D>();
@@ -123,7 +124,7 @@ public class Hitbox : MonoBehaviour
             !other.TryGetComponent<Hurtbox>(out var hurtbox) ||
             !hurtbox.IsActive ||
             HasJustAttackedTarget(hurtbox.AttackTarget) ||
-            !m_FactionsData.IsHostileTo(m_AttackData.Faction, hurtbox.AttackTarget.Faction))
+            !CanAttack(hurtbox.AttackTarget.Faction))
             return;
 
         AttackData attackData = m_AttackData;

@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D), typeof(Hitbox))]
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private bool m_FaceMovement;
 
     private Rigidbody2D m_Rigidbody;
     private Collider2D m_Collider;
+    private Hitbox m_Hitbox;
 
     private Vector2 m_StartPosition;
     private Vector2 m_TargetPosition;
@@ -23,11 +24,13 @@ public class Projectile : MonoBehaviour
 
         m_Collider = GetComponent<Collider2D>();
         m_Collider.isTrigger = true;
+
+        m_Hitbox = GetComponent<Hitbox>();
     }
 
-    public void Cast(Vector2 startPosition, Vector2 targetPosition, float speed, float arcHeight = 0f)
+    public void Cast(Vector2 targetPosition, float speed, float arcHeight = 0f)
     {
-        m_StartPosition = startPosition;
+        m_StartPosition = transform.position;
         m_TargetPosition = targetPosition;
         m_ArcHeight = arcHeight;
 
@@ -37,7 +40,7 @@ public class Projectile : MonoBehaviour
         m_ElapsedTime = 0f;
         m_IsLaunched = true;
 
-        m_Rigidbody.position = startPosition;
+        m_Rigidbody.position = m_StartPosition;
         m_Rigidbody.linearVelocity = ComputeVelocity(0f);
     }
 
@@ -59,10 +62,19 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D _)
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.TryGetComponent<Hitbox>(out _))
+            return;
+        
+        if (other.TryGetComponent<Hurtbox>(out var hurtbox) &&
+            !m_Hitbox.CanAttack(hurtbox.AttackTarget.Faction))
+            return;
+        
+
+
         //Allow its Hitbox to perform the attack if hit an attack target before destruction
-        Destroy(gameObject, Time.deltaTime);
+        Destroy(gameObject, Time.deltaTime);        
     }
 
     private Vector2 ComputeVelocity(float t)
