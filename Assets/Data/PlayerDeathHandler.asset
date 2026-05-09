@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: PlayerDeathHandler
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeathHandler
   m_RespawnDelay: 2
-  m_TimeoutPrefab: {fileID: 5389932393698559963, guid: 0d5618eca002c5544aadc3f46e23fc6f, type: 3}
-  m_PlayerSpawner: {fileID: 11400000, guid: 0913eae862cca194ea6332864b4e5de9, type: 2}
+  m_LevelLoader: {fileID: 11400000, guid: 0ae0440b974b63849a899e13273044f0, type: 2}
+  m_Persistence:
+    m_Scriptable: {fileID: 11400000, guid: d6457fff946a2ef46ac575337d141460, type: 2}
+  m_RespawnLevelFallback: TestCode

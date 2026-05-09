@@ -47,5 +47,6 @@ public class HealComponent : MonoBehaviour
     private void SetPersistentData()
     {
         m_Persistence.Value.SetEntry(PersistentData.PlayerHeals, CurrentHeals.ToString());
+        m_Persistence.Value.Save();
     }
 }

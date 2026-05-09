@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686e52aa4acbcc146b84a48728da02c8, type: 3}
   m_Name: SirenStats
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
-  <MaxHealth>k__BackingField: 10
+  <MaxHealth>k__BackingField: 5
   <EdgeCheckOffset>k__BackingField: {x: 0.8, y: 0.1}
   <EdgeCheckDepth>k__BackingField: 0.4
   <GroundCheckSize>k__BackingField: {x: 0, y: 0}
@@ -35,6 +35,6 @@ MonoBehaviour:
   <AttackRangedCooldown>k__BackingField: 3
   <ProjectileSpeed>k__BackingField: 7
   <ProjectileMaxHeight>k__BackingField: 2
-  <MinCastingDistance>k__BackingField: 2
+  <MinCastingDistance>k__BackingField: 2.5
   <TargetPositionOffset>k__BackingField: {x: 0, y: 1.5}
   <ProjectilePrefab>k__BackingField: {fileID: 5778785337352768892, guid: a64e951061a031b4ca53f45ad7708c47, type: 3}

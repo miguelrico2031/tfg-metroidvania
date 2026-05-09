@@ -49,24 +49,26 @@ namespace FSM
             m_TransitionsFromAnyState = transitionsFromAnyState;
         }
 
-        public void Start()
-        {
-            ChangeCurrentState(m_InitialState);
-        }
-
         public void Update()
         {
-            TransitionNode transition = EvaluateTransitions();
-            if (transition is not null)
+            if(m_CurrentState is null)
             {
-                ChangeCurrentState(transition.TargetState);
+                ChangeCurrentState(m_InitialState);
+            }
+            else
+            {
+                TransitionNode transition = EvaluateTransitions();
+                if (transition is not null)
+                {
+                    ChangeCurrentState(transition.TargetState);
+                }
             }
             m_CurrentState.State?.Update();
         }
 
         public void FixedUpdate()
         {
-            m_CurrentState.State?.FixedUpdate();
+            m_CurrentState?.State?.FixedUpdate();
         }
 
         private void ChangeCurrentState(IState state)

@@ -43,7 +43,6 @@ public class Projectile : MonoBehaviour
         m_Rigidbody.position = m_StartPosition;
         m_Rigidbody.linearVelocity = ComputeVelocity(0f);
     }
-
     private void FixedUpdate()
     {
         if (!m_IsLaunched) return;

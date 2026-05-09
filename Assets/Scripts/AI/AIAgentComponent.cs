@@ -37,11 +37,6 @@ public class AIAgentComponent : MonoBehaviour
         m_PostPosition = transform.position;
     }
 
-    private void Start()
-    {
-        m_StateMachine.Start();
-    }
-
     private void Update()
     {
         m_StateMachine.Update();

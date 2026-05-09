@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ScenePersistenceLoader : MonoBehaviour
+public class LevelPersistenceLoader : MonoBehaviour
 {
     [SerializeField] private DataReference<IPersistence> m_Persistence;
 

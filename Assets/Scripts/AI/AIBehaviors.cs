@@ -143,11 +143,11 @@ public class AttackRangedTask : AAIBehaviorTask
 {
     public AttackRangedTask(AIAgentComponent agent) : base(agent) { }
 
-    private Vector2 m_TargetPosition;
+    private Vector2 m_TargetInitialPosition;
     private bool m_HasCasted;
     public override void Start()
     {
-        m_TargetPosition = m_Agent.Targetter.ActiveTarget.transform.position;
+        m_TargetInitialPosition = m_Agent.Targetter.ActiveTarget.transform.position;
         m_HasCasted = false;
         m_Agent.Animator.StartCastAnimation();
     }
@@ -159,15 +159,21 @@ public class AttackRangedTask : AAIBehaviorTask
                 if(!m_HasCasted)
                 {
                     m_HasCasted = true;
-                    m_Agent.AttackRanged.CastProjectile(m_TargetPosition);
+
+                    Vector2 targetPosition = m_Agent.Targetter.ActiveTarget != null
+                        ? m_Agent.Targetter.ActiveTarget.transform.position
+                        : m_TargetInitialPosition;
+
+                    if (!m_Agent.AttackRanged.IsTargetFarEnough(targetPosition))
+                        return BT.Output.Failure;
+
+                    m_Agent.AttackRanged.CastProjectile(targetPosition);
                 }
-                return BT.Output.Running;
-            
+                break;            
             case AnimationEventType.CastCompleted:
                 return BT.Output.Success;
             
-            default:
-                return BT.Output.Running;
-        }
+        }  
+        return BT.Output.Running;
     }
 }

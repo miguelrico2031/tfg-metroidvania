@@ -2,7 +2,7 @@
 public enum PersistentData
 {
     None = 0,
-    ActiveCheckpoint,
+    ActiveCheckpointLevel,
     PlayerHeals,
 }
 

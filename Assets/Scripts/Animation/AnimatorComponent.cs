@@ -170,7 +170,8 @@ public class AnimatorComponent : MonoBehaviour
 
     private void SetAnimation(int animationTrigger)
     {
-        Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
+        if(m_TriggerThisFrame != -1)
+            Assert.IsTrue(m_TriggerThisFrame == -1, "Already set animation trigger this frame, cannot set it again.");
         m_TriggerThisFrame = animationTrigger;
         AnimationCompleted = null;
     }

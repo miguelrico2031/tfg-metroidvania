@@ -9,6 +9,8 @@ public class Hitbox : MonoBehaviour
 {
     [field: SerializeField] public Mode HitboxMode { get; private set; }
 
+    public event Action<Hurtbox, AttackResult> OnAttackPerformed;
+
     [SerializeField] private float m_PersistentAttackCooldown;
     [SerializeField] private AttackData m_AttackData;
     [SerializeField] private FactionsData m_FactionsData;
@@ -130,7 +132,8 @@ public class Hitbox : MonoBehaviour
         AttackData attackData = m_AttackData;
         attackData.Position = transform.position;
         attackData.Velocity = m_Rigidbody != null ? m_Rigidbody.linearVelocity : Vector2.zero;
-        hurtbox.AttackTarget.ResolveAttack(attackData);
+        AttackResult result = hurtbox.AttackTarget.ResolveAttack(attackData);
+        OnAttackPerformed?.Invoke(hurtbox, result);
 
         if (HitboxMode is Mode.OneShot)
         {

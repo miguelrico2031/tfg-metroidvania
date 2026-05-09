@@ -22,6 +22,11 @@ public class CameraFollowPlayer : MonoBehaviour
         m_PlayerMovement.OnDirectionChanged -= Flip;
     }
 
+    private void Start()
+    {
+        m_Transform.position = m_PlayerTransform.position;
+    }
+
     private void FixedUpdate()
     {
         m_Transform.position = m_PlayerTransform.position;

@@ -45,10 +45,6 @@ public class PlayerStateComponent : MonoBehaviour
 
         m_StateMachine.OnStateChanged += HandleStateChanged;
     }
-    private void Start()
-    {
-        m_StateMachine?.Start();
-    }
 
     private void Update()
     {
