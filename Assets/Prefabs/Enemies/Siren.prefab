@@ -103,8 +103,9 @@ MonoBehaviour:
       Duration: 0
       Distance: 0
       Height: 0
-    Position: {x: 0, y: 0}
     Faction: 1
+    Position: {x: 0, y: 0}
+    Velocity: {x: 0, y: 0}
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
 --- !u!1 &4084515008452023532
 GameObject:
@@ -413,7 +414,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 71d715af238681a4ca71c34dbc9cc3bf, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -432,11 +433,11 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1408063915
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 3747957085362800927, guid: 57d439792c253ce4099f298bfdae2825, type: 3}
+  m_Sprite: {fileID: 7508348636492540437, guid: c8ee128b411982e429486b0ad48f0030, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -445,7 +446,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &6472232397760192739
 Animator:
   serializedVersion: 7

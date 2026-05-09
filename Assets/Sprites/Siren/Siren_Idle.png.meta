@@ -187,7 +187,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Merman_Idle_0
+      name: Siren_Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -195,21 +195,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 352fbf6278225f040800000000000000
-      internalID: 4680685351591473747
+      spriteID: 72f85808356a7644197eda29f4065fcb
+      internalID: 1936466186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_1
+      name: Siren_Idle_1
       rect:
         serializedVersion: 2
         x: 73
@@ -217,21 +217,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9bd76b7994b6bbbe0800000000000000
-      internalID: -1460455690329489991
+      spriteID: fd402dea37a1c224c8775d4d8c0e0358
+      internalID: 1496362612
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_2
+      name: Siren_Idle_2
       rect:
         serializedVersion: 2
         x: 146
@@ -239,21 +239,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 53428c185e58a1f00800000000000000
-      internalID: 1088329480734778421
+      spriteID: 2246e80670d29e64dad99e6606decaa9
+      internalID: -1881744572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_3
+      name: Siren_Idle_3
       rect:
         serializedVersion: 2
         x: 219
@@ -261,21 +261,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1e1383b226099f260800000000000000
-      internalID: 7131890236224188897
+      spriteID: 2eb1d4c62eab1874c9ec9c155c141a45
+      internalID: 1490312721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_4
+      name: Siren_Idle_4
       rect:
         serializedVersion: 2
         x: 292
@@ -283,21 +283,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 58fcd0aec06779700800000000000000
-      internalID: 547035677587263365
+      spriteID: 5295925384c1476489bde520ddc28aaf
+      internalID: 1671815924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_5
+      name: Siren_Idle_5
       rect:
         serializedVersion: 2
         x: 365
@@ -305,21 +305,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f35b781b483d39730800000000000000
-      internalID: 4004777060530107711
+      spriteID: 63f23e48ca8ceb84c87d4de28696c86c
+      internalID: -474213050
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_6
+      name: Siren_Idle_6
       rect:
         serializedVersion: 2
         x: 438
@@ -327,21 +327,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c1e80c248f6ded2d0800000000000000
-      internalID: -3251925519154770404
+      spriteID: 9603af6a2cdeb8a4a83b2367bf1fb6d7
+      internalID: 307455446
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_7
+      name: Siren_Idle_7
       rect:
         serializedVersion: 2
         x: 511
@@ -349,21 +349,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: a7dbf5c40dd62e120800000000000000
-      internalID: 2441634689390198138
+      spriteID: 0f6d50e4d827441449f24e03d8a8030d
+      internalID: -234146268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_8
+      name: Siren_Idle_8
       rect:
         serializedVersion: 2
         x: 584
@@ -371,21 +371,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ddd356ddcc4c9d1b0800000000000000
-      internalID: -5631253474883322403
+      spriteID: 47dea032d1cdd3c4399bfc89057f32af
+      internalID: 1056820846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_9
+      name: Siren_Idle_9
       rect:
         serializedVersion: 2
         x: 657
@@ -393,21 +393,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0c0705dcc646fb3f0800000000000000
-      internalID: -882876583477481280
+      spriteID: 463c913f019eae84f9daaf11b7c42405
+      internalID: 167398740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_10
+      name: Siren_Idle_10
       rect:
         serializedVersion: 2
         x: 0
@@ -415,21 +415,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f0ebb6dd33426e070800000000000000
-      internalID: 8135229582068137487
+      spriteID: bc9d4ced7cbeb3e4c8190cbd25ea74ad
+      internalID: -864878394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_11
+      name: Siren_Idle_11
       rect:
         serializedVersion: 2
         x: 73
@@ -437,21 +437,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 847c93c538a3ac160800000000000000
-      internalID: 7046508902836979528
+      spriteID: eb45f4e9fef1094438f1e18e66b405a4
+      internalID: 1487026264
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_12
+      name: Siren_Idle_12
       rect:
         serializedVersion: 2
         x: 146
@@ -459,21 +459,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ddd3214615eb71e00800000000000000
-      internalID: 1015489497775881693
+      spriteID: a935ab5738079454b8d427d735999484
+      internalID: -1341599667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_13
+      name: Siren_Idle_13
       rect:
         serializedVersion: 2
         x: 219
@@ -481,21 +481,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5c133f5dfcd47f210800000000000000
-      internalID: 1366646566973288901
+      spriteID: da64ee24894d2204195217858f9393ad
+      internalID: 2025313764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_14
+      name: Siren_Idle_14
       rect:
         serializedVersion: 2
         x: 292
@@ -503,21 +503,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 13fdc18decd2162e0800000000000000
-      internalID: -2134374381984620751
+      spriteID: a1b352a284c1513498a16af3a5f40c15
+      internalID: -1325620283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_15
+      name: Siren_Idle_15
       rect:
         serializedVersion: 2
         x: 365
@@ -525,21 +525,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: c5601af8405f86520800000000000000
-      internalID: 2695673776919610972
+      spriteID: ef85dc8bd550a7b4ea2a3fe57e37fdd9
+      internalID: 1293810554
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_16
+      name: Siren_Idle_16
       rect:
         serializedVersion: 2
         x: 438
@@ -547,21 +547,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2fa8e57603d124270800000000000000
-      internalID: 8233175162516572914
+      spriteID: 5b45b5c81f7c55742850164dcf8a15b5
+      internalID: -430543066
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_17
+      name: Siren_Idle_17
       rect:
         serializedVersion: 2
         x: 511
@@ -569,21 +569,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1a18a1161e7ae3630800000000000000
-      internalID: 3908746113042776481
+      spriteID: 35717cc840ea027459c4c95b9677e5e0
+      internalID: 995107443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_18
+      name: Siren_Idle_18
       rect:
         serializedVersion: 2
         x: 584
@@ -591,21 +591,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fabfdad81dd6cb1b0800000000000000
-      internalID: -5639511886582121553
+      spriteID: cb20f0cd4329d08498c3b247bd978117
+      internalID: 1884400070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_19
+      name: Siren_Idle_19
       rect:
         serializedVersion: 2
         x: 657
@@ -613,21 +613,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d5d7e5edbd0dfefc0800000000000000
-      internalID: -3463319945677472419
+      spriteID: d62752a73de369d429366ff5597c227d
+      internalID: -482117355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_20
+      name: Siren_Idle_20
       rect:
         serializedVersion: 2
         x: 0
@@ -635,21 +635,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: aeefe3c69d4ee0400800000000000000
-      internalID: 292422648300764906
+      spriteID: 08cdf309174fb6b4e805c08a679c991f
+      internalID: -926642335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_21
+      name: Siren_Idle_21
       rect:
         serializedVersion: 2
         x: 73
@@ -657,21 +657,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 77ba0417c8438f2b0800000000000000
-      internalID: -5550628762934006921
+      spriteID: c9041b47abf647d47bcdc97b631416ea
+      internalID: 1375720803
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_22
+      name: Siren_Idle_22
       rect:
         serializedVersion: 2
         x: 146
@@ -679,21 +679,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f8e5ad9e8700d35e0800000000000000
-      internalID: -1928384546125226353
+      spriteID: 0486caecc38d15d4da22d6c26bd27a1c
+      internalID: -576020389
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_23
+      name: Siren_Idle_23
       rect:
         serializedVersion: 2
         x: 219
@@ -701,21 +701,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0b4b5072c9f16ebb0800000000000000
-      internalID: -4907199988443532112
+      spriteID: ace13ae95bb5de64fbb6c36a09e5a0a5
+      internalID: 1932226996
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_24
+      name: Siren_Idle_24
       rect:
         serializedVersion: 2
         x: 292
@@ -723,21 +723,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1482d5c9960b1d380800000000000000
-      internalID: -8948177016967059391
+      spriteID: eaee3e054e7171e458123cba76e7e2f3
+      internalID: -2020746972
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_25
+      name: Siren_Idle_25
       rect:
         serializedVersion: 2
         x: 365
@@ -745,21 +745,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ebcf68d8df4583220800000000000000
-      internalID: 2465814243963239614
+      spriteID: ade8b478efb7de846bd209ff5f2fb80d
+      internalID: -1241139913
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_26
+      name: Siren_Idle_26
       rect:
         serializedVersion: 2
         x: 438
@@ -767,21 +767,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2d94c9024db132640800000000000000
-      internalID: 5053913804733958610
+      spriteID: a240399f2265a364a8699a984db1b961
+      internalID: -1798838058
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_27
+      name: Siren_Idle_27
       rect:
         serializedVersion: 2
         x: 511
@@ -789,21 +789,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0f02dd4c167e337f0800000000000000
-      internalID: -633908715428437776
+      spriteID: a075152c16a40704cbccf94e0a09349a
+      internalID: 370318687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_28
+      name: Siren_Idle_28
       rect:
         serializedVersion: 2
         x: 584
@@ -811,21 +811,21 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2dbe7dd367b42d600800000000000000
-      internalID: 491538280552590290
+      spriteID: d9fffbeef35e5454a9922c67f6cb5423
+      internalID: -619303573
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merman_Idle_29
+      name: Siren_Idle_29
       rect:
         serializedVersion: 2
         x: 657
@@ -833,15 +833,15 @@ TextureImporter:
         width: 73
         height: 58
       alignment: 9
-      pivot: {x: 0.6849315, y: 0.22413793}
+      pivot: {x: 0.6849315, y: 0.25862068}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b4f56894220e1b5d0800000000000000
-      internalID: -3048409034886062261
+      spriteID: 1f753c1554b02434e8adf1edfc23694e
+      internalID: 1898832337
       vertices: []
       indices: 
       edges: []
@@ -860,38 +860,38 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":10.0,"y":3.0},"gridSpriteSize":{"x":73.0,"y":58.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.6849315166473389,"y":0.22413793206214906},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":10.0,"y":3.0},"gridSpriteSize":{"x":73.0,"y":58.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.6849315166473389,"y":0.2586206793785095},"pivotPixels":{"x":50.0,"y":15.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Merman_Idle_0: 4680685351591473747
-      Merman_Idle_1: -1460455690329489991
-      Merman_Idle_10: 8135229582068137487
-      Merman_Idle_11: 7046508902836979528
-      Merman_Idle_12: 1015489497775881693
-      Merman_Idle_13: 1366646566973288901
-      Merman_Idle_14: -2134374381984620751
-      Merman_Idle_15: 2695673776919610972
-      Merman_Idle_16: 8233175162516572914
-      Merman_Idle_17: 3908746113042776481
-      Merman_Idle_18: -5639511886582121553
-      Merman_Idle_19: -3463319945677472419
-      Merman_Idle_2: 1088329480734778421
-      Merman_Idle_20: 292422648300764906
-      Merman_Idle_21: -5550628762934006921
-      Merman_Idle_22: -1928384546125226353
-      Merman_Idle_23: -4907199988443532112
-      Merman_Idle_24: -8948177016967059391
-      Merman_Idle_25: 2465814243963239614
-      Merman_Idle_26: 5053913804733958610
-      Merman_Idle_27: -633908715428437776
-      Merman_Idle_28: 491538280552590290
-      Merman_Idle_29: -3048409034886062261
-      Merman_Idle_3: 7131890236224188897
-      Merman_Idle_4: 547035677587263365
-      Merman_Idle_5: 4004777060530107711
-      Merman_Idle_6: -3251925519154770404
-      Merman_Idle_7: 2441634689390198138
-      Merman_Idle_8: -5631253474883322403
-      Merman_Idle_9: -882876583477481280
+      Siren_Idle_0: 1936466186
+      Siren_Idle_1: 1496362612
+      Siren_Idle_10: -864878394
+      Siren_Idle_11: 1487026264
+      Siren_Idle_12: -1341599667
+      Siren_Idle_13: 2025313764
+      Siren_Idle_14: -1325620283
+      Siren_Idle_15: 1293810554
+      Siren_Idle_16: -430543066
+      Siren_Idle_17: 995107443
+      Siren_Idle_18: 1884400070
+      Siren_Idle_19: -482117355
+      Siren_Idle_2: -1881744572
+      Siren_Idle_20: -926642335
+      Siren_Idle_21: 1375720803
+      Siren_Idle_22: -576020389
+      Siren_Idle_23: 1932226996
+      Siren_Idle_24: -2020746972
+      Siren_Idle_25: -1241139913
+      Siren_Idle_26: -1798838058
+      Siren_Idle_27: 370318687
+      Siren_Idle_28: -619303573
+      Siren_Idle_29: 1898832337
+      Siren_Idle_3: 1490312721
+      Siren_Idle_4: 1671815924
+      Siren_Idle_5: -474213050
+      Siren_Idle_6: 307455446
+      Siren_Idle_7: -234146268
+      Siren_Idle_8: 1056820846
+      Siren_Idle_9: 167398740
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
