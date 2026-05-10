@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +11,7 @@ public class LevelLoader : ScriptableObject
     public event Action OnLevelLoadStarted;
     public event Action OnLevelLoadCompleted;
 
-    public async void LoadLevel(string name)
+    public async Task LoadLevel(string name)
     {
         OnLevelLoadStarted?.Invoke();
         await SceneManager.LoadSceneAsync(name);

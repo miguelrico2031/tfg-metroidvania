@@ -76,7 +76,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -90,7 +90,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -114,7 +114,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -135,6 +135,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -143,11 +156,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 15
-        width: 77
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 0
+        width: 85
+        height: 75
+      alignment: 9
+      pivot: {x: 0, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -164,12 +177,12 @@ TextureImporter:
       name: Attack_Spark_1
       rect:
         serializedVersion: 2
-        x: 21
-        y: 42
-        width: 7
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 85
+        y: 0
+        width: 85
+        height: 75
+      alignment: 9
+      pivot: {x: 0, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -186,12 +199,12 @@ TextureImporter:
       name: Attack_Spark_2
       rect:
         serializedVersion: 2
-        x: 85
-        y: 15
-        width: 75
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 170
+        y: 0
+        width: 85
+        height: 75
+      alignment: 9
+      pivot: {x: 0, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -208,12 +221,12 @@ TextureImporter:
       name: Attack_Spark_3
       rect:
         serializedVersion: 2
-        x: 109
-        y: 48
-        width: 6
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 255
+        y: 0
+        width: 85
+        height: 75
+      alignment: 9
+      pivot: {x: 0, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -230,12 +243,12 @@ TextureImporter:
       name: Attack_Spark_4
       rect:
         serializedVersion: 2
-        x: 170
-        y: 15
-        width: 79
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 340
+        y: 0
+        width: 85
+        height: 75
+      alignment: 9
+      pivot: {x: 0, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -252,12 +265,12 @@ TextureImporter:
       name: Attack_Spark_5
       rect:
         serializedVersion: 2
-        x: 197
-        y: 42
-        width: 12
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 425
+        y: 0
+        width: 85
+        height: 75
+      alignment: 9
+      pivot: {x: 0, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -270,187 +283,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Attack_Spark_6
-      rect:
-        serializedVersion: 2
-        x: 263
-        y: 0
-        width: 74
-        height: 58
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aa379fe53d583f180800000000000000
-      internalID: -9082768880598158422
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_Spark_7
-      rect:
-        serializedVersion: 2
-        x: 285
-        y: 46
-        width: 11
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b1a3552e4c7759af0800000000000000
-      internalID: -390274105203148261
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_Spark_8
-      rect:
-        serializedVersion: 2
-        x: 348
-        y: 0
-        width: 153
-        height: 75
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 649e99378099d7060800000000000000
-      internalID: 6952881661308168518
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_Spark_9
-      rect:
-        serializedVersion: 2
-        x: 362
-        y: 26
-        width: 21
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8080e16917eaad500800000000000000
-      internalID: 421841317985650696
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_Spark_10
-      rect:
-        serializedVersion: 2
-        x: 25
-        y: 8
-        width: 10
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3983ada6c7a75c800800000000000000
-      internalID: 632045997502642323
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_Spark_11
-      rect:
-        serializedVersion: 2
-        x: 110
-        y: 13
-        width: 14
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5ca86e04f3b954d20800000000000000
-      internalID: 3262184201073887941
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_Spark_12
-      rect:
-        serializedVersion: 2
-        x: 113
-        y: 6
-        width: 10
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d59e6e2f39d290bb0800000000000000
-      internalID: -4969390600367969955
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Attack_Spark_13
-      rect:
-        serializedVersion: 2
-        x: 202
-        y: 3
-        width: 14
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2c14c33aa7a98a870800000000000000
-      internalID: 8694368932154065346
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 77a4df5dcd950d34799f577198d78189
     internalID: 0
     vertices: []
     indices: 
@@ -458,22 +295,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":85.0,"y":75.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.20000000298023225},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Attack_Spark_0: -7007646597813765974
       Attack_Spark_1: -7988638007780009330
-      Attack_Spark_10: 632045997502642323
-      Attack_Spark_11: 3262184201073887941
-      Attack_Spark_12: -4969390600367969955
-      Attack_Spark_13: 8694368932154065346
       Attack_Spark_2: -5788189816808321686
       Attack_Spark_3: -6868269202123248303
       Attack_Spark_4: 9217248785430852178
       Attack_Spark_5: 3908131163750402578
-      Attack_Spark_6: -9082768880598158422
-      Attack_Spark_7: -390274105203148261
-      Attack_Spark_8: 6952881661308168518
-      Attack_Spark_9: 421841317985650696
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -15,7 +15,7 @@ public class ChangeLevelTrigger : MonoBehaviour
         {
             m_Triggered = true;
             Entrypoint.SetActiveEntrypoint(m_TargetLevelEntrypointID);
-            m_LevelLoader.LoadLevel(m_TargetLevelName);
+            _ = m_LevelLoader.LoadLevel(m_TargetLevelName);
         }
     }
 }

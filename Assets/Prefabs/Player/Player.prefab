@@ -83,7 +83,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -480768479
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -8188198914606492527, guid: c2276d88c9fb2a14baf7f09b23cd6cdf, type: 3}
@@ -446,7 +446,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90a8a96bfe6e4e43be32579d726f63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerPersistenceComponent
-  m_Spawner: {fileID: 11400000, guid: 0913eae862cca194ea6332864b4e5de9, type: 2}
 --- !u!1 &4067200855875449082
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,7 +509,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8551589799472522041}
   m_Father: {fileID: 295408003292010110}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2176653352384824205
@@ -583,8 +583,43 @@ MonoBehaviour:
       Duration: 0
       Distance: 0
       Height: 0
+    Faction: 0
+    Position: {x: 0, y: 0}
+    Velocity: {x: 0, y: 0}
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
-  m_Faction: {fileID: 1053925383963158729}
+  m_SparksPoolContainer: {fileID: 0}
+  m_SparksPosition: {fileID: 8551589799472522041}
+--- !u!1 &4828912593341276554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6803653422135834694}
+  m_Layer: 9
+  m_Name: Sparks position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6803653422135834694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4828912593341276554}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.25, y: 0.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2182757961485363176}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5289088717557987205
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,6 +711,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1731c20a592af7e449c913b325efde99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hurtbox
+--- !u!1 &5903382209167721048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8551589799472522041}
+  m_Layer: 9
+  m_Name: Sparks position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8551589799472522041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5903382209167721048}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.25, y: 0.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2102185313322900446}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6248187892731006398
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +803,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6803653422135834694}
   m_Father: {fileID: 295408003292010110}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &6831646497660404334
@@ -800,8 +867,12 @@ MonoBehaviour:
       Duration: 0
       Distance: 0
       Height: 0
+    Faction: 0
+    Position: {x: 0, y: 0}
+    Velocity: {x: 0, y: 0}
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
-  m_Faction: {fileID: 1053925383963158729}
+  m_SparksPoolContainer: {fileID: 0}
+  m_SparksPosition: {fileID: 6803653422135834694}
 --- !u!1 &7534215566333620168
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,7 +951,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -480768479
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Time: 1

@@ -16,13 +16,12 @@ public interface IAttackRangedStats
     public float ProjectileMaxHeight { get; }
     public float MinCastingDistance { get; }
     public Vector2 TargetPositionOffset { get;}
-    public Projectile ProjectilePrefab { get; }
-
 }
 
 public interface IAttackTarget
 {
     public Faction Faction { get; }
+    public bool IsAlive { get;}
     public AttackResult ResolveAttack(AttackData attack);
 }
 

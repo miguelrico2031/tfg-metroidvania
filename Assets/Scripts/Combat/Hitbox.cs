@@ -14,6 +14,8 @@ public class Hitbox : MonoBehaviour
     [SerializeField] private float m_PersistentAttackCooldown;
     [SerializeField] private AttackData m_AttackData;
     [SerializeField] private FactionsData m_FactionsData;
+    [SerializeField] private ObjectPoolContainer m_SparksPoolContainer;
+    [SerializeField] private Transform m_SparksPosition;
 
     private readonly HashSet<IAttackTarget> m_AttackedThisActivation = new();
     private readonly Dictionary<IAttackTarget, float> m_TargetsOnCooldown = new();
@@ -125,6 +127,7 @@ public class Hitbox : MonoBehaviour
             other.attachedRigidbody == m_Collider.attachedRigidbody ||
             !other.TryGetComponent<Hurtbox>(out var hurtbox) ||
             !hurtbox.IsActive ||
+            !hurtbox.AttackTarget.IsAlive ||
             HasJustAttackedTarget(hurtbox.AttackTarget) ||
             !CanAttack(hurtbox.AttackTarget.Faction))
             return;
@@ -142,6 +145,12 @@ public class Hitbox : MonoBehaviour
         else if (HitboxMode is Mode.Persistent)
         {
             m_TargetsOnCooldown.Add(hurtbox.AttackTarget, m_PersistentAttackCooldown);
+        }
+
+        if(m_SparksPoolContainer != null)
+        {
+            GameObject sparks = m_SparksPoolContainer.Get();
+            sparks.transform.SetPositionAndRotation(m_SparksPosition.position, m_SparksPosition.rotation);
         }
     }
 

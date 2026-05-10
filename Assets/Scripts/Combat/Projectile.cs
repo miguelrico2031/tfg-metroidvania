@@ -1,9 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.Pool;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D), typeof(Hitbox))]
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour, IPoolable
 {
+    public ObjectPool<GameObject> ObjectPool { get; set; }
+
     [SerializeField] private bool m_FaceMovement;
+    [SerializeField] private SpriteRenderer m_SpriteRenderer;
+    [SerializeField] private Sprite[] m_Sprites;
 
     private Rigidbody2D m_Rigidbody;
     private Collider2D m_Collider;
@@ -26,6 +33,14 @@ public class Projectile : MonoBehaviour
         m_Collider.isTrigger = true;
 
         m_Hitbox = GetComponent<Hitbox>();
+    }
+
+    public void OnGet()
+    {
+        if(m_Sprites is { Length : > 0 })
+        {
+            m_SpriteRenderer.sprite = m_Sprites[UnityEngine.Random.Range(0, m_Sprites.Length)];
+        }
     }
 
     public void Cast(Vector2 targetPosition, float speed, float arcHeight = 0f)
@@ -69,11 +84,14 @@ public class Projectile : MonoBehaviour
         if (other.TryGetComponent<Hurtbox>(out var hurtbox) &&
             !m_Hitbox.CanAttack(hurtbox.AttackTarget.Faction))
             return;
-        
 
+        _ = WaitAndRelease();
+    }
 
-        //Allow its Hitbox to perform the attack if hit an attack target before destruction
-        Destroy(gameObject, Time.deltaTime);        
+    private async Task WaitAndRelease()
+    {
+        await Task.Delay(TimeSpan.FromSeconds(Time.fixedDeltaTime));
+        ObjectPool.Release(gameObject);      
     }
 
     private Vector2 ComputeVelocity(float t)

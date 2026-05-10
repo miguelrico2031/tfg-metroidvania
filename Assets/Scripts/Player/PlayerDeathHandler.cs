@@ -10,15 +10,15 @@ public class PlayerDeathHandler : ScriptableObject
     [SerializeField] private DataReference<IPersistence> m_Persistence;
     [SerializeField] private string m_RespawnLevelFallback;
 
-    public async void HandleDeadPlayer(GameObject player)
+    public async Task HandleDeadPlayer(GameObject player)
     {
-        await Task.Delay(Mathf.CeilToInt(1000 * m_RespawnDelay));
+        await Task.Delay(TimeSpan.FromSeconds(m_RespawnDelay));
         Entrypoint.ClearActiveEntrypoint();
         if (!m_Persistence.Value.TryGetEntry(PersistentData.ActiveCheckpointLevel, out string respawnLevel))
         {
             respawnLevel = m_RespawnLevelFallback;
         }
-        m_LevelLoader.LoadLevel(respawnLevel);
+        await m_LevelLoader.LoadLevel(respawnLevel);
     }
 }
 
