@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint
       objectReference: {fileID: 0}
+    - target: {fileID: 3554347112109384592, guid: 989e54268bddebe4b922289cac995119, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4866742612499935673, guid: 989e54268bddebe4b922289cac995119, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.15251
@@ -29002,7 +29006,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4062449134482075419, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: orthographic size
-      value: 8.4375
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 5376761378372897092, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: m_AnchorMax.x
