@@ -1,31 +1,40 @@
 fileFormatVersion: 2
-guid: 125d9157297c3f94f823822a4981a917
+guid: 5e21651d0b824974fb2eaa52584e97f5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 146792260520368599
-    second: Eel_Idle_0
+      213: -7891164430682167547
+    second: Torch_2_0
   - first:
-      213: 1981217155533629809
-    second: Eel_Idle_1
+      213: -1725868820153573705
+    second: Torch_2_1
   - first:
-      213: -9050333344659397322
-    second: Eel_Idle_2
+      213: 2468364606758039163
+    second: Torch_2_2
   - first:
-      213: 8290199729113118298
-    second: Eel_Idle_3
+      213: -6510245127258899329
+    second: Torch_2_3
   - first:
-      213: -8176249447089860418
-    second: Eel_Idle_4
+      213: -211484608903694452
+    second: Torch_2_4
   - first:
-      213: -8958257112868283496
-    second: Eel_Idle_5
+      213: -9061807332277196589
+    second: Torch_2_5
   - first:
-      213: -2095135113473835421
-    second: Eel_Idle_6
+      213: -4408978931647248188
+    second: Torch_2_6
   - first:
-      213: 566685883444813747
-    second: Eel_Idle_7
+      213: 4947759723057587160
+    second: Torch_2_7
+  - first:
+      213: -8437341808663810339
+    second: Torch_2_8
+  - first:
+      213: 228295345872255515
+    second: Torch_2_9
+  - first:
+      213: -8624087117431421269
+    second: Torch_2_10
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -121,177 +130,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Eel_Idle_0
+      name: Torch_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 65
-        height: 72
+        width: 18
+        height: 73
       alignment: 9
-      pivot: {x: 0.35384616, y: 0.013888889}
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7d9d71088c2890200800000000000000
-      internalID: 146792260520368599
+      spriteID: 507edfc62c3fc7290800000000000000
+      internalID: -7891164430682167547
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Idle_1
+      name: Torch_2_1
       rect:
         serializedVersion: 2
-        x: 65
+        x: 18
         y: 0
-        width: 65
-        height: 72
+        width: 18
+        height: 73
       alignment: 9
-      pivot: {x: 0.35384616, y: 0.013888889}
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 179ed7a8182be7b10800000000000000
-      internalID: 1981217155533629809
+      spriteID: 7bed2ddb37b7c08e0800000000000000
+      internalID: -1725868820153573705
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Idle_2
+      name: Torch_2_2
       rect:
         serializedVersion: 2
-        x: 130
+        x: 36
         y: 0
-        width: 65
-        height: 72
+        width: 18
+        height: 73
       alignment: 9
-      pivot: {x: 0.35384616, y: 0.013888889}
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 63524b416c1c66280800000000000000
-      internalID: -9050333344659397322
+      spriteID: b7ea5f92884614220800000000000000
+      internalID: 2468364606758039163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Idle_3
+      name: Torch_2_3
       rect:
         serializedVersion: 2
-        x: 195
+        x: 54
         y: 0
-        width: 65
-        height: 72
+        width: 18
+        height: 73
       alignment: 9
-      pivot: {x: 0.35384616, y: 0.013888889}
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a56b3d2fab4bc0370800000000000000
-      internalID: 8290199729113118298
+      spriteID: f7cf30dac86f6a5a0800000000000000
+      internalID: -6510245127258899329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Idle_4
+      name: Torch_2_4
       rect:
         serializedVersion: 2
-        x: 260
+        x: 72
         y: 0
-        width: 65
-        height: 72
+        width: 18
+        height: 73
       alignment: 9
-      pivot: {x: 0.35384616, y: 0.013888889}
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eb0993f8270288e80800000000000000
-      internalID: -8176249447089860418
+      spriteID: c8735d26ed7a01df0800000000000000
+      internalID: -211484608903694452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Idle_5
+      name: Torch_2_5
       rect:
         serializedVersion: 2
-        x: 325
+        x: 90
         y: 0
-        width: 65
-        height: 72
+        width: 18
+        height: 73
       alignment: 9
-      pivot: {x: 0.35384616, y: 0.013888889}
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 89b9ed46e90eda380800000000000000
-      internalID: -8958257112868283496
+      spriteID: 3d866982e3efd3280800000000000000
+      internalID: -9061807332277196589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Idle_6
+      name: Torch_2_6
       rect:
         serializedVersion: 2
-        x: 390
+        x: 108
         y: 0
-        width: 65
-        height: 72
+        width: 18
+        height: 73
       alignment: 9
-      pivot: {x: 0.35384616, y: 0.013888889}
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 36eb1fcf6b59ce2e0800000000000000
-      internalID: -2095135113473835421
+      spriteID: 4c80cfc750920d2c0800000000000000
+      internalID: -4408978931647248188
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Eel_Idle_7
+      name: Torch_2_7
       rect:
         serializedVersion: 2
-        x: 455
+        x: 126
         y: 0
-        width: 65
-        height: 72
+        width: 18
+        height: 73
       alignment: 9
-      pivot: {x: 0.35384616, y: 0.013888889}
+      pivot: {x: 0.5, y: 0.01369863}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3bfd4fdfec54dd700800000000000000
-      internalID: 566685883444813747
+      spriteID: 8d325d6f049f9a440800000000000000
+      internalID: 4947759723057587160
       vertices: []
       indices: 
       edges: []
@@ -300,7 +309,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e97b4d00a6c620e42b5ab2ede91085b3
+    spriteID: 5ada089bf80514642b60938678c26ec7
     internalID: 0
     vertices: []
     indices: 
@@ -310,16 +319,16 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":1.0},"gridSpriteSize":{"x":65.0,"y":72.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.35384616255760195,"y":0.013888888992369175},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":8.0,"y":1.0},"gridSpriteSize":{"x":18.0,"y":73.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.013698630034923554},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Eel_Idle_0: 146792260520368599
-      Eel_Idle_1: 1981217155533629809
-      Eel_Idle_2: -9050333344659397322
-      Eel_Idle_3: 8290199729113118298
-      Eel_Idle_4: -8176249447089860418
-      Eel_Idle_5: -8958257112868283496
-      Eel_Idle_6: -2095135113473835421
-      Eel_Idle_7: 566685883444813747
+      Torch_2_0: -7891164430682167547
+      Torch_2_1: -1725868820153573705
+      Torch_2_2: 2468364606758039163
+      Torch_2_3: -6510245127258899329
+      Torch_2_4: -211484608903694452
+      Torch_2_5: -9061807332277196589
+      Torch_2_6: -4408978931647248188
+      Torch_2_7: 4947759723057587160
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

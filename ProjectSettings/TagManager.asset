@@ -47,6 +47,12 @@ TagManager:
   - name: Ground
     uniqueID: 2973962209
     locked: 0
+  - name: Scenery
+    uniqueID: 1188253291
+    locked: 0
+  - name: NPC
+    uniqueID: 3088156533
+    locked: 0
   - name: Enemy
     uniqueID: 1408063915
     locked: 0
