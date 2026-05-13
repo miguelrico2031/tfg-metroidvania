@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -88,9 +89,10 @@ public class Projectile : MonoBehaviour, IPoolable
         _ = WaitAndRelease();
     }
 
-    private async Task WaitAndRelease()
+    private async UniTask WaitAndRelease()
     {
-        await Task.Delay(TimeSpan.FromSeconds(Time.fixedDeltaTime));
+        await UniTask.WaitForFixedUpdate();
+        await UniTask.WaitForEndOfFrame();
         ObjectPool.Release(gameObject);      
     }
 

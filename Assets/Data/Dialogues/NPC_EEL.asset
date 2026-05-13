@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b609dc1c692fd4a930986702fdaac1, type: 3}
+  m_Name: NPC_EEL
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  <Sentences>k__BackingField:
+  - <String>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: GUID:e94b91132faadee46a0bbdd3820eeaf0
+      m_TableEntryReference:
+        m_KeyId: 11726901248
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  - <String>k__BackingField:
+      m_TableReference:
+        m_TableCollectionName: GUID:e94b91132faadee46a0bbdd3820eeaf0
+      m_TableEntryReference:
+        m_KeyId: 76579229696
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+      m_LocalVariables: []
+  references:
+    version: 2
+    RefIds: []

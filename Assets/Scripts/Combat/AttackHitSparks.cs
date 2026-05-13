@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
+using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -16,18 +18,11 @@ public class AttackHitSparks : MonoBehaviour, IPoolable
         _ = AwaitAnimationAndRelease();
     }
 
-    private async Task AwaitAnimationAndRelease()
+    private async UniTask AwaitAnimationAndRelease()
     {
-        await Task.Yield();
+        await UniTask.Yield();
         float duration = m_Animator.GetCurrentAnimatorStateInfo(0).length;
-        float elapsed = 0f;
-
-        while (elapsed < duration)
-        {
-            elapsed += Time.deltaTime;
-            await Task.Yield();
-        }
-
+        await UniTask.Delay(TimeSpan.FromSeconds(duration), ignoreTimeScale: false);
         ObjectPool.Release(gameObject);
     }
 }

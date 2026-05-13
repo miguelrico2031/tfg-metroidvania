@@ -84,6 +84,14 @@ public class PlayerStateComponent : MonoBehaviour
             .AddState(new PlayerHealingState(this))
             .AddState(new PlayerPickingUpHealState(this))
             .AddState(new PlayerLightingBonfireState(this))
+            .AddState(new PlayerInteractOneFrameState(this))
+
+            .AddTransitionFromAnyState<PlayerKnockbackState>((state) =>
+                HasBeenHitWithKnockback() &&
+                state != typeof(PlayerKnockbackState) &&
+                state != typeof(PlayerDyingState) &&
+                state != typeof(PlayerStandingState) &&
+                state != typeof(PlayerDashingState))
 
             .AddTransitionFromAnyState<PlayerDyingState>((state) =>
                 Health.CurrentHealth == 0 &&
@@ -91,7 +99,6 @@ public class PlayerStateComponent : MonoBehaviour
                 state != typeof(PlayerKnockbackState) &&
                 state != typeof(PlayerDyingState))
 
-            .AddTransition<PlayerGroundedState, PlayerKnockbackState>(HasBeenHitWithKnockback)
             .AddTransition<PlayerGroundedState, PlayerJumpingState>(() => Input.JumpBuffer.Check())
             .AddTransition<PlayerGroundedState, PlayerDashingState>(IsDashRequestedAndAllowed)
             .AddTransition<PlayerGroundedState, PlayerFallingState>(() => !GroundCheck.IsGrounded)
@@ -100,13 +107,12 @@ public class PlayerStateComponent : MonoBehaviour
             .AddTransition<PlayerGroundedState, PlayerHealingState>(IsHealRequestedAndAllowed)
             .AddTransition<PlayerGroundedState, PlayerPickingUpHealState>(IsPickUpHealInteractionRequestedAndAllowed)
             .AddTransition<PlayerGroundedState, PlayerLightingBonfireState>(IsLightBonfireRequestedAndAllowed)
+            .AddTransition<PlayerGroundedState, PlayerInteractOneFrameState>(IsInteractionRequestedAndAllowed)
 
             .AddTransition<PlayerJumpingState, PlayerFallingState>(() => Movement.VerticalVelocity <= 0f)
-            .AddTransition<PlayerJumpingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
 
             .AddTransition<PlayerFallingState, PlayerGroundedState>(() => GroundCheck.IsGrounded)
             .AddTransition<PlayerFallingState, PlayerJumpingState>(() => GroundCheck.CoyoteTimeBuffer.Check() && Input.JumpBuffer.Check())
-            .AddTransition<PlayerFallingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
 
             .AddTransition<PlayerDashingState, PlayerFallingState>(() => !GroundCheck.IsGrounded && IsDashFinished())
             .AddTransition<PlayerDashingState, PlayerStandingState>(() => GroundCheck.IsGrounded && IsDashFinished())
@@ -117,25 +123,22 @@ public class PlayerStateComponent : MonoBehaviour
             .AddTransition<PlayerKnockbackState, PlayerStandingState>(() => GroundCheck.JustLanded && IsKnockbackFinished())
             .AddTransition<PlayerKnockbackState, PlayerGroundedState>(() => GroundCheck.IsGrounded && IsKnockbackFinished())
 
-            .AddTransition<PlayerAttackingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
             .AddTransition<PlayerAttackingState, PlayerDashingState>(IsDashRequestedAndAllowed)
             .AddTransition<PlayerAttackingState, PlayerAttackingState>(IsAttack2RequestedAndAllowed)
             .AddTransition<PlayerAttackingState, PlayerGroundedState>(HasAttackAnimationJustFinished)
 
-            .AddTransition<PlayerBlockingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
             .AddTransition<PlayerBlockingState, PlayerStopBlockingState>(IsStopBlockingRequestedAndAllowed)
 
-            .AddTransition<PlayerStopBlockingState, PlayerKnockbackState>(HasBeenHitWithKnockback)
             .AddTransition<PlayerStopBlockingState, PlayerGroundedState>(() => Animator.BlockAnimationPhase is BlockAnimationPhase.NotBlocking)
 
             .AddTransition<PlayerHealingState, PlayerGroundedState>(() => Animator.AnimationCompleted is AnimationEventType.HealCompleted)
 
-            .AddTransition<PlayerPickingUpHealState, PlayerKnockbackState>(HasBeenHitWithKnockback)
             .AddTransition<PlayerPickingUpHealState, PlayerGroundedState>(() => Animator.AnimationCompleted is AnimationEventType.PickUpCompleted)
 
             .AddTransition<PlayerLightingBonfireState, PlayerKnockbackState>(HasBeenHitWithKnockback)
             .AddTransition<PlayerLightingBonfireState, PlayerGroundedState>(() => Animator.AnimationCompleted is AnimationEventType.PickUpCompleted)
 
+            .AddTransition<PlayerInteractOneFrameState, PlayerGroundedState>(() => true)
 
             .Build();
     }       
@@ -187,12 +190,12 @@ public class PlayerStateComponent : MonoBehaviour
         !Heal.HasFullHeals &&
         Interactor.ClosestInteractable.TryGetComponent<HealItem>(out _);
 
-    private bool IsHealRequestedAndAllowed() =>
-        Input.HealBuffer.Check() &&
-        Heal.CurrentHeals > 0 &&
-        Health.CurrentHealth < Health.MaxHealth;
-
     private bool IsLightBonfireRequestedAndAllowed() =>
         IsInteractionRequestedAndAllowed() &&
         Interactor.ClosestInteractable.TryGetComponent<BonfireCheckpoint>(out _);
+
+    private bool IsHealRequestedAndAllowed() =>
+    Input.HealBuffer.Check() &&
+    Heal.CurrentHeals > 0 &&
+    Health.CurrentHealth < Health.MaxHealth;
 }

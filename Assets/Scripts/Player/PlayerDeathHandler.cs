@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cysharp.Threading.Tasks;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -10,9 +11,9 @@ public class PlayerDeathHandler : ScriptableObject
     [SerializeField] private DataReference<IPersistence> m_Persistence;
     [SerializeField] private string m_RespawnLevelFallback;
 
-    public async Task HandleDeadPlayer(GameObject player)
+    public async UniTask HandleDeadPlayer(GameObject player)
     {
-        await Task.Delay(TimeSpan.FromSeconds(m_RespawnDelay));
+        await UniTask.Delay(TimeSpan.FromSeconds(m_RespawnDelay), ignoreTimeScale: false);
         Entrypoint.ClearActiveEntrypoint();
         if (!m_Persistence.Value.TryGetEntry(PersistentData.ActiveCheckpointLevel, out string respawnLevel))
         {

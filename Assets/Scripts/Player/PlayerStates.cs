@@ -223,6 +223,16 @@ public class PlayerLightingBonfireState : APlayerState
     }
 }
 
+public class PlayerInteractOneFrameState : APlayerState
+{
+    public PlayerInteractOneFrameState(PlayerStateComponent player) : base(player) { }
+    public override void Start()
+    {
+        m_Player.Input.InteractBuffer.Clear();
+        m_Player.Interactor.ClosestInteractable.Interact();
+    }
+}
+
 public class PlayerHealingState : APlayerState
 {
     public PlayerHealingState(PlayerStateComponent player) : base(player) { }
