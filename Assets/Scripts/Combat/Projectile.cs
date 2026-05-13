@@ -79,21 +79,10 @@ public class Projectile : MonoBehaviour, IPoolable
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<Hitbox>(out _))
-            return;
-        
-        if (other.TryGetComponent<Hurtbox>(out var hurtbox) &&
-            !m_Hitbox.CanAttack(hurtbox.AttackTarget.Faction))
-            return;
-
-        _ = WaitAndRelease();
-    }
-
-    private async UniTask WaitAndRelease()
-    {
-        await UniTask.WaitForFixedUpdate();
-        await UniTask.WaitForEndOfFrame();
-        ObjectPool.Release(gameObject);      
+        if (other.gameObject.layer == LayerMask.NameToLayer("KillPlane"))
+        {
+            ObjectPool.Release(gameObject);
+        }
     }
 
     private Vector2 ComputeVelocity(float t)

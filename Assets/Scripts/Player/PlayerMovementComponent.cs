@@ -67,11 +67,11 @@ public class PlayerMovementComponent : MonoBehaviour
         float knockbackDirection;
         if (sourceVelocity.x > 0.1f)
         {
-            knockbackDirection = currentDirection;
+            knockbackDirection = 1f;
         }
-        else if(sourceVelocity.x < 0.1f)
+        else if(sourceVelocity.x < -0.1f)
         {
-            knockbackDirection = -currentDirection;
+            knockbackDirection = -1f;
         }
         else
         {
