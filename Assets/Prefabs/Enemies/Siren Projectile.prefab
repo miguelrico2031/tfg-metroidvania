@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7330242573039243717}
   - component: {fileID: 5778785337352768892}
   - component: {fileID: 4380284620500611179}
+  - component: {fileID: 5980206470580481090}
   m_Layer: 9
   m_Name: Siren Projectile
   m_TagString: Untagged
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1408063915
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 100
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1252243683051303324, guid: cee12111f96f15142a8e1cf025ba336f, type: 3}
@@ -171,11 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   m_FaceMovement: 0
-  m_SpriteRenderer: {fileID: 5345716372185192992}
-  m_Sprites:
-  - {fileID: 1252243683051303324, guid: cee12111f96f15142a8e1cf025ba336f, type: 3}
-  - {fileID: -3548031942192175384, guid: cee12111f96f15142a8e1cf025ba336f, type: 3}
-  - {fileID: 6781167332700664777, guid: cee12111f96f15142a8e1cf025ba336f, type: 3}
 --- !u!114 &4380284620500611179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,3 +202,19 @@ MonoBehaviour:
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
   m_SparksPoolContainer: {fileID: 0}
   m_SparksPosition: {fileID: 0}
+--- !u!114 &5980206470580481090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701532258015360580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f76d8167ca67d4a8afff14f3da53f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteRandomizer
+  m_Sprites:
+  - {fileID: 1252243683051303324, guid: cee12111f96f15142a8e1cf025ba336f, type: 3}
+  - {fileID: 6781167332700664777, guid: cee12111f96f15142a8e1cf025ba336f, type: 3}
+  - {fileID: -3548031942192175384, guid: cee12111f96f15142a8e1cf025ba336f, type: 3}

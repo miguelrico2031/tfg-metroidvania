@@ -107,6 +107,8 @@ MonoBehaviour:
     Position: {x: 0, y: 0}
     Velocity: {x: 0, y: 0}
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
+  m_SparksPoolContainer: {fileID: 0}
+  m_SparksPosition: {fileID: 0}
 --- !u!1 &4084515008452023532
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +129,7 @@ GameObject:
   - component: {fileID: 510329072546701810}
   - component: {fileID: 6515651222093553332}
   - component: {fileID: 8281839582046536294}
+  - component: {fileID: 8171873440219477472}
   m_Layer: 8
   m_Name: Siren
   m_TagString: Untagged
@@ -349,6 +352,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackRangedComponent
   m_ProjectileCastPosition: {fileID: 880747749727431487}
+  m_ProjectilePoolContainer: {fileID: 0}
+  m_Stats:
+    m_Scriptable: {fileID: 11400000, guid: ef99449ee836d6b449ad22e704ffdd0c, type: 2}
+--- !u!114 &8171873440219477472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4084515008452023532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec24b957e7cb853458ea322aab252318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DropItemOnDeathComponent
+  m_DropOnTheGround: 1
+  m_ObjectPool: {fileID: 0}
   m_Stats:
     m_Scriptable: {fileID: 11400000, guid: ef99449ee836d6b449ad22e704ffdd0c, type: 2}
 --- !u!1 &4396334398339633085
@@ -434,7 +454,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1408063915
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7508348636492540437, guid: c8ee128b411982e429486b0ad48f0030, type: 3}

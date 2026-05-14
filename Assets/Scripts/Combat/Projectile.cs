@@ -10,8 +10,6 @@ public class Projectile : MonoBehaviour, IPoolable
     public ObjectPool<GameObject> ObjectPool { get; set; }
 
     [SerializeField] private bool m_FaceMovement;
-    [SerializeField] private SpriteRenderer m_SpriteRenderer;
-    [SerializeField] private Sprite[] m_Sprites;
 
     private Rigidbody2D m_Rigidbody;
     private Collider2D m_Collider;
@@ -34,14 +32,6 @@ public class Projectile : MonoBehaviour, IPoolable
         m_Collider.isTrigger = true;
 
         m_Hitbox = GetComponent<Hitbox>();
-    }
-
-    public void OnGet()
-    {
-        if(m_Sprites is { Length : > 0 })
-        {
-            m_SpriteRenderer.sprite = m_Sprites[UnityEngine.Random.Range(0, m_Sprites.Length)];
-        }
     }
 
     public void Cast(Vector2 targetPosition, float speed, float arcHeight = 0f)

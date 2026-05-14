@@ -12,7 +12,7 @@ public class AttackHitSparks : MonoBehaviour, IPoolable
     
     private static readonly int s_Sparks = Animator.StringToHash("Sparks");
 
-    public void OnGet()
+    private void OnEnable()
     {
         m_Animator.Play(s_Sparks);
         _ = AwaitAnimationAndRelease();

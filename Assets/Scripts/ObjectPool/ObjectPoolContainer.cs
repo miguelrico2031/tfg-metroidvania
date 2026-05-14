@@ -28,7 +28,6 @@ public class ObjectPoolContainer : MonoBehaviour
         if(obj.TryGetComponent<IPoolable>(out var poolable))
         {
             poolable.ObjectPool = m_Pool;
-            poolable.OnGet();
         }
         return obj;
     }

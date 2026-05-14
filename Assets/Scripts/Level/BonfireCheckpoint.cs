@@ -39,5 +39,6 @@ public class BonfireCheckpoint : MonoBehaviour
         m_Interactable.enabled = false;
         m_Checkpoint.SetAsActiveCheckpoint();
         m_Animator.SetTrigger(m_Light);
+        m_Smoke.SetActive(true);
     }
 }

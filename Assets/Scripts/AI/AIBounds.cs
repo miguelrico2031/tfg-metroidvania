@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 [RequireComponent (typeof(Collider2D))]
 public class AIBounds : MonoBehaviour

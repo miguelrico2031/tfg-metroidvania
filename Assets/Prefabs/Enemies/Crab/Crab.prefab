@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 682249382818893740}
   - component: {fileID: 3198171079514166226}
   - component: {fileID: 4805073677436150235}
+  - component: {fileID: 1088491102338477950}
   m_Layer: 8
   m_Name: Crab
   m_TagString: Untagged
@@ -290,6 +291,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimatorComponent
   m_Animator: {fileID: 7185704148676316129}
   m_AnimationEvents: {fileID: 2915610033996619316}
+--- !u!114 &1088491102338477950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937256309043139642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec24b957e7cb853458ea322aab252318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DropItemOnDeathComponent
+  m_DropOnTheGround: 1
+  m_ObjectPool: {fileID: 0}
+  m_Stats:
+    m_Scriptable: {fileID: 11400000, guid: ced8cebd575475545963211bbb62abc0, type: 2}
 --- !u!1 &2453162754593957143
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +391,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1408063915
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 3747957085362800927, guid: 57d439792c253ce4099f298bfdae2825, type: 3}
@@ -478,9 +495,12 @@ MonoBehaviour:
       Duration: 0.25
       Distance: 3
       Height: 0
-    Position: {x: 0, y: 0}
     Faction: 1
+    Position: {x: 0, y: 0}
+    Velocity: {x: 0, y: 0}
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
+  m_SparksPoolContainer: {fileID: 0}
+  m_SparksPosition: {fileID: 0}
 --- !u!61 &6081950187138758918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -630,9 +650,12 @@ MonoBehaviour:
       Duration: 0
       Distance: 0
       Height: 0
-    Position: {x: 0, y: 0}
     Faction: 1
+    Position: {x: 0, y: 0}
+    Velocity: {x: 0, y: 0}
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
+  m_SparksPoolContainer: {fileID: 0}
+  m_SparksPosition: {fileID: 0}
 --- !u!1 &8225396941178672427
 GameObject:
   m_ObjectHideFlags: 0

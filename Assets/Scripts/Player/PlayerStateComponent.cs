@@ -186,9 +186,10 @@ public class PlayerStateComponent : MonoBehaviour
         Input.InteractBuffer.Check() && Interactor.ClosestInteractable != null;
 
     private bool IsPickUpHealInteractionRequestedAndAllowed() =>
-        IsInteractionRequestedAndAllowed() && 
+        IsInteractionRequestedAndAllowed() &&
         !Heal.HasFullHeals &&
-        Interactor.ClosestInteractable.TryGetComponent<HealItem>(out _);
+        Interactor.ClosestInteractable.TryGetComponent<Item>(out var item) &&
+        item.ItemType is Item.Type.Heal;
 
     private bool IsLightBonfireRequestedAndAllowed() =>
         IsInteractionRequestedAndAllowed() &&

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5905883821112009575}
   - component: {fileID: 1449232115643124455}
   - component: {fileID: 4009351975112251753}
+  - component: {fileID: 3648188046825669750}
   m_Layer: 10
   m_Name: Heal
   m_TagString: Untagged
@@ -80,9 +81,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -480768479
+  m_SortingLayer: 5
+  m_SortingOrder: -100
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2073203306736515940, guid: 246d1a8ab0b322a4fbe463ec2e3e1298, type: 3}
   m_Color: {r: 1, g: 0.7311321, b: 0.7311321, a: 1}
@@ -93,7 +94,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!58 &5905883821112009575
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -154,3 +155,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac4beecd64ff6541b4f166d0540988d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealItem
+  <ItemType>k__BackingField: 0
+--- !u!114 &3648188046825669750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5586318442970838137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f76d8167ca67d4a8afff14f3da53f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteRandomizer
+  m_Sprites:
+  - {fileID: 8984754096541894249, guid: 246d1a8ab0b322a4fbe463ec2e3e1298, type: 3}
+  - {fileID: 2073203306736515940, guid: 246d1a8ab0b322a4fbe463ec2e3e1298, type: 3}
+  - {fileID: 6669852852261953786, guid: 246d1a8ab0b322a4fbe463ec2e3e1298, type: 3}
+  - {fileID: -1994141993942582034, guid: 246d1a8ab0b322a4fbe463ec2e3e1298, type: 3}
