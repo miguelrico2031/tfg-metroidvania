@@ -44,11 +44,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground_BackScenery
+    uniqueID: 889286347
+    locked: 0
   - name: Ground
     uniqueID: 2973962209
     locked: 0
-  - name: Scenery
-    uniqueID: 1188253291
+  - name: Ground_Scenery
+    uniqueID: 1575940023
     locked: 0
   - name: NPC
     uniqueID: 3088156533
@@ -58,6 +61,15 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3814198817
+    locked: 0
+  - name: Ground_Scenery_OverPlayer
+    uniqueID: 4028209729
+    locked: 0
+  - name: Water
+    uniqueID: 1089156855
+    locked: 0
+  - name: Foreground 1
+    uniqueID: 3811983189
     locked: 0
   m_RenderingLayers:
   - Default

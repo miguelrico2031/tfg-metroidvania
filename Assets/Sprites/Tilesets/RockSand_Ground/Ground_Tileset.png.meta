@@ -1,0 +1,2579 @@
+fileFormatVersion: 2
+guid: aed8cd34fcdfaa84e827838e0b6a0817
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7612874052531526163
+    second: Ground_Tileset_0
+  - first:
+      213: -4133356655277743524
+    second: Ground_Tileset_1
+  - first:
+      213: -7388147487359141352
+    second: Ground_Tileset_2
+  - first:
+      213: 4415428983961314057
+    second: Ground_Tileset_3
+  - first:
+      213: 4780374830386246135
+    second: Ground_Tileset_4
+  - first:
+      213: 3947510692040192833
+    second: Ground_Tileset_5
+  - first:
+      213: 9093689072574580710
+    second: Ground_Tileset_6
+  - first:
+      213: -2850865217863180624
+    second: Ground_Tileset_7
+  - first:
+      213: 653027726441361232
+    second: Ground_Tileset_8
+  - first:
+      213: -1461815934091377150
+    second: Ground_Tileset_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Ground_Tileset_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31a1ee4bd9c56a960800000000000000
+      internalID: 7612874052531526163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c526c20850e53a6c0800000000000000
+      internalID: -4133356655277743524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81a73cb1107087990800000000000000
+      internalID: -7388147487359141352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9036af75441c64d30800000000000000
+      internalID: 4415428983961314057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f1f36aa49d475240800000000000000
+      internalID: 4780374830386246135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 143bc124f0068c630800000000000000
+      internalID: 3947510692040192833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e7c8a4f706433e70800000000000000
+      internalID: 9093689072574580710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0be9fba5031bf68d0800000000000000
+      internalID: -2850865217863180624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 568
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05fa40fd145001900800000000000000
+      internalID: 653027726441361232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2064a79272696bbe0800000000000000
+      internalID: -1461815934091377150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18836fd9e9bb06c4c8faaf9ff2918e2b
+      internalID: 943644304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_11
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c1617c5e8b2b4f4fa556137418cdbdb
+      internalID: 269886258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_12
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c69d23b350d28e4fad9f28012444706
+      internalID: 1913900256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_13
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80cf5f911c36da24c908335cc496c54e
+      internalID: 1279360057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_14
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -16}
+        - {x: 16, y: 8}
+        - {x: -4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb18af413aa153c46954ad9f401ae4cb
+      internalID: 1539125002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -16}
+        - {x: 16, y: 8}
+        - {x: -4, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96797201dd3581c478b5375abfc232b8
+      internalID: -861369512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_16
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57bd02cd330f4494baee0f070e6b96c7
+      internalID: -144699555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_17
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 536
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 4, y: -16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06402c115f529c44aa62419b0293d92f
+      internalID: -499964065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1dd60972412e0da4797bcff37a622891
+      internalID: 295441501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_19
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95446fcf52694394486e13f1b05c0b9d
+      internalID: 1006309343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_20
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee2303248d2801f41b70c0bf5f8f6629
+      internalID: 1442956142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_21
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d481e7c710fb4144c8ed51e4dd0353a3
+      internalID: 348168745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_22
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc478867f3340f244baef8282502b694
+      internalID: -1818966042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_23
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 16}
+        - {x: -4, y: 16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9fb1b61da7a8b948987a07e5d9e0671
+      internalID: -590424546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_24
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 16}
+        - {x: -4, y: 16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab9f5fb5f7b12844ab9b7aaad05a4e7c
+      internalID: -154742790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_25
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: 4, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a493a8f703c22c34b906bf5abb4112e3
+      internalID: -890292570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_26
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: 4, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd5e6e35f4561d2429c37c339d0ab4ad
+      internalID: 1205943231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 472
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd09a2e04ce3b1c49bb5b94dde25ffbd
+      internalID: 37911248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_28
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 472
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba7e8c87b3a89ae48aa0ad72185c8906
+      internalID: -157657027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_29
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 472
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0ead3c0d60d05740a14b8fc57717b7d
+      internalID: 1530286022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_30
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 472
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32735294232c7154a963bfd06645c5bf
+      internalID: 1027824137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_31
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 472
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c9002d5a3596c34d85467cf11003e6a
+      internalID: 1157539381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_32
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 472
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0436bc3aa4e5d2c4ea00bead4f4a1446
+      internalID: -1251475512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_33
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 472
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9aba03b4796bb6749a8240b44c2661e3
+      internalID: -425908781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_34
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: cccd922b4a438a242b37c48f9eb6dd18
+      internalID: -439353397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_35
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 418dfed86b070044f8c6f69505f60456
+      internalID: 1753152017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_36
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 921000251e8784647bda44f30db78055
+      internalID: 2133707111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_37
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0317e55e91ce4564bbd5a3cbdcebe422
+      internalID: 14465115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_38
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a9aebbe29fb01a4598b74bfe2275ba9
+      internalID: 576853693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_39
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -16}
+        - {x: 16, y: -7}
+        - {x: 0, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8440b0815745ce445b2212b22556b9ef
+      internalID: -696214322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_40
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -16}
+        - {x: 16, y: 8}
+        - {x: -16, y: -7}
+        - {x: -16, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34b46b4edfc2b964f80eff6924f0c242
+      internalID: -497440773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_41
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -16}
+        - {x: 16, y: -7}
+        - {x: -16, y: 8}
+        - {x: -16, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c587e8db0c07d7469febd880ec20e5f
+      internalID: 268811005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_42
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -16, y: -16}
+        - {x: -16, y: -7}
+        - {x: 0, y: -16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a31a47b918ddcf4291cbdb979374d4c
+      internalID: 1593943379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_43
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b794abb229a61914289ff551459d77ef
+      internalID: 1275925019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_44
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ad2a59faf9a1fe4890282c7b5565016
+      internalID: 1427569325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_45
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d774c5320e6ed044a9d067d0001d06f9
+      internalID: 1185314675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_46
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7757fc18e4f06ba42b38c5de5d785d3c
+      internalID: 1726790850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_47
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d46af9fa7eb89434aa80dfdb24643309
+      internalID: 187721134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_48
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 16}
+        - {x: 0, y: 16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4752b9bc1502b0f4484cbd70996e5ff4
+      internalID: 1768918184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_49
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 765f44c00bc93bd45a570518d9effa6e
+      internalID: -1261764289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_50
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a34f19e118d952040a876ef8ae1b7d2a
+      internalID: -784133919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_51
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 408
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: 0, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e5a3c1828e8e5740a7181d92f5157b8
+      internalID: 450175305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_52
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cf22159a78a3f54c94d6ce524a6f045
+      internalID: 1550940131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_53
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f0018406ce82c54ea21666a43d5a1fd
+      internalID: -1517146244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_54
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6336dcbf2823054e869916e42a44f08
+      internalID: 909445697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_55
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 056e7b0f3e540814ababa8a835df0323
+      internalID: -1393677478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_56
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6dbb1d76c2e3b449bdedc6b0ecc7618
+      internalID: 1390702738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_57
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 16}
+        - {x: 0, y: 16}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ba3467708a9c1f47b10ab420dd3f7f2
+      internalID: 1833614152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_58
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c348ebb35dfb5f4ab54b8f29ee01a97
+      internalID: 1769439619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_59
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcdd712f279ab7e46b6ca5deade668bb
+      internalID: 1321376085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_60
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 376
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: 0, y: 16}
+        - {x: -16, y: 16}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e27fd13de062e2e4ba716fe5a79700f4
+      internalID: 508854093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_61
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50f93069eb98d754caec0289c376f70d
+      internalID: -1606556817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_62
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14ec2933436dd144da8b1d7529b3e4fe
+      internalID: -1558611078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_63
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cd98a743406a254aae9a80562ee0cce
+      internalID: 1353359691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_64
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5e87f1ea69286647b835f0dd349cdcd
+      internalID: -1384971725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_65
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8ebf92baa41c6e48b5feb646b9fe326
+      internalID: -1266952506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_66
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bc4ecbfc6fb8ad4987515965dcc0933
+      internalID: 1323866859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_67
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e3bbf701dea7384697e7511f6a063a0
+      internalID: 1767842237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_68
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66ba34e7f2c126c4d85e1eb0bbcff39b
+      internalID: -1019755589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_69
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58a6d135247f14144a850d6278b5d315
+      internalID: -240991200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_70
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 441501151bd0f4741a2ed741372722e0
+      internalID: 257366483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_71
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91e2a894391bcfa44bf3dcf5030623f2
+      internalID: 889939922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_72
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffd962ad1d3daf8419e258b4ba27e641
+      internalID: 929088388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_73
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64b6a0fd480d2eb42bfb5b280867dcfb
+      internalID: -182320656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_74
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3af0508665acd845a41e19bc904d853
+      internalID: 954602306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_75
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8bab1e2a5d44a145a63ab7533a56ec9
+      internalID: 130128121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_76
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79f7868c33d1dfc4c84b31146dc569c4
+      internalID: -1042880270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_77
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 312
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad198105e9696ae48b3528b7b18377df
+      internalID: -1586315441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_78
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 425978fa578392946b161674fdbe70e4
+      internalID: 1996864000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_79
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1db939cabd23eea478e0e63940289a96
+      internalID: -312682383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_80
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a353babe7997e2e43885e70c56d7c40c
+      internalID: 1899011807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_81
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83351edc7a186d7499d1b3e2be893996
+      internalID: 999908745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_82
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58b09a250e82ca54fadfc9ed4e0c33ed
+      internalID: 581857022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_83
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 002e288931673cb44ad8026320cacef4
+      internalID: 1327646517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_84
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 280
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd34a47425b297a4181f0fa947af9cce
+      internalID: -1873542321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_85
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: 7, y: 8}
+        - {x: 14, y: -10}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d81b0f3debdf6347a9ca1e013082287
+      internalID: -728423537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_86
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fbbe428c1ab8f344a80a508d965c81d
+      internalID: -1186099665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_87
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -13, y: -8}
+        - {x: -6, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97609e7dcd300c844b55403ce37e64fc
+      internalID: -2456221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_88
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 16, y: -13}
+        - {x: 16, y: 8}
+        - {x: 8, y: 8}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bb05319f899f5f45899faa5b5bdbc7c
+      internalID: 2134455289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_Tileset_89
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 248
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: -9, y: 8}
+        - {x: -16, y: 8}
+        - {x: -16, y: -13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e33e7c94c575c074dae9c9bff9abdc37
+      internalID: -1567279348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 818bcc0f436724a4db25294ecdf38138
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Ground_Tileset_0: 7612874052531526163
+      Ground_Tileset_1: -4133356655277743524
+      Ground_Tileset_10: 943644304
+      Ground_Tileset_11: 269886258
+      Ground_Tileset_12: 1913900256
+      Ground_Tileset_13: 1279360057
+      Ground_Tileset_14: 1539125002
+      Ground_Tileset_15: -861369512
+      Ground_Tileset_16: -144699555
+      Ground_Tileset_17: -499964065
+      Ground_Tileset_18: 295441501
+      Ground_Tileset_19: 1006309343
+      Ground_Tileset_2: -7388147487359141352
+      Ground_Tileset_20: 1442956142
+      Ground_Tileset_21: 348168745
+      Ground_Tileset_22: -1818966042
+      Ground_Tileset_23: -590424546
+      Ground_Tileset_24: -154742790
+      Ground_Tileset_25: -890292570
+      Ground_Tileset_26: 1205943231
+      Ground_Tileset_27: 37911248
+      Ground_Tileset_28: -157657027
+      Ground_Tileset_29: 1530286022
+      Ground_Tileset_3: 4415428983961314057
+      Ground_Tileset_30: 1027824137
+      Ground_Tileset_31: 1157539381
+      Ground_Tileset_32: -1251475512
+      Ground_Tileset_33: -425908781
+      Ground_Tileset_34: -439353397
+      Ground_Tileset_35: 1753152017
+      Ground_Tileset_36: 2133707111
+      Ground_Tileset_37: 14465115
+      Ground_Tileset_38: 576853693
+      Ground_Tileset_39: -696214322
+      Ground_Tileset_4: 4780374830386246135
+      Ground_Tileset_40: -497440773
+      Ground_Tileset_41: 268811005
+      Ground_Tileset_42: 1593943379
+      Ground_Tileset_43: 1275925019
+      Ground_Tileset_44: 1427569325
+      Ground_Tileset_45: 1185314675
+      Ground_Tileset_46: 1726790850
+      Ground_Tileset_47: 187721134
+      Ground_Tileset_48: 1768918184
+      Ground_Tileset_49: -1261764289
+      Ground_Tileset_5: 3947510692040192833
+      Ground_Tileset_50: -784133919
+      Ground_Tileset_51: 450175305
+      Ground_Tileset_52: 1550940131
+      Ground_Tileset_53: -1517146244
+      Ground_Tileset_54: 909445697
+      Ground_Tileset_55: -1393677478
+      Ground_Tileset_56: 1390702738
+      Ground_Tileset_57: 1833614152
+      Ground_Tileset_58: 1769439619
+      Ground_Tileset_59: 1321376085
+      Ground_Tileset_6: 9093689072574580710
+      Ground_Tileset_60: 508854093
+      Ground_Tileset_61: -1606556817
+      Ground_Tileset_62: -1558611078
+      Ground_Tileset_63: 1353359691
+      Ground_Tileset_64: -1384971725
+      Ground_Tileset_65: -1266952506
+      Ground_Tileset_66: 1323866859
+      Ground_Tileset_67: 1767842237
+      Ground_Tileset_68: -1019755589
+      Ground_Tileset_69: -240991200
+      Ground_Tileset_7: -2850865217863180624
+      Ground_Tileset_70: 257366483
+      Ground_Tileset_71: 889939922
+      Ground_Tileset_72: 929088388
+      Ground_Tileset_73: -182320656
+      Ground_Tileset_74: 954602306
+      Ground_Tileset_75: 130128121
+      Ground_Tileset_76: -1042880270
+      Ground_Tileset_77: -1586315441
+      Ground_Tileset_78: 1996864000
+      Ground_Tileset_79: -312682383
+      Ground_Tileset_8: 653027726441361232
+      Ground_Tileset_80: 1899011807
+      Ground_Tileset_81: 999908745
+      Ground_Tileset_82: 581857022
+      Ground_Tileset_83: 1327646517
+      Ground_Tileset_84: -1873542321
+      Ground_Tileset_85: -728423537
+      Ground_Tileset_86: -1186099665
+      Ground_Tileset_87: -2456221
+      Ground_Tileset_88: 2134455289
+      Ground_Tileset_89: -1567279348
+      Ground_Tileset_9: -1461815934091377150
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
