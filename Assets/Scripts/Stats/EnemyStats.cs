@@ -15,6 +15,7 @@ public class EnemyStats : ScriptableObject, IAnimationStats, IAttackRangedStats,
     [field: SerializeField] public float GroundCheckOffset {get; private set; }
 
     [field: SerializeField] public LayerMask GroundLayers {get; private set; }
+    [field: SerializeField] public float MaxSlopeAngle { get; private set; }
 
     [field: SerializeField] public float CoyoteTime {get; private set; }
 

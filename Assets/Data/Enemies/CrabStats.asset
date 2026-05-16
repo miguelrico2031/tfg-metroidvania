@@ -20,6 +20,7 @@ MonoBehaviour:
   <GroundLayers>k__BackingField:
     serializedVersion: 2
     m_Bits: 64
+  <MaxSlopeAngle>k__BackingField: 30
   <CoyoteTime>k__BackingField: 0
   <ObstacleCheckSize>k__BackingField: {x: 0.3, y: 1}
   <ObstacleCheckOffset>k__BackingField: 0
@@ -35,4 +36,5 @@ MonoBehaviour:
   <AttackRangedCooldown>k__BackingField: 0
   <ProjectileSpeed>k__BackingField: 0
   <ProjectileMaxHeight>k__BackingField: 0
-  <ProjectilePrefab>k__BackingField: {fileID: 0}
+  <MinCastingDistance>k__BackingField: 0
+  <TargetPositionOffset>k__BackingField: {x: 0, y: 0}

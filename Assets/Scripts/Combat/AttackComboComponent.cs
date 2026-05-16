@@ -37,6 +37,6 @@ public class AttackComboComponent : MonoBehaviour
 
     private void Update()
     {
-        m_AdvanceAttackBuffer.Tick(Time.deltaTime);
+        m_AdvanceAttackBuffer.Update(Time.deltaTime);
     }
 }

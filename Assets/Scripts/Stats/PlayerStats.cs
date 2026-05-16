@@ -53,8 +53,12 @@ public class PlayerStats : ScriptableObject, IAnimationStats, ICombatStats, IHea
     [field: SerializeField, Tooltip("How separated is the ground check box from the player feet.")]
     public float GroundCheckOffset { get; private set; }
 
-    [field: SerializeField, Tooltip("Layers counting as ground for gorund check.")]
+    [field: SerializeField, Tooltip("Layers counting as ground for ground check.")]
     public LayerMask GroundLayers { get; private set; }
+    
+    [field: SerializeField, Tooltip("Max slope angle for ground check to consider surface ground instead of wall.")]
+    public float MaxSlopeAngle { get; private set; }
+
 
 
     [field: Header("Obstacle Check"), SerializeField, Tooltip("Width of the box used to detect obstacles in front of the player (used for dashing).")]

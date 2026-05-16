@@ -108,7 +108,7 @@ public class PlayerInputComponent : MonoBehaviour
     {
         foreach(var buffer in m_Buffers)
         {
-            buffer.Tick(Time.deltaTime);
+            buffer.Update(Time.deltaTime);
         }
     }
 

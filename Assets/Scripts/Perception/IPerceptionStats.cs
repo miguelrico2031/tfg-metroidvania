@@ -8,6 +8,7 @@ public interface IPerceptionStats
     public Vector2 GroundCheckSize { get; }
     public float GroundCheckOffset { get; }
     public LayerMask GroundLayers { get; }
+    public float MaxSlopeAngle { get; }
     public float CoyoteTime { get; }
 
     public Vector2 ObstacleCheckSize { get; }

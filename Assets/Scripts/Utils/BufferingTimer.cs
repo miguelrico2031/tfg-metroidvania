@@ -14,7 +14,7 @@ public class BufferingTimer
         Clear();
         return check;
     }
-    public void Tick(float dt)
+    public void Update(float dt)
     {
         if (m_Timer > 0)
         {

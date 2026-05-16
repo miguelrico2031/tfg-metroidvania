@@ -19,14 +19,14 @@ public class GroundCheckComponent : MonoBehaviour
 
     private void Update()
     {
-        CoyoteTimeBuffer.Tick(Time.deltaTime);
+        CoyoteTimeBuffer.Update(Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
         m_WasGrounded = IsGrounded;
         var (origin, size) = ComputeGroundCheckBox();
-        IsGrounded = Physics2D.OverlapBox( origin, size, angle: 0f, m_Stats.Value.GroundLayers );
+        IsGrounded = CheckGrounded();
         JustLanded = IsGrounded && !m_WasGrounded;
         JustLeftGround = !IsGrounded && m_WasGrounded;
         if(JustLeftGround)
@@ -49,5 +49,30 @@ public class GroundCheckComponent : MonoBehaviour
     {
         float originOffsetY = m_Stats.Value.GroundCheckSize.y * 0.5f + m_Stats.Value.GroundCheckOffset;
         return (m_GroundCheckOrigin.position + Vector3.down * originOffsetY, m_Stats.Value.GroundCheckSize);
+    }
+
+    private bool CheckGrounded()
+    {
+        var (origin, size) = ComputeGroundCheckBox();
+
+        var hits = Physics2D.BoxCastAll(
+            origin,
+            size,
+            angle: 0f,
+            direction: Vector2.down,
+            distance: 0.02f,
+            layerMask: m_Stats.Value.GroundLayers
+        );
+
+        foreach (var hit in hits)
+        {
+            if (hit.normal.y <= 0f)
+                continue;
+            float slopeAngle = Vector2.Angle(Vector2.up, hit.normal);
+            if (slopeAngle <= m_Stats.Value.MaxSlopeAngle)
+                return true;
+        }
+
+        return false;
     }
 }
