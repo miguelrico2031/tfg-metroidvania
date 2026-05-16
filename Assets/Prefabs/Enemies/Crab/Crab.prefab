@@ -304,9 +304,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DropItemOnDeathComponent
   m_DropOnTheGround: 1
-  m_ObjectPool: {fileID: 0}
   m_Stats:
     m_Scriptable: {fileID: 11400000, guid: ced8cebd575475545963211bbb62abc0, type: 2}
+  m_LevelServiceLocator: {fileID: 11400000, guid: 40c9e789db679434abbead675478350b, type: 2}
 --- !u!1 &2453162754593957143
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +391,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 1408063915
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 3747957085362800927, guid: 57d439792c253ce4099f298bfdae2825, type: 3}
@@ -499,7 +499,7 @@ MonoBehaviour:
     Position: {x: 0, y: 0}
     Velocity: {x: 0, y: 0}
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
-  m_SparksPoolContainer: {fileID: 0}
+  m_LevelServiceLocator: {fileID: 0}
   m_SparksPosition: {fileID: 0}
 --- !u!61 &6081950187138758918
 BoxCollider2D:
@@ -654,7 +654,7 @@ MonoBehaviour:
     Position: {x: 0, y: 0}
     Velocity: {x: 0, y: 0}
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
-  m_SparksPoolContainer: {fileID: 0}
+  m_LevelServiceLocator: {fileID: 0}
   m_SparksPosition: {fileID: 0}
 --- !u!1 &8225396941178672427
 GameObject:

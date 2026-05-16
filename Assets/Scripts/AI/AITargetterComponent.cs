@@ -9,24 +9,26 @@ public class AITargetterComponent : MonoBehaviour
 
     [SerializeField] private EnemyStats m_Stats;
     [SerializeField] private FactionsData m_FactionsData;
+    [SerializeField] private AIBounds m_Bounds;
 
-    private AIBounds m_Bounds;
     private FactionComponent m_Faction;
 
     private void OnEnable()
     {
         m_Faction = GetComponent<FactionComponent>();
-        m_Bounds = LocateBounds();
-        if (m_Bounds)
+        
+        if(m_Bounds == null)
         {
-            m_Bounds.OnIntruderEnterBounds += OnIntruderEnterBounds;
-            m_Bounds.OnIntruderLeaveBounds += OnIntruderLeaveBounds;
+            m_Bounds = LocateBounds();
         }
+            
+        m_Bounds.OnIntruderEnterBounds += OnIntruderEnterBounds;
+        m_Bounds.OnIntruderLeaveBounds += OnIntruderLeaveBounds;
     }
 
     private void OnDisable()
     {
-        if (m_Bounds)
+        if (m_Bounds != null)
         {
             m_Bounds.OnIntruderEnterBounds -= OnIntruderEnterBounds;
             m_Bounds.OnIntruderLeaveBounds -= OnIntruderLeaveBounds;

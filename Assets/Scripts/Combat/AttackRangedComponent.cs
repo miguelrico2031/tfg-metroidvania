@@ -6,8 +6,8 @@ public class AttackRangedComponent : MonoBehaviour
     public bool IsOnCooldown => m_CooldownTimer > 0f;
 
     [SerializeField] private Transform m_ProjectileCastPosition;
-    [SerializeField] private ObjectPoolContainer m_ProjectilePoolContainer;
     [SerializeField] private DataReference<IAttackRangedStats> m_Stats;
+    [SerializeField] private LevelServiceLocator m_LevelServiceLocator;
 
     private float m_CooldownTimer = 0f;
 
@@ -15,7 +15,10 @@ public class AttackRangedComponent : MonoBehaviour
     {
         Assert.IsFalse(IsOnCooldown, "Cannot cast projectile while on cooldown.");
         targetPosition += m_Stats.Value.TargetPositionOffset;
-        GameObject projectile = m_ProjectilePoolContainer.Get();
+
+        m_LevelServiceLocator.TryGetService<IObjectPoolService>(out var poolService);
+
+        GameObject projectile = poolService.GetProjectilesPoolContainer().Get();
         projectile.transform.position = m_ProjectileCastPosition.position;
         projectile.GetComponent<Projectile>().Cast(targetPosition, m_Stats.Value.ProjectileSpeed, m_Stats.Value.ProjectileMaxHeight);
         m_CooldownTimer = m_Stats.Value.AttackRangedCooldown;

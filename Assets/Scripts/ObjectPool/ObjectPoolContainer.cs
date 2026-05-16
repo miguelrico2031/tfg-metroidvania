@@ -7,7 +7,7 @@ public class ObjectPoolContainer : MonoBehaviour
     [SerializeField] private int m_MaxSize;
     [SerializeField] private GameObject m_Prefab;
 
-    ObjectPool<GameObject> m_Pool;
+    private ObjectPool<GameObject> m_Pool;
 
     void Awake()
     {

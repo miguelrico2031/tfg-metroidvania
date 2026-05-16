@@ -83,7 +83,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -480768479
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -8188198914606492527, guid: c2276d88c9fb2a14baf7f09b23cd6cdf, type: 3}
@@ -587,7 +587,7 @@ MonoBehaviour:
     Position: {x: 0, y: 0}
     Velocity: {x: 0, y: 0}
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
-  m_SparksPoolContainer: {fileID: 0}
+  m_LevelServiceLocator: {fileID: 11400000, guid: 40c9e789db679434abbead675478350b, type: 2}
   m_SparksPosition: {fileID: 8551589799472522041}
 --- !u!1 &4828912593341276554
 GameObject:
@@ -871,7 +871,7 @@ MonoBehaviour:
     Position: {x: 0, y: 0}
     Velocity: {x: 0, y: 0}
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
-  m_SparksPoolContainer: {fileID: 0}
+  m_LevelServiceLocator: {fileID: 11400000, guid: 40c9e789db679434abbead675478350b, type: 2}
   m_SparksPosition: {fileID: 6803653422135834694}
 --- !u!1 &7534215566333620168
 GameObject:
@@ -951,7 +951,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -480768479
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: -10
   m_MaskInteraction: 0
   m_Time: 1

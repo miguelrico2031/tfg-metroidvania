@@ -14,7 +14,9 @@ public class Hitbox : MonoBehaviour
     [SerializeField] private float m_PersistentAttackCooldown;
     [SerializeField] private AttackData m_AttackData;
     [SerializeField] private FactionsData m_FactionsData;
-    [SerializeField] private ObjectPoolContainer m_SparksPoolContainer;
+
+    [Header("Attack Sparks (leave fields empty if no sparks")]
+    [SerializeField] private LevelServiceLocator m_LevelServiceLocator;
     [SerializeField] private Transform m_SparksPosition;
 
     private readonly HashSet<IAttackTarget> m_AttackedThisActivation = new();
@@ -147,9 +149,10 @@ public class Hitbox : MonoBehaviour
             m_TargetsOnCooldown.Add(hurtbox.AttackTarget, m_PersistentAttackCooldown);
         }
 
-        if(m_SparksPoolContainer != null)
+        if(m_LevelServiceLocator != null && m_SparksPosition != null)
         {
-            GameObject sparks = m_SparksPoolContainer.Get();
+            m_LevelServiceLocator.TryGetService<IObjectPoolService>(out var poolService);
+            GameObject sparks = poolService.GetAttackHitSparksPoolContainer().Get();
             sparks.transform.SetPositionAndRotation(m_SparksPosition.position, m_SparksPosition.rotation);
         }
     }

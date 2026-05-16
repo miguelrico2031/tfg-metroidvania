@@ -4,8 +4,8 @@
 public class DropHealItemOnDeathComponent : MonoBehaviour
 {
     [SerializeField] private bool m_DropOnTheGround;
-    [SerializeField] private ObjectPoolContainer m_ObjectPool;
     [SerializeField] private DataReference<IPerceptionStats> m_Stats;
+    [SerializeField] private LevelServiceLocator m_LevelServiceLocator;
 
     private HealthComponent m_Health;
 
@@ -20,13 +20,20 @@ public class DropHealItemOnDeathComponent : MonoBehaviour
         m_Health.OnHealthChanged -= OnHealthChanged;
     }
 
+    private void Start()
+    {
+        m_LevelServiceLocator.TryGetService<IDistributeHealItemDropsService>(out var distributeService);
+        distributeService.RegisterComponent(this);
+    }
+
     private void OnHealthChanged(int _)
     {
         if (m_Health.CurrentHealth > 0)
             return;
 
         m_Health.OnHealthChanged -= OnHealthChanged;
-        GameObject item = m_ObjectPool.Get();
+        m_LevelServiceLocator.TryGetService<IObjectPoolService>(out var poolService);
+        GameObject item = poolService.GetHealsPoolContainer().Get();
         item.transform.position = GetItemDropPosition();
     }
 
