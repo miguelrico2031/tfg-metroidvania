@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealItemDropsDistributor
   m_AmountOfHealDropsInThisLevel: 1
-  m_LevelServiceLocator: {fileID: 0}
+  m_LevelServiceLocator: {fileID: 11400000, guid: 40c9e789db679434abbead675478350b, type: 2}
 --- !u!1 &8440653893186489044
 GameObject:
   m_ObjectHideFlags: 0

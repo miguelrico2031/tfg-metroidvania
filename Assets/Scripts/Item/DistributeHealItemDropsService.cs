@@ -12,7 +12,7 @@ public class DistributeHealItemDropsService : MonoBehaviour, IDistributeHealItem
     [SerializeField] private int m_AmountOfHealDropsInThisLevel;
     [SerializeField] private LevelServiceLocator m_LevelServiceLocator;
 
-    private List<DropHealItemOnDeathComponent> m_Components;
+    private readonly List<DropHealItemOnDeathComponent> m_Components = new();
 
     public void RegisterComponent(DropHealItemOnDeathComponent component) => m_Components.Add(component);
 
