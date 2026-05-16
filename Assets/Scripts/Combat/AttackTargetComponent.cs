@@ -21,19 +21,26 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
     private HealthComponent m_Health;
     private FactionComponent m_Faction;
 
-    public void SetInvulnerable(bool invulnerable)
+    public void AddInvulnerability()
     {
-        Assert.IsFalse(!IsInvulnerable && !invulnerable, "Tried to clear invulnerability without having set it.");
-        bool wasInvulnerable = IsInvulnerable;
-        m_InvulnerabilitySources += invulnerable ? 1 : -1;
-        m_InvulnerabilitySources = Math.Max(m_InvulnerabilitySources, 0);
-
-        if (wasInvulnerable == IsInvulnerable)
-            return;
-
-        foreach (var hurtbox in m_Hurtboxes)
+        if(++m_InvulnerabilitySources == 1)
         {
-            hurtbox.enabled = !IsInvulnerable;
+            foreach (var hurtbox in m_Hurtboxes)
+            {
+                hurtbox.enabled = false;
+            }
+        }
+    }
+
+    public void RemoveInvulnerability()
+    {
+        Assert.IsTrue(IsInvulnerable, "Tried to clear invulnerability without having set it.");
+        if(--m_InvulnerabilitySources == 0)
+        {
+            foreach (var hurtbox in m_Hurtboxes)
+            {
+                hurtbox.enabled = true;
+            }
         }
     }
 
@@ -59,7 +66,7 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
             if (IsAlive && m_Stats.Value.HitInvulnerabilityTime > 0.01f)
             {
                 m_HitInvulnerabilityTimer = m_Stats.Value.HitInvulnerabilityTime;
-                SetInvulnerable(true);
+                AddInvulnerability();
             }
         }
         OnAttackReceived?.Invoke();
@@ -84,7 +91,7 @@ public class AttackTargetComponent : MonoBehaviour, IAttackTarget
             m_HitInvulnerabilityTimer -= Time.deltaTime;
             if (m_HitInvulnerabilityTimer <= 0f)
             {
-                SetInvulnerable(false);
+                RemoveInvulnerability();
             }
         }
     }

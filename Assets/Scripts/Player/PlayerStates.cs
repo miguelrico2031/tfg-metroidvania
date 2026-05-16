@@ -76,14 +76,14 @@ public class PlayerDashingState : APlayerState
         int forwardDirection = Mathf.CeilToInt(m_Player.transform.right.x);
         int dashDirection = m_Player.Input.Movement != 0 ? m_Player.Input.Movement : forwardDirection;
         m_Player.Movement.ApplyDash(dashDirection);
-        m_Player.AttackTarget.SetInvulnerable(true);
+        m_Player.AttackTarget.AddInvulnerability();
         m_Player.Input.DashBuffer.Clear();
         m_Player.Animator.StartDashAnimation();
     }
     public override void End()
     {
         m_Player.Movement.FinishDash();
-        m_Player.AttackTarget.SetInvulnerable(false);
+        m_Player.AttackTarget.RemoveInvulnerability();
     }
 }
 
@@ -93,12 +93,12 @@ public class PlayerStandingState : APlayerState
     public override void Start(Type lastState)
     {
         m_Player.Movement.Stop();
-        m_Player.AttackTarget.SetInvulnerable(true);
+        m_Player.AttackTarget.AddInvulnerability();
         m_Player.Animator.StartStandAnimation(transitionFromKnockback: lastState == typeof(PlayerKnockbackState));
     }
     public override void End()
     {
-        m_Player.AttackTarget.SetInvulnerable(false);
+        m_Player.AttackTarget.RemoveInvulnerability();
     }
 
 }
@@ -111,7 +111,7 @@ public class PlayerKnockbackState : APlayerState
     {
         var attack = m_Player.AttackTarget.ResolvedAttackThisFrame;
         m_Player.Movement.ApplyAttackKnockback(attack.Knockback, attack.Position, attack.Velocity);
-        m_Player.AttackTarget.SetInvulnerable(true);
+        m_Player.AttackTarget.AddInvulnerability();
         m_IsAirborne = attack.Knockback.Height > 0.1f || !m_Player.GroundCheck.IsGrounded;
         m_Player.Animator.StartKnockbackAnimation(m_IsAirborne);
     }
@@ -126,7 +126,7 @@ public class PlayerKnockbackState : APlayerState
     public override void End()
     {
         m_Player.Movement.FinishKnockback();
-        m_Player.AttackTarget.SetInvulnerable(false);
+        m_Player.AttackTarget.RemoveInvulnerability();
     }
 }
 

@@ -29445,14 +29445,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4062449134482075419, guid: c70c225b484b0764d807c696458fd860, type: 3}
-      propertyPath: orthographic size
-      value: 7.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5311398109948594088, guid: c70c225b484b0764d807c696458fd860, type: 3}
-      propertyPath: m_GridSnapping
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5376761378372897092, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
