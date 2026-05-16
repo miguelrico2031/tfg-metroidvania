@@ -38,19 +38,19 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
+  - name: Background_1
     uniqueID: 2581087889
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Ground_BackScenery
+  - name: Ground_SceneryOverGround
     uniqueID: 889286347
     locked: 0
   - name: Ground
     uniqueID: 2973962209
     locked: 0
-  - name: Ground_Scenery
+  - name: Ground_SceneryBehindGround
     uniqueID: 1575940023
     locked: 0
   - name: NPC
