@@ -9,7 +9,7 @@ public class PlayerSpawnComponent : MonoBehaviour
         Vector3 spawnPosition = transform.position;
         if(Entrypoint.TryGetActiveEntrypoint(out var entrypoint))
         {
-            Entrypoint.ClearActiveEntrypoint();
+            Entrypoint.ClearActiveEntrypoint(); //Entrypoints shold be cleared to avoid respawning on one on death.
             spawnPosition = entrypoint.transform.position;
         }
         else if (Checkpoint.GetActiveLevelCheckpoint(out var checkpoint))

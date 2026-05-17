@@ -11,7 +11,7 @@ public class PlayerDeathHandler : ScriptableObject
     [SerializeField] private DataReference<IPersistence> m_Persistence;
     [SerializeField] private string m_RespawnLevelFallback;
 
-    public async UniTask HandleDeadPlayer(GameObject player)
+    public async UniTask HandleDeadPlayer()
     {
         await UniTask.Delay(TimeSpan.FromSeconds(m_RespawnDelay), ignoreTimeScale: false);
         Entrypoint.ClearActiveEntrypoint();
