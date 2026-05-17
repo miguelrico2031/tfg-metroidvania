@@ -45,15 +45,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _RefractionStrength: 0.3
-    - _WaterSpeed: 14.33
-    - _WaveFrequency: 1
-    - _WaveSpeed: 0.1
-    - _WaveStrength: 0.01
+    - _CutoutOffsetY: -0.48
+    - _FoamWidth: 0.0025
+    - _RefractionStrength: 2.11
+    - _WaterSpeed: 0.08
+    - _WaveFrequency: 1.39
+    - _WaveSpeed: 0.3
+    - _WaveStrength: 0.004
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0.763617, g: 0.8301887, b: 0.80976325, a: 1}
-    - _WaterColor: {r: 0.34433958, g: 1, b: 0.836085, a: 1}
+    - _FoamColor: {r: 0.5465913, g: 0.6698113, b: 0.64083433, a: 1}
+    - _WaterColor: {r: 0.31835172, g: 0.9245283, b: 0.7720767, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &3706516351758680009
