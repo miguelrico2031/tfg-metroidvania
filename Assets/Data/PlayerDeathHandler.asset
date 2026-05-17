@@ -16,4 +16,4 @@ MonoBehaviour:
   m_LevelLoader: {fileID: 11400000, guid: 0ae0440b974b63849a899e13273044f0, type: 2}
   m_Persistence:
     m_Scriptable: {fileID: 11400000, guid: d6457fff946a2ef46ac575337d141460, type: 2}
-  m_RespawnLevelFallback: TestCode
+  m_RespawnLevelFallback: Level_1_1

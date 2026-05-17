@@ -9,6 +9,8 @@ public class DebugCheats : MonoBehaviour
     private readonly StringBuilder m_CurrentCommand = new();
     private bool m_InvulnerableCheatSet = false;
     private AttackTargetComponent m_PlayerAttackTarget;
+    private Hitbox[] m_PlayerHitboxes;
+    private AttackData[] m_DefaultAttacksData;
 
 #if CHEATS_ENABLED
     private void OnEnable()
@@ -23,7 +25,15 @@ public class DebugCheats : MonoBehaviour
     private void Start()
     {
         GameObject player = GameObject.FindWithTag("Player");
+
         m_PlayerAttackTarget = player.GetComponent<AttackTargetComponent>();
+
+        m_PlayerHitboxes = player.GetComponentsInChildren<Hitbox>(includeInactive: true);
+        m_DefaultAttacksData = new AttackData[m_PlayerHitboxes.Length];
+        for (int i = 0; i < m_PlayerHitboxes.Length; i++)
+        {
+            m_DefaultAttacksData[i] = m_PlayerHitboxes[i].AttackData;
+        }
     }
 
     private void Update()
@@ -46,9 +56,21 @@ public class DebugCheats : MonoBehaviour
         {
             case "help":
                 Debug.Log("[CHEAT] help: list of all cheats:");
+                Debug.Log("- console1");
+                Debug.Log("- console0");
                 Debug.Log("- clearsave");
                 Debug.Log("- invul1");
                 Debug.Log("- invul0");
+                break;
+
+            case "console1":
+                Debug.developerConsoleEnabled = true;
+                Debug.Log("[CHEAT] console1");
+                break;
+
+            case "console0":
+                Debug.developerConsoleEnabled = false;
+                Debug.Log("[CHEAT] console0");
                 break;
 
             case "clearsave":
@@ -73,6 +95,24 @@ public class DebugCheats : MonoBehaviour
                     m_PlayerAttackTarget.RemoveInvulnerability();
                     Debug.Log("[CHEAT] invul0");
                 }
+                break;
+
+            case "onehit1":
+                foreach(var hitbox in m_PlayerHitboxes)
+                {
+                    AttackData data = hitbox.AttackData;
+                    data.Damage = 999;
+                    hitbox.AttackData = data;
+                }
+                Debug.Log("[CHEAT] onehit1");
+                break;
+
+            case "onehit0":
+                for (int i = 0; i < m_PlayerHitboxes.Length; i++)
+                {
+                    m_PlayerHitboxes[i].AttackData = m_DefaultAttacksData[i];
+                }
+                Debug.Log("[CHEAT] onehit0");
                 break;
         }
     }

@@ -457,7 +457,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1035057076043058017, guid: 3a6b8c70a1131144ab5c193bccfd483b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 44.25
+      value: 44.75
       objectReference: {fileID: 0}
     - target: {fileID: 1035057076043058017, guid: 3a6b8c70a1131144ab5c193bccfd483b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9685,7 +9685,7 @@ PlatformEffector2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601107530}
   m_Enabled: 1
-  m_UseColliderMask: 0
+  m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -9739,18 +9739,18 @@ CompositeCollider2D:
     m_ColliderPaths:
     - - X: 330000000
         Y: 27500000
-      - X: 260000000
+      - X: 261875008
         Y: 27500000
       - X: 260000000
-        Y: 20937500
+        Y: 25625000
       - X: 330000000
-        Y: 20937500
+        Y: 25625000
   m_CompositePaths:
     m_Paths:
-    - - {x: 32.999973, y: 2.09375}
+    - - {x: 32.999973, y: 2.5625}
       - {x: 32.999973, y: 2.75}
-      - {x: 26, y: 2.749971}
-      - {x: 26.000029, y: 2.09375}
+      - {x: 26.187492, y: 2.7499924}
+      - {x: 26.000088, y: 2.5625}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -10101,7 +10101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4062449134482075419, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: orthographic size
-      value: 7.5
+      value: 5.625
       objectReference: {fileID: 0}
     - target: {fileID: 4341689968739706465, guid: c70c225b484b0764d807c696458fd860, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11569,7 +11569,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2504939232155676458, guid: 1a02a095dc495a2458ba5efbf05a31ad, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.72386
+      value: 41
       objectReference: {fileID: 0}
     - target: {fileID: 2504939232155676458, guid: 1a02a095dc495a2458ba5efbf05a31ad, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11609,7 +11609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4376317803128864649, guid: 1a02a095dc495a2458ba5efbf05a31ad, type: 3}
       propertyPath: m_ID
-      value: 111
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 5835005646352794623, guid: 1a02a095dc495a2458ba5efbf05a31ad, type: 3}
       propertyPath: m_Name

@@ -2,17 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 [RequireComponent(typeof(Collider2D))]
 public class Hitbox : MonoBehaviour
 {
     [field: SerializeField] public Mode HitboxMode { get; private set; }
+    [field: SerializeField, FormerlySerializedAs("m_AttackData")] public AttackData AttackData { get; set; }
 
     public event Action<Hurtbox, AttackResult> OnAttackPerformed;
 
     [SerializeField] private float m_PersistentAttackCooldown;
-    [SerializeField] private AttackData m_AttackData;
     [SerializeField] private FactionsData m_FactionsData;
 
     [Header("Attack Sparks (leave fields empty if no sparks")]
@@ -26,7 +27,7 @@ public class Hitbox : MonoBehaviour
     private Collider2D m_Collider;
     private Rigidbody2D m_Rigidbody;
 
-    public bool CanAttack(Faction targetFaction) => m_FactionsData.IsHostileTo(m_AttackData.Faction, targetFaction);
+    public bool CanAttack(Faction targetFaction) => m_FactionsData.IsHostileTo(AttackData.Faction, targetFaction);
     private void Awake()
     {
         m_Collider = GetComponent<Collider2D>();
@@ -134,7 +135,7 @@ public class Hitbox : MonoBehaviour
             !CanAttack(hurtbox.AttackTarget.Faction))
             return;
 
-        AttackData attackData = m_AttackData;
+        AttackData attackData = AttackData;
         attackData.Position = transform.position;
         attackData.Velocity = m_Rigidbody != null ? m_Rigidbody.linearVelocity : Vector2.zero;
         AttackResult result = hurtbox.AttackTarget.ResolveAttack(attackData);
