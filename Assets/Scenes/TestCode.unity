@@ -29023,7 +29023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5431498381751390754, guid: 3a6b8c70a1131144ab5c193bccfd483b, type: 3}
       propertyPath: m_Name
-      value: Level Trigger
+      value: Change Level Trigger
       objectReference: {fileID: 0}
     - target: {fileID: 7885509934269189832, guid: 3a6b8c70a1131144ab5c193bccfd483b, type: 3}
       propertyPath: m_TargetLevelName

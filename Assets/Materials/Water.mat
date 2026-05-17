@@ -23,6 +23,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _RenderTexture:
         m_Texture: {fileID: 8400000, guid: a81ee92a1584f1042b99747bf0559256, type: 2}
         m_Scale: {x: 1, y: 1}
@@ -46,6 +50,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _CutoutOffsetY: -0.48
+    - _Float: 0
     - _FoamWidth: 0.0025
     - _RefractionStrength: 0.68
     - _WaterSpeed: 0.08
@@ -56,7 +61,9 @@ Material:
     - White: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0.763617, g: 0.8301887, b: 0.80976325, a: 1}
     - _FoamColor: {r: 0.5465913, g: 0.6698113, b: 0.64083433, a: 1}
+    - _PositionScaling: {r: 0.005, g: 0.005, b: 0, a: 0}
     - _WaterColor: {r: 0.31835172, g: 0.9245283, b: 0.7720767, a: 1}
+    - _WaveTiling: {r: 10, g: 100, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &3706516351758680009
