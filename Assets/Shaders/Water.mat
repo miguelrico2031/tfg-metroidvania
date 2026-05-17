@@ -47,7 +47,7 @@ Material:
     m_Floats:
     - _CutoutOffsetY: -0.48
     - _FoamWidth: 0.0025
-    - _RefractionStrength: 2.11
+    - _RefractionStrength: 0.68
     - _WaterSpeed: 0.08
     - _WaveFrequency: 1.39
     - _WaveSpeed: 0.3
