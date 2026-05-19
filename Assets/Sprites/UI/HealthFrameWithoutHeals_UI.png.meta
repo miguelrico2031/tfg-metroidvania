@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: db0d9b6615305ed44ae1b55ee396bb8e
+guid: be6a60d6d704ad343bfa9121ea8232b9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6937407813819495181
-    second: MenuFrame_UI_0
+      213: -8107031534135157799
+    second: HealthFrameWithoutHeals_UI_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +52,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
-  spriteBorder: {x: 64, y: 64, z: 64, w: 64}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MenuFrame_UI_0
+      name: HealthFrameWithoutHeals_UI_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 254
-        height: 185
+        y: 15
+        width: 191
+        height: 52
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3fc054b695069bf90800000000000000
-      internalID: -6937407813819495181
+      spriteID: 9dbdbf8c5c90e7f80800000000000000
+      internalID: -8107031534135157799
       vertices: []
       indices: 
       edges: []
@@ -126,7 +126,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MenuFrame_UI_0: -6937407813819495181
+      HealthFrameWithoutHeals_UI_0: -8107031534135157799
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
