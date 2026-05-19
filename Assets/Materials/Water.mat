@@ -62,7 +62,7 @@ Material:
     - _Color: {r: 0.763617, g: 0.8301887, b: 0.80976325, a: 1}
     - _FoamColor: {r: 0.5465913, g: 0.6698113, b: 0.64083433, a: 1}
     - _PositionScaling: {r: 0.005, g: 0.005, b: 0, a: 0}
-    - _WaterColor: {r: 0.31835172, g: 0.9245283, b: 0.7720767, a: 1}
+    - _WaterColor: {r: 0.29411766, g: 0.42915237, b: 0.59607846, a: 1}
     - _WaveTiling: {r: 10, g: 100, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
