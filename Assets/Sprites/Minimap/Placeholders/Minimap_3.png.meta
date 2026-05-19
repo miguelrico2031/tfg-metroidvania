@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 246d1a8ab0b322a4fbe463ec2e3e1298
+guid: e8f6cb408f764ce40993167ca778e062
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8984754096541894249
-    second: Meat_0
-  - first:
-      213: 2073203306736515940
-    second: Meat_1
-  - first:
-      213: 6669852852261953786
-    second: Meat_2
-  - first:
-      213: -1994141993942582034
-    second: Meat_3
+      213: -1716464618851566451
+    second: Minimap_3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -110,7 +101,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -122,89 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Meat_0
+      name: Minimap_3_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
-        height: 16
-      alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9668d9e5f3240bc70800000000000000
-      internalID: 8984754096541894249
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meat_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 16
-      alignment: 9
-      pivot: {x: 0.5, y: 0.0625}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 46bf1355c6f75cc10800000000000000
-      internalID: 2073203306736515940
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meat_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 16
-      alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: af0233ba4d3109c50800000000000000
-      internalID: 6669852852261953786
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Meat_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 16
-      alignment: 9
-      pivot: {x: 0.5, y: 0.125}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bed868bb5f55c8540a8c5eda7b781bbf
-      internalID: -1994141993942582034
+      spriteID: d8c73dbf584ed28e0800000000000000
+      internalID: -1716464618851566451
       vertices: []
       indices: 
       edges: []
@@ -213,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 77588e15554cec84cabcdaa0d972735d
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -221,14 +146,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":9,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Meat_0: 8984754096541894249
-      Meat_1: 2073203306736515940
-      Meat_2: 6669852852261953786
-      Meat_3: -1994141993942582034
+      Minimap_3_0: -1716464618851566451
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

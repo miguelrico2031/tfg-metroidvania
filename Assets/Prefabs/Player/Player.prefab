@@ -280,6 +280,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputComponent
   m_Stats: {fileID: 11400000, guid: 2a5bcbd07003e504c8c839a365153ec1, type: 2}
   m_InputActionAsset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_MoveAction: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_JumpAction: {fileID: -2099379676528639254, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_DashAction: {fileID: 7040659881675835329, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_AttackAction: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_BlockAction: {fileID: 4339264295470152044, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_InteractAction: {fileID: 1781555164194001046, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_HealAction: {fileID: -1914076045801271569, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!114 &5329591190482078227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,8 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   <HitboxMode>k__BackingField: 0
-  m_PersistentAttackCooldown: 0
-  m_AttackData:
+  <AttackData>k__BackingField:
     Damage: 1
     HitKnockback:
       Duration: 0
@@ -586,6 +592,7 @@ MonoBehaviour:
     Faction: 0
     Position: {x: 0, y: 0}
     Velocity: {x: 0, y: 0}
+  m_PersistentAttackCooldown: 0
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
   m_LevelServiceLocator: {fileID: 11400000, guid: 40c9e789db679434abbead675478350b, type: 2}
   m_SparksPosition: {fileID: 8551589799472522041}
@@ -856,8 +863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hitbox
   <HitboxMode>k__BackingField: 0
-  m_PersistentAttackCooldown: 0
-  m_AttackData:
+  <AttackData>k__BackingField:
     Damage: 1
     HitKnockback:
       Duration: 0
@@ -870,6 +876,7 @@ MonoBehaviour:
     Faction: 0
     Position: {x: 0, y: 0}
     Velocity: {x: 0, y: 0}
+  m_PersistentAttackCooldown: 0
   m_FactionsData: {fileID: 11400000, guid: bc8ff5fb2f8dd144b9bf738ec2aed6f1, type: 2}
   m_LevelServiceLocator: {fileID: 11400000, guid: 40c9e789db679434abbead675478350b, type: 2}
   m_SparksPosition: {fileID: 6803653422135834694}

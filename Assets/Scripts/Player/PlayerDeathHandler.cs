@@ -19,7 +19,7 @@ public class PlayerDeathHandler : ScriptableObject
         {
             respawnLevel = m_RespawnLevelFallback;
         }
-        await m_LevelLoader.LoadLevel(respawnLevel);
+        await m_LevelLoader.LoadLevel(respawnLevel, LevelLoader.Reason.PlayerDied);
     }
 }
 

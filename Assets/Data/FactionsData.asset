@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab628c2b9074e34788e2ecac2ccc6ae, type: 3}
   m_Name: FactionsData
   m_EditorClassIdentifier: Assembly-CSharp::FactionsData
-  m_FactionMatrix: 000101000001000101
+  m_FactionMatrix: 00010100010001000101010100000000

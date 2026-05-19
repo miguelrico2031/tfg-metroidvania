@@ -5,6 +5,7 @@ public enum PersistentData
     ActiveCheckpointLevel,
     PlayerHeals,
     CheckpointUnlocked,
+    LevelVisited,
 }
 
 public interface IPersistence

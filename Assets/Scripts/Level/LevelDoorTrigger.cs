@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class ChangeLevelTrigger : MonoBehaviour
+public class LevelDoorTrigger : MonoBehaviour
 {
     [SerializeField] private LevelLoader m_LevelLoader;
     [SerializeField] private string m_TargetLevelName;
@@ -15,7 +16,7 @@ public class ChangeLevelTrigger : MonoBehaviour
         {
             m_Triggered = true;
             Entrypoint.SetActiveEntrypoint(m_TargetLevelEntrypointID);
-            _ = m_LevelLoader.LoadLevel(m_TargetLevelName);
+            _ = m_LevelLoader.LoadLevel(m_TargetLevelName, LevelLoader.Reason.DoorTriggered);
         }
     }
 }

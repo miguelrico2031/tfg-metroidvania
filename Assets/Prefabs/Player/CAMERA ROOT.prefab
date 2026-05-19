@@ -384,7 +384,7 @@ Transform:
   m_GameObject: {fileID: 4471223919266796859}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2, y: 1, z: -10}
+  m_LocalPosition: {x: -2.7500086, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -428,7 +428,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5.625
+  orthographic size: 6.3828125
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -563,6 +563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3189320157681058156}
   - component: {fileID: 5470008994696897448}
+  - component: {fileID: 3338025859130387495}
   m_Layer: 0
   m_Name: CAMERA ROOT
   m_TagString: Untagged
@@ -604,6 +605,20 @@ MonoBehaviour:
   m_DampingTweenTime: 0.2
   m_PlayerState: {fileID: 0}
   m_PositionComposer: {fileID: 7579339337236504334}
+--- !u!114 &3338025859130387495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4896886797848082064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee3b3b305b6e86448e40c766e25f15c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CinemachineSnapOnStart
+  m_Camera: {fileID: 3398135555572483041}
+  m_Confiner: {fileID: 3016607940621358826}
 --- !u!1 &6263323444887502344
 GameObject:
   m_ObjectHideFlags: 0

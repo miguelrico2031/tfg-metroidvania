@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 4201878067603454502}
   - component: {fileID: 6362184713304384076}
   - component: {fileID: 7857039517012855618}
+  - component: {fileID: 1251923388626219518}
   m_Layer: 0
   m_Name: Level Services
   m_TagString: Untagged
@@ -270,6 +271,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealItemDropsDistributor
   m_AmountOfHealDropsInThisLevel: 1
   m_LevelServiceLocator: {fileID: 11400000, guid: 40c9e789db679434abbead675478350b, type: 2}
+--- !u!114 &1251923388626219518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5232732520827252070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07257ca50b14a684a8702f7931a490f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelVisitor
+  m_Persistence:
+    m_Scriptable: {fileID: 11400000, guid: d6457fff946a2ef46ac575337d141460, type: 2}
 --- !u!1 &8440653893186489044
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,7 @@ public class Hitbox : MonoBehaviour
     [SerializeField] private float m_PersistentAttackCooldown;
     [SerializeField] private FactionsData m_FactionsData;
 
-    [Header("Attack Sparks (leave fields empty if no sparks")]
+    [Header("Attack Sparks (leave fields empty if no sparks)")]
     [SerializeField] private LevelServiceLocator m_LevelServiceLocator;
     [SerializeField] private Transform m_SparksPosition;
 
